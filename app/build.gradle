@@ -1,0 +1,42 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion project.compileSdkVersion
+    buildToolsVersion project.buildToolsVersion
+
+    defaultConfig {
+        applicationId project.applicationId
+        minSdkVersion project.minSdkVersion
+        targetSdkVersion project.targetSdkVersion
+        versionCode project.versionCode
+        versionName project.versionName
+
+        testInstrumentationRunner project.testInstrumentationRunner
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation generalDependency.kotlin
+    implementation generalDependency.appcompat
+    implementation generalDependency.core
+    testImplementation generalDependency.junit
+    androidTestImplementation generalDependency.androidxjunit
+    androidTestImplementation generalDependency.androidxespresso
+
+    // core module
+    implementation project(':core')
+
+    //google material library
+    implementation appDependency.material
+}

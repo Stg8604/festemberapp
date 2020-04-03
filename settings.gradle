@@ -1,0 +1,3 @@
+rootProject.name='Fest Android'
+include ':app'
+include ':core'
