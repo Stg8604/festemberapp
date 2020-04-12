@@ -30,9 +30,8 @@ the main repository
 
 To ensure consistency throughout the source code, keep these rules in mind as you are working:
 
-- With the exceptions listed below, we follow the rules contained in
-  [Google's Android Style Guide](https://developer.android.com/kotlin/style-guide)
-  - Wrap all code at **120 characters**.
+- The coding style to be followed along with instructions to use ktlint can be found [here](coding-style.md)
+
 - Also refer the [Jetpack architecture guide](https://developer.android.com/jetpack/docs/guide) for the conventions on
   using the jetpact libraries.
 

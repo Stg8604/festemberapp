@@ -54,3 +54,17 @@ jobs:
 
       - name: Unit tests
         run: bash ./gradlew test --build-cache --stacktrace
+  
+  lint:
+    name: Lint Tests
+    runs-on: ubuntu-18.04
+
+    steps:
+      - name: Checking out
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 30
+          
+      - name: ktlintCheck
+        run: ./gradlew ktlintCheck
+
