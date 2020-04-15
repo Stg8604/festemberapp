@@ -2,6 +2,12 @@ name: Fest CI
 
 on:
   push:
+    paths:
+      - '**.kt'
+      - '**.java'
+      - '**.gradle'
+      - '**.yml'
+
     branches:
       - "master"
       - "dev*"
@@ -11,7 +17,7 @@ on:
 
   pull_request:
     branches:
-      - "*"
+      - "**"
 
 jobs:
   check:
@@ -54,7 +60,7 @@ jobs:
 
       - name: Unit tests
         run: bash ./gradlew test --build-cache --stacktrace
-  
+
   lint:
     name: Lint Tests
     runs-on: ubuntu-18.04
@@ -64,7 +70,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 30
-          
+
       - name: ktlintCheck
         run: ./gradlew ktlintCheck
 

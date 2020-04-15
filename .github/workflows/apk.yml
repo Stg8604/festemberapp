@@ -2,6 +2,12 @@ name: Debug APK
 
 on:
   push:
+    paths:
+    - '**.kt'
+    - '**.java'
+    - '**.gradle'
+    - '**.yml'
+
     branches:
       - "master"
       - "dev*"
