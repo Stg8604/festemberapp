@@ -31,8 +31,8 @@ dependencies {
     implementation generalDependency.appcompat
     implementation generalDependency.core
     testImplementation generalDependency.junit
-    androidTestImplementation generalDependency.androidxjunit
-    androidTestImplementation generalDependency.androidxespresso
+    androidTestImplementation generalDependency.androidxJunit
+    androidTestImplementation generalDependency.androidxEspresso
 
     // core module
     implementation project(':core')

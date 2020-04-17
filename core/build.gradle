@@ -1,6 +1,8 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
 
 android {
     compileSdkVersion project.compileSdkVersion
@@ -16,13 +18,17 @@ android {
         consumerProguardFiles 'consumer-rules.pro'
     }
 
+    testOptions {
+        unitTests.all {
+            execution 'ANDROIDX_TEST_ORCHESTRATOR'
+        }
+    }
     buildTypes {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 dependencies {
@@ -31,6 +37,30 @@ dependencies {
     implementation generalDependency.appcompat
     implementation generalDependency.core
     testImplementation generalDependency.junit
-    androidTestImplementation generalDependency.androidxjunit
-    androidTestImplementation generalDependency.androidxespresso
+    androidTestImplementation generalDependency.androidxJunit
+    androidTestImplementation generalDependency.androidxEspresso
+
+    // Orchestration test
+    androidTestUtil generalDependency.androidxOrchestrator
+
+    // Lifecycle
+    implementation generalDependency.lifecycle
+    kapt generalDependency.lifecycleCompiler
+
+    // Room persistence library
+    implementation generalDependency.room
+    implementation generalDependency.roomCoroutine
+    kapt generalDependency.roomCompiler
+    testImplementation generalDependency.roomAnnotation
+
+    // Mockito
+    testImplementation generalDependency.mockito
+    androidTestImplementation generalDependency.mockitoTestImplementation
+
+    // Dagger 2
+    implementation generalDependency.dagger
+    implementation generalDependency.daggerAndroid
+    implementation generalDependency.daggerSupport
+    kapt generalDependency.daggerAnnotationProcessor
+    kapt generalDependency.daggerCompiler
 }
