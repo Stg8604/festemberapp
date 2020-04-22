@@ -29,6 +29,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
 }
 
 dependencies {
@@ -41,26 +47,34 @@ dependencies {
     androidTestImplementation generalDependency.androidxEspresso
 
     // Orchestration test
-    androidTestUtil generalDependency.androidxOrchestrator
+    androidTestUtil coreDependency.androidxOrchestrator
 
     // Lifecycle
     implementation generalDependency.lifecycle
     kapt generalDependency.lifecycleCompiler
 
     // Room persistence library
-    implementation generalDependency.room
-    implementation generalDependency.roomCoroutine
-    kapt generalDependency.roomCompiler
-    testImplementation generalDependency.roomAnnotation
+    implementation coreDependency.room
+    implementation coreDependency.roomCoroutine
+    kapt coreDependency.roomCompiler
+    testImplementation coreDependency.roomAnnotation
 
     // Mockito
-    testImplementation generalDependency.mockito
-    androidTestImplementation generalDependency.mockitoTestImplementation
+    testImplementation coreDependency.mockito
+    androidTestImplementation coreDependency.mockitoTestImplementation
 
     // Dagger 2
-    implementation generalDependency.dagger
-    implementation generalDependency.daggerAndroid
-    implementation generalDependency.daggerSupport
-    kapt generalDependency.daggerAnnotationProcessor
-    kapt generalDependency.daggerCompiler
+    implementation coreDependency.dagger
+    implementation coreDependency.daggerAndroid
+    implementation coreDependency.daggerSupport
+    kapt coreDependency.daggerAnnotationProcessor
+    kapt coreDependency.daggerCompiler
+
+    implementation coreDependency.coroutines
+
+    // retrofit
+    implementation coreDependency.retrofit
+    implementation coreDependency.converter
+    implementation coreDependency.interceptor
+    testImplementation coreDependency.mockwebserver
 }

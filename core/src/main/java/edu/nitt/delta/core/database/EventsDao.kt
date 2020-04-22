@@ -8,6 +8,7 @@ import androidx.room.Query
 import edu.nitt.delta.core.database.FestDbUtils.KEY_ID
 import edu.nitt.delta.core.database.FestDbUtils.KEY_REGISTERED
 import edu.nitt.delta.core.database.FestDbUtils.TABLE_EVENTS
+import edu.nitt.delta.core.model.event.EventData
 
 @Dao
 interface EventsDao {
