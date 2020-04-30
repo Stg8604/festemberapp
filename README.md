@@ -14,7 +14,7 @@ Main app for Festember, NITTFest and Pragyan
 * Open your project in the firebase [console](https://console.firebase.google.com/).
 * Add a new App and provide the application ID as the package name.
 * Download the google-services.json file.
-* Copy the json file to the root folder of the corresponding flavour.
+* Copy the downloaded `google-services.json` file inside `./app` folder.
 * Verify by running the app and checking the crashlytics dashboard.
 
 ## Contributing

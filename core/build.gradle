@@ -48,9 +48,10 @@ dependencies {
     // Orchestration test
     androidTestUtil coreDependency.androidxOrchestrator
 
-    // Lifecycle
-    implementation generalDependency.lifecycle
+    // lifeCycle
+    kapt generalDependency.lifecycle
     kapt generalDependency.lifecycleCompiler
+    implementation generalDependency.lifecycleObserver
 
     // Room persistence library
     implementation coreDependency.room

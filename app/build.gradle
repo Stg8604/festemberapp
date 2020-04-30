@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'io.fabric'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion project.compileSdkVersion
@@ -30,6 +31,10 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    viewBinding {
+        enabled = true
+    }
+
 }
 
 dependencies {
@@ -44,6 +49,18 @@ dependencies {
     // core module
     implementation project(':core')
 
-    //google material library
+    // google material library
     implementation appDependency.material
+
+    // navigation
+    implementation appDependency.navigationFragment
+    implementation appDependency.navigationUI
+
+    // constraint
+    implementation appDependency.constraintLayout
+
+    // lifeCycle
+    kapt generalDependency.lifecycle
+    kapt generalDependency.lifecycleCompiler
+    implementation generalDependency.lifecycleObserver
 }

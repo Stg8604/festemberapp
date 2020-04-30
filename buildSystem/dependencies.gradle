@@ -8,7 +8,20 @@ ext {
     lifecycle_version = "2.2.0"
     firebase_analytics_version = '17.2.2'
     crashlytics_version= '2.10.1'
+    orchestrator_version = '1.2.0'
+    mockito_version = '2.21.0'
+    constraint_version = '1.1.3'
+    nav_version = '2.3.0-alpha04'
 
+    room_version = '2.2.5'
+    coroutines_version = "1.3.5"
+    retrofit_version = "2.8.1"
+    okhttp_version = "4.5.0"
+    dagger_version = "2.27"
+    dagger_version = '2.27'
+    orchestrator_version = '1.2.0'
+    mockito_version = '2.21.0'
+    lifecycle_observer_version = '1.1.1'
 
     generalDependency = [
         kotlin : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_stdlib_version",
@@ -19,14 +32,31 @@ ext {
         androidxEspresso : "androidx.test.espresso:espresso-core:$androidxespresso_version",
         lifecycle: "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version",
         lifecycleCompiler: "androidx.lifecycle:lifecycle-compiler:$lifecycle_version",
+        lifecycleObserver : "android.arch.lifecycle:common-java8:$lifecycle_observer_version",
         firebaseAnalytics: "com.google.firebase:firebase-analytics:$firebase_analytics_version",
         crashlytics: "com.crashlytics.sdk.android:crashlytics:$crashlytics_version",
+        androidxOrchestrator : "androidx.test:orchestrator:$orchestrator_version",
+        mockito : "org.mockito:mockito-core:$mockito_version",
+        mockitoTestImplementation : "org.mockito:mockito-android:$mockito_version",
+        dagger : "com.google.dagger:dagger:$dagger_version",
+        daggerAndroid : "com.google.dagger:dagger-android:$dagger_version",
+        daggerSupport : "com.google.dagger:dagger-android-support:$dagger_version",
+        daggerAnnotationProcessor : "com.google.dagger:dagger-android-processor:$dagger_version",
+        daggerCompiler : "com.google.dagger:dagger-compiler:$dagger_version",
+        constraintlayout : "androidx.constraintlayout:constraintlayout:$constraint_version",
+        room : "androidx.room:room-runtime:$room_version",
+        roomCoroutine : "androidx.room:room-ktx:$room_version",
+        roomCompiler : "androidx.room:room-compiler:$room_version",
+        roomAnnotation : "androidx.room:room-testing:$room_version"
     ]
 
     material_version = "1.1.0"
 
     appDependency = [
-            material : "com.google.android.material:material:$material_version"
+            material : "com.google.android.material:material:$material_version",
+            navigationFragment : "androidx.navigation:navigation-fragment-ktx:$nav_version",
+            navigationUI : "androidx.navigation:navigation-ui-ktx:$nav_version",
+            constraintLayout : "androidx.constraintlayout:constraintlayout:$constraint_version"
     ]
 
     coroutines_version = "1.3.5"
