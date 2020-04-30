@@ -3,7 +3,6 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
-
 android {
     compileSdkVersion project.compileSdkVersion
     buildToolsVersion project.buildToolsVersion
@@ -77,4 +76,8 @@ dependencies {
     implementation coreDependency.converter
     implementation coreDependency.interceptor
     testImplementation coreDependency.mockwebserver
+
+    // firebase
+    implementation generalDependency.firebaseAnalytics
+    implementation generalDependency.crashlytics
 }

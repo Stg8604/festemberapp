@@ -6,6 +6,8 @@ ext {
     androidxjunit_version = '1.1.1'
     androidxespresso_version = '3.2.0'
     lifecycle_version = "2.2.0"
+    firebase_analytics_version = '17.2.2'
+    crashlytics_version= '2.10.1'
 
 
     generalDependency = [
@@ -17,6 +19,8 @@ ext {
         androidxEspresso : "androidx.test.espresso:espresso-core:$androidxespresso_version",
         lifecycle: "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version",
         lifecycleCompiler: "androidx.lifecycle:lifecycle-compiler:$lifecycle_version",
+        firebaseAnalytics: "com.google.firebase:firebase-analytics:$firebase_analytics_version",
+        crashlytics: "com.crashlytics.sdk.android:crashlytics:$crashlytics_version",
     ]
 
     material_version = "1.1.0"

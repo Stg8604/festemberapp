@@ -17,7 +17,8 @@ import javax.inject.Singleton
   modules = [
     AndroidSupportInjectionModule::class,
     DbModule::class,
-    FestApiModule::class
+    FestApiModule::class,
+    FirebaseModule::class
   ]
 )
 @Singleton
@@ -38,6 +39,5 @@ interface ApplicationComponent : AndroidInjector<BaseApplication> {
       @Named("url")
       url: String = Routes.BASE_URL
     ): ApplicationComponent
-
   }
 }

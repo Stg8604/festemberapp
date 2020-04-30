@@ -83,7 +83,7 @@ class EventData(
   @ColumnInfo(name = KEY_REGISTERED)
   val isRegistered: Boolean
 
-  ) {
+) {
   override fun equals(event: Any?): Boolean {
     require(event is EventData)
     return this.id == event.id &&
