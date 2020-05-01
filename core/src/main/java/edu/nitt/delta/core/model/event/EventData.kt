@@ -4,22 +4,22 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
-import edu.nitt.delta.core.database.FestDbUtils.KEY_CLUSTER
-import edu.nitt.delta.core.database.FestDbUtils.KEY_CONTACT
-import edu.nitt.delta.core.database.FestDbUtils.KEY_DATE
-import edu.nitt.delta.core.database.FestDbUtils.KEY_DESCRIPTION
-import edu.nitt.delta.core.database.FestDbUtils.KEY_END_TIME
-import edu.nitt.delta.core.database.FestDbUtils.KEY_ID
-import edu.nitt.delta.core.database.FestDbUtils.KEY_IMAGE
-import edu.nitt.delta.core.database.FestDbUtils.KEY_LAST_UPDATE_TIME
-import edu.nitt.delta.core.database.FestDbUtils.KEY_LOCATION_X
-import edu.nitt.delta.core.database.FestDbUtils.KEY_LOCATION_Y
-import edu.nitt.delta.core.database.FestDbUtils.KEY_MAX_LIMIT
-import edu.nitt.delta.core.database.FestDbUtils.KEY_NAME
-import edu.nitt.delta.core.database.FestDbUtils.KEY_REGISTERED
-import edu.nitt.delta.core.database.FestDbUtils.KEY_START_TIME
-import edu.nitt.delta.core.database.FestDbUtils.KEY_VENUE
-import edu.nitt.delta.core.database.FestDbUtils.TABLE_EVENTS
+import edu.nitt.delta.core.storage.FestDbUtils.KEY_CLUSTER
+import edu.nitt.delta.core.storage.FestDbUtils.KEY_CONTACT
+import edu.nitt.delta.core.storage.FestDbUtils.KEY_DATE
+import edu.nitt.delta.core.storage.FestDbUtils.KEY_DESCRIPTION
+import edu.nitt.delta.core.storage.FestDbUtils.KEY_END_TIME
+import edu.nitt.delta.core.storage.FestDbUtils.KEY_ID
+import edu.nitt.delta.core.storage.FestDbUtils.KEY_IMAGE
+import edu.nitt.delta.core.storage.FestDbUtils.KEY_LAST_UPDATE_TIME
+import edu.nitt.delta.core.storage.FestDbUtils.KEY_LOCATION_X
+import edu.nitt.delta.core.storage.FestDbUtils.KEY_LOCATION_Y
+import edu.nitt.delta.core.storage.FestDbUtils.KEY_MAX_LIMIT
+import edu.nitt.delta.core.storage.FestDbUtils.KEY_NAME
+import edu.nitt.delta.core.storage.FestDbUtils.KEY_REGISTERED
+import edu.nitt.delta.core.storage.FestDbUtils.KEY_START_TIME
+import edu.nitt.delta.core.storage.FestDbUtils.KEY_VENUE
+import edu.nitt.delta.core.storage.FestDbUtils.TABLE_EVENTS
 
 @Entity(tableName = TABLE_EVENTS)
 class EventData(
@@ -87,18 +87,18 @@ class EventData(
   override fun equals(event: Any?): Boolean {
     require(event is EventData)
     return this.id == event.id &&
-            this.name == event.name &&
-            this.startTime == event.startTime &&
-            this.endTime == event.endTime &&
-            this.venue == event.venue &&
-            this.description == event.description &&
-            this.lastUpdateTime == event.lastUpdateTime &&
-            this.locationX == event.locationX &&
-            this.locationY == event.locationY &&
-            this.image == event.image &&
-            this.maxLimit == event.maxLimit &&
-            this.cluster == event.cluster &&
-            this.date == event.date &&
-            this.contact == event.contact
+      this.name == event.name &&
+      this.startTime == event.startTime &&
+      this.endTime == event.endTime &&
+      this.venue == event.venue &&
+      this.description == event.description &&
+      this.lastUpdateTime == event.lastUpdateTime &&
+      this.locationX == event.locationX &&
+      this.locationY == event.locationY &&
+      this.image == event.image &&
+      this.maxLimit == event.maxLimit &&
+      this.cluster == event.cluster &&
+      this.date == event.date &&
+      this.contact == event.contact
   }
 }

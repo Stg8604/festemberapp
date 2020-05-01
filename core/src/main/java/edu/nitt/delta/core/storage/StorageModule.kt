@@ -1,4 +1,4 @@
-package edu.nitt.delta.core.database
+package edu.nitt.delta.core.storage
 
 import android.app.Application
 import androidx.room.Room
@@ -7,8 +7,7 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-class DbModule {
-
+class StorageModule() {
   @Provides
   @Singleton
   fun provideDb(app: Application): FestDb {
@@ -18,4 +17,10 @@ class DbModule {
   @Provides
   @Singleton
   fun provideDao(db: FestDb): EventsDao = db.festDatabaseDao()
+
+  @Provides
+  @Singleton
+  fun provideSharedPrefHelper(app: Application): SharedPrefHelper {
+    return SharedPrefHelper(app)
+  }
 }

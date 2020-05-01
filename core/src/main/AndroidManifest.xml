@@ -4,6 +4,7 @@
 
     <application
         android:name="BaseApplication"
-        android:allowBackup="true" />
+        android:allowBackup="true"
+        android:supportsRtl="true" />
 
 </manifest>

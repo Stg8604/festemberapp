@@ -1,4 +1,4 @@
-package edu.nitt.delta.core.database
+package edu.nitt.delta.core.storage
 
 object FestDbUtils {
 
@@ -6,7 +6,6 @@ object FestDbUtils {
   const val DATABASE_NAME = "FestDB"
 
   const val TABLE_EVENTS = "Events"
-  const val TABLE_MESSAGES = "Messages"
 
   const val KEY_ID = "id"
   const val KEY_NAME = "name"

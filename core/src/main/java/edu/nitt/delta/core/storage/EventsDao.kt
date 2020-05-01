@@ -1,13 +1,13 @@
-package edu.nitt.delta.core.database
+package edu.nitt.delta.core.storage
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import edu.nitt.delta.core.database.FestDbUtils.KEY_ID
-import edu.nitt.delta.core.database.FestDbUtils.KEY_REGISTERED
-import edu.nitt.delta.core.database.FestDbUtils.TABLE_EVENTS
+import edu.nitt.delta.core.storage.FestDbUtils.KEY_ID
+import edu.nitt.delta.core.storage.FestDbUtils.KEY_REGISTERED
+import edu.nitt.delta.core.storage.FestDbUtils.TABLE_EVENTS
 import edu.nitt.delta.core.model.event.EventData
 
 @Dao
