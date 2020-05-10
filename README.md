@@ -6,6 +6,10 @@ Main app for Festember, NITTFest and Pragyan
 
 ## Project Installation
 
+### Setting up githooks
+
+run `git config core.hooksPath .githooks` once after cloning the repo
+
 ### Connecting to a firebase project
 
 

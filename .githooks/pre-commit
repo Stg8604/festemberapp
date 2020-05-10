@@ -1,0 +1,6 @@
+#!/bin/bash
+
+echo "##### Running pre-commit hook #####"
+
+# format the code before commiting it
+$(pwd)/gradlew ktlintFormat
