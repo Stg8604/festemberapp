@@ -60,7 +60,8 @@ dependencies {
     implementation appDependency.constraintLayout
 
     // lifeCycle
-    kapt generalDependency.lifecycle
+    implementation generalDependency.lifecycle
     kapt generalDependency.lifecycleCompiler
     implementation generalDependency.lifecycleObserver
+    implementation generalDependency.viewmodel
 }

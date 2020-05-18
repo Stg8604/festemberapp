@@ -8,9 +8,10 @@ import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 import edu.nitt.delta.core.api.FestApiInterface
 import edu.nitt.delta.core.api.FestApiModule
-import edu.nitt.delta.core.api.Routes
+import edu.nitt.delta.core.event.EventModule
 import edu.nitt.delta.core.storage.SharedPrefHelper
 import edu.nitt.delta.core.storage.StorageModule
+import edu.nitt.delta.core.viewmodel.ViewModelProviderModule
 import javax.inject.Named
 import javax.inject.Singleton
 
@@ -19,7 +20,9 @@ import javax.inject.Singleton
     AndroidSupportInjectionModule::class,
     FestApiModule::class,
     FirebaseModule::class,
-    StorageModule::class
+    StorageModule::class,
+    ViewModelProviderModule::class,
+    EventModule::class
   ]
 )
 @Singleton
@@ -39,7 +42,7 @@ interface ApplicationComponent : AndroidInjector<BaseApplication> {
 
       @BindsInstance
       @Named("url")
-      url: String = Routes.BASE_URL
+      url: String = BASE_URL
     ): ApplicationComponent
   }
 }
