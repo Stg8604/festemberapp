@@ -22,6 +22,9 @@ ext {
     mockito_version = '2.21.0'
     lifecycle_observer_version = '1.1.1'
 
+    androidTestRunner_version = '1.2.0'
+    fragmentTestingLauncher_version = '1.2.4'
+
     generalDependency = [
             kotlin                   : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_stdlib_version",
             appcompat                : "androidx.appcompat:appcompat:$appcompat_version",
@@ -47,7 +50,10 @@ ext {
             room                     : "androidx.room:room-runtime:$room_version",
             roomCoroutine            : "androidx.room:room-ktx:$room_version",
             roomCompiler             : "androidx.room:room-compiler:$room_version",
-            roomAnnotation           : "androidx.room:room-testing:$room_version"
+            roomAnnotation           : "androidx.room:room-testing:$room_version",
+            testRunner               : "androidx.test:runner:$androidTestRunner_version",
+            testRules                : "androidx.test:rules:$androidTestRunner_version",
+            fragmentTesting          : "androidx.fragment:fragment-testing:$fragmentTestingLauncher_version"
     ]
 
     material_version = "1.1.0"

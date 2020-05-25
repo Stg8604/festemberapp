@@ -1,11 +1,13 @@
-version: 2
+version: 2.1
+
+orbs:
+  android: circleci/android@0.2.0
+
 jobs:
   build:
     working_directory: ~/code
     docker:
       - image: circleci/android:api-28-alpha
-    environment:
-      JVM_OPTS: -Xmx3200m
     steps:
       - checkout
       - restore_cache:
@@ -14,28 +16,58 @@ jobs:
           name: Chmod permissions
           command: sudo chmod +x ./gradlew
       - run:
-          name: Download Dependencies
-          command: ./gradlew androidDependencies
-      - run:
           name: Accept Licenses
           # Captures SIGPIPE 141 error but still allow repeating "y" to accept all licenses
           command: yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses || if [ $? -ne '141' ]; then exit $?; fi;
       - run:
-          name: Add google-services.json
-          command: echo "$GOOGLE_SERVICES" | base64 --decode > app/google-services.json
+          name: Decode Google Services Json
+          command: echo $GOOGLE_SERVICES_JSON | base64 -di > app/google-services.json
+      - run:
+          name: Decode Google Cloud credentials
+          command: echo $GCLOUD_SERVICE_KEY | base64 -di > ${HOME}/client-secret.json
+      - run:
+          name: Set Google Cloud target project
+          command: gcloud config set project fest-android-872d8
+      - run:
+          name: Authenticate with Google Cloud
+          command: gcloud auth activate-service-account firebase-adminsdk-qxteo@fest-android-872d8.iam.gserviceaccount.com
+                    --key-file ${HOME}/client-secret.json
       - run:
           name: Run Lint Tests
           command: ./gradlew ktlintCheck  --build-cache --stacktrace
       - run:
-          name: Build project & run all tests
-          command: ./gradlew build --build-cache --stacktrace
-      - run:
           name: Generate Debug APK
           command: ./gradlew assembleDebug --build-cache --stacktrace
+      - run:
+          name: Generate Test APK
+          command: ./gradlew :app:assembleDebugAndroidTest
       - store_artifacts:
+          name: Uploading app-debug.apk
           path: ./app/build/outputs/apk/debug/app-debug.apk
           destination: app-debug.apk
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "buildSystem/dependencies.gradle" }}
+      - store_artifacts:
+          name: Uploading app-debug-androidTest.apk
+          path: ./app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+          destination: app-debug.apk
+      - run:
+          name: Run instrumented test on Firebase Test Lab
+          command: gcloud firebase test android run
+                        --type instrumentation
+                        --app ./app/build/outputs/apk/debug/app-debug.apk
+                        --test ./app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+                        --device model=Nexus5X,version=26,locale=en_US,orientation=portrait
+                        --environment-variables coverage=true,coverageFile=/sdcard/tmp/code-coverage/connected/coverage.ec
+                        --directories-to-pull=/sdcard/tmp
+                        --timeout 20m
+                        --results-bucket=fest-android-872d8.appspot.com
+      - run:
+          name: Create directory to store test results
+          command: mkdir -p ~/firebase-test-lab/
+      - run:
+          name: Download instrumented test results from Firebase Test Lab
+          command: |
+            pip install -U crcmod
+            gsutil -m cp -r -U "`gsutil ls gs://fest-android-872d8.appspot.com | tail -1`" ~/firebase-test-lab/ | true
+      - store_artifacts:
+          name: Uploading test results
+          path: ~/firebase-test-lab/

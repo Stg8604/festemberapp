@@ -31,6 +31,11 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    // Instrumentation Tests throw build error without this
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
     viewBinding {
         enabled = true
     }
@@ -45,6 +50,8 @@ dependencies {
     testImplementation generalDependency.junit
     androidTestImplementation generalDependency.androidxJunit
     androidTestImplementation generalDependency.androidxEspresso
+    androidTestImplementation generalDependency.testRunner
+    androidTestImplementation generalDependency.testRules
 
     // core module
     implementation project(':core')
@@ -64,4 +71,7 @@ dependencies {
     kapt generalDependency.lifecycleCompiler
     implementation generalDependency.lifecycleObserver
     implementation generalDependency.viewmodel
+
+    // For fragment UI Tests
+    debugImplementation generalDependency.fragmentTesting
 }
