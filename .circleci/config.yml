@@ -71,3 +71,5 @@ jobs:
       - store_artifacts:
           name: Uploading test results
           path: ~/firebase-test-lab/
+      - store_test_results:
+          path: ~/firebase-test-lab/
