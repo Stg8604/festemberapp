@@ -1,11 +1,10 @@
 package edu.nitt.delta.core.storage
 
-import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import javax.inject.Inject
 
-class SharedPrefHelper @Inject constructor(application: Application) {
+class SharedPrefHelper @Inject constructor(context: Context) {
 
   val USER_DETAILS = "FestUserDetails"
 
@@ -32,7 +31,7 @@ class SharedPrefHelper @Inject constructor(application: Application) {
   }
 
   init {
-    sharedPreferences = application.getSharedPreferences(
+    sharedPreferences = context.getSharedPreferences(
       USER_DETAILS,
       Context.MODE_PRIVATE
     )
