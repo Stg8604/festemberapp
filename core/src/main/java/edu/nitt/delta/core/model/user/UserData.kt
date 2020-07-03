@@ -70,4 +70,17 @@ data class UserData(
       this.sponsor == user.sponsor &&
       this.referralCode == user.referralCode
   }
+
+  fun toMap(): Map<String, String> =
+    mapOf(
+      "user_name" to userName,
+      "user_degree" to degree,
+      "user_year" to year,
+      "user_phno" to phoneNo,
+      "user_college" to college,
+      "user_city" to city,
+      "user_state" to state,
+      "user_address" to address,
+      "user_voucher_name" to voucherName
+    )
 }

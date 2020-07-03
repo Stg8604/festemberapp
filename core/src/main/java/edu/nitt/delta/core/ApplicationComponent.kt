@@ -9,6 +9,7 @@ import dagger.android.support.AndroidSupportInjectionModule
 import edu.nitt.delta.core.api.FestApiInterface
 import edu.nitt.delta.core.api.FestApiModule
 import edu.nitt.delta.core.event.EventModule
+import edu.nitt.delta.core.profile.ProfileModule
 import edu.nitt.delta.core.storage.SharedPrefHelper
 import edu.nitt.delta.core.storage.StorageModule
 import edu.nitt.delta.core.viewmodel.ViewModelProviderModule
@@ -22,7 +23,8 @@ import javax.inject.Singleton
     FirebaseModule::class,
     StorageModule::class,
     ViewModelProviderModule::class,
-    EventModule::class
+    EventModule::class,
+    ProfileModule::class
   ]
 )
 @Singleton

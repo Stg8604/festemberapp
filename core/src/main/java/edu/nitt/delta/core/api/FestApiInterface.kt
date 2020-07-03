@@ -115,7 +115,7 @@ interface FestApiInterface {
   /** Get User details */
   @GET(Routes.USER_DETAILS)
   suspend fun getUserDetails(
-    @Query("user_id") id: Int,
+    @Query("user_id") id: Long,
     @Query("user_token") token: String
   ): UserDetailsResponse
 
@@ -123,7 +123,7 @@ interface FestApiInterface {
   @FormUrlEncoded
   @POST(Routes.USER_UPDATE_DETAILS)
   suspend fun updateDetails(
-    @Field("user_id") id: Int,
+    @Field("user_id") id: Long,
     @Field("user_token") token: String,
     @FieldMap parameters: Map<String, String>
   ): UpdateDetailsResponse
