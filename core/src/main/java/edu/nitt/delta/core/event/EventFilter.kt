@@ -17,7 +17,7 @@ class EventFilter private constructor() {
   private var radius: Float = 10000f // 10km, safe distance to cover entire campus if location is not passes
 
   private fun checkCluster(eventCluster: String): Boolean {
-    return if (clusters.isNotEmpty()) eventCluster.trim().toLowerCase() in clusters
+    return if (clusters.isNotEmpty()) eventCluster in clusters
     else true
   }
 
@@ -28,14 +28,14 @@ class EventFilter private constructor() {
         regex.containsMatchIn(eventData.venue)
   }
 
-  private fun checkEventDateTime(eventStartTime: String, eventDate: String): Boolean = try {
+  private fun checkEventDateTime(eventStartTime: String, eventStartDate: String): Boolean = try {
     val startDate = startDay.getDateforDay()
     startDate += startTime.getDateFromTimeString()!!
 
     val endDate = endDay.getDateforDay()
     endDate += endTime.getDateFromTimeString()!!
 
-    val eventDate = eventDate.getDateFromDateString()!!
+    val eventDate = eventStartDate.getDateFromDateString()!!
     eventDate += eventStartTime.getDateFromTimeString()!!
 
     eventDate.after(startDate) && eventDate.before(endDate) // check if the event starts in the given interval
@@ -69,7 +69,7 @@ class EventFilter private constructor() {
     private val eventFilter = EventFilter()
 
     fun setClusters(vararg cluster: String): Builder {
-      eventFilter.clusters.addAll(cluster.map { it.trim().toLowerCase() })
+      eventFilter.clusters.addAll(cluster.map { it })
       return this
     }
 
@@ -84,10 +84,12 @@ class EventFilter private constructor() {
      * @param startDay filter events on of after this day
      * @param endDay filter events before this day. leave blank if only one day
      */
-    fun setDay(startDay: Int, endDay: Int = startDay) {
+    fun setDay(startDay: Int, endDay: Int = startDay): Builder {
       require(startDay in 0..3 && endDay in 0..3 && startDay <= endDay)
       eventFilter.startDay = startDay
       eventFilter.endDay = endDay
+
+      return this
     }
 
     /**
@@ -96,7 +98,6 @@ class EventFilter private constructor() {
      * @param startTime in format "HH:mm:ss"
      */
     fun setStartTimestamp(startTime: String): Builder {
-      require(eventFilter.startDay != null) { "call the setDay function before this" }
       eventFilter.startTime = startTime
       return this
     }
@@ -107,7 +108,6 @@ class EventFilter private constructor() {
      * @param endTime in format "HH:mm:ss"
      */
     fun setEndTimestamp(endTime: String): Builder {
-      require(eventFilter.endDay != null) { "call the setDay function before this" }
       eventFilter.endTime = endTime
       return this
     }

@@ -17,8 +17,8 @@ const val COUNTRY = "IN"
 val sdfDate = SimpleDateFormat(DATE_FORMAT, Locale(LANGUAGE, COUNTRY))
 val sdfTime = SimpleDateFormat(TIME_FORMAT, Locale(LANGUAGE, COUNTRY))
 
-val sdfDisplayDate = SimpleDateFormat(DATE_FORMAT, Locale(LANGUAGE, COUNTRY))
-val sdfDisplayTime = SimpleDateFormat(TIME_FORMAT, Locale(LANGUAGE, COUNTRY))
+val sdfDisplayDate = SimpleDateFormat(DATE_FORMAT_DISPLAY, Locale(LANGUAGE, COUNTRY))
+val sdfDisplayTime = SimpleDateFormat(TIME_FORMAT_DISPLAY, Locale(LANGUAGE, COUNTRY))
 
 @Throws(ParseException::class)
 fun String.getDateFromTimeString() = sdfTime.parse(this)

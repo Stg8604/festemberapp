@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'io.fabric'
 apply plugin: 'kotlin-kapt'
+apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
     compileSdkVersion project.compileSdkVersion
@@ -36,8 +37,8 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 
-    viewBinding {
-        enabled = true
+    buildFeatures{
+        viewBinding = true
     }
 
 }
@@ -74,4 +75,10 @@ dependencies {
 
     // For fragment UI Tests
     debugImplementation generalDependency.fragmentTesting
+
+    // Dagger 2
+    implementation coreDependency.dagger
+    implementation coreDependency.daggerAndroid
+    implementation coreDependency.daggerSupport
+
 }

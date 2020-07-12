@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import edu.nitt.delta.R
 import edu.nitt.delta.databinding.HomeFragmentBinding
 import edu.nitt.delta.helpers.viewLifecycle
 
@@ -28,7 +27,15 @@ class HomeFragment : Fragment() {
     super.onViewCreated(view, savedInstanceState)
 
     binding.btnLogout.setOnClickListener {
-      findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
+      findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToLoginFragment())
+    }
+
+    binding.btnEvents.setOnClickListener {
+      findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToEventsFragment())
+    }
+
+    binding.btnSchedule.setOnClickListener {
+      findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToScheduleFragment())
     }
   }
 }

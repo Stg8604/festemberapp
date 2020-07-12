@@ -12,6 +12,7 @@ import edu.nitt.delta.core.event.EventModule
 import edu.nitt.delta.core.profile.ProfileModule
 import edu.nitt.delta.core.storage.SharedPrefHelper
 import edu.nitt.delta.core.storage.StorageModule
+import edu.nitt.delta.core.viewmodel.ViewModelProviderFactory
 import edu.nitt.delta.core.viewmodel.ViewModelProviderModule
 import javax.inject.Named
 import javax.inject.Singleton
@@ -34,6 +35,8 @@ interface ApplicationComponent : AndroidInjector<BaseApplication> {
   fun getGson(): Gson
 
   fun getSharedPrefManager(): SharedPrefHelper
+
+  fun getViewModelProviderFactory(): ViewModelProviderFactory
 
   @Component.Factory
   interface Factory {
