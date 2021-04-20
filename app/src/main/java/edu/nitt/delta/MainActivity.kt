@@ -25,10 +25,10 @@ class MainActivity : AppCompatActivity() {
 
     val eventViewModel = ViewModelProvider(this, factory).get(EventViewModel::class.java)
 
-    observeEventViewmodel(eventViewModel)
+    observeEventViewModel(eventViewModel)
   }
 
-  private fun observeEventViewmodel(eventViewModel: EventViewModel) {
+  private fun observeEventViewModel(eventViewModel: EventViewModel) {
     eventViewModel.success.observe(this,
       Observer {
         showSnackbar("YAY!! $it")

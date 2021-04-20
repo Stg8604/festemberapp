@@ -10,8 +10,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class EventViewModel @Inject constructor(
-  val eventRepository: EventRepository,
-  val sharedPreferences: SharedPrefHelper
+  private val eventRepository: EventRepository,
+  private val sharedPreferences: SharedPrefHelper
 ) : BaseViewModel<EventAction>() {
 
   val TAG = "EventViewModel"
