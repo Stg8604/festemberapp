@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.google.gms.google-services'
-apply plugin: 'io.fabric'
+apply plugin: 'com.google.firebase.crashlytics'
 apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 
@@ -16,6 +16,7 @@ android {
         targetSdkVersion project.targetSdkVersion
         versionCode project.versionCode
         versionName project.versionName
+        multiDexEnabled = true
 
         testInstrumentationRunner project.testInstrumentationRunner
     }
@@ -48,6 +49,7 @@ dependencies {
     implementation generalDependency.kotlin
     implementation generalDependency.appcompat
     implementation generalDependency.core
+    implementation generalDependency.multidex
     testImplementation generalDependency.junit
     androidTestImplementation generalDependency.androidxJunit
     androidTestImplementation generalDependency.androidxEspresso

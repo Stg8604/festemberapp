@@ -11,14 +11,15 @@ ext {
     orchestrator_version = '1.2.0'
     mockito_version = '2.21.0'
     constraint_version = '1.1.3'
-    nav_version = '2.3.0-beta01'
+    nav_version = '2.5.1'
     retrofit_version = "2.8.1"
     material_version = "1.1.0"
-    room_version = '2.2.5'
+    room_version = '2.4.3'
     coroutines_version = "1.3.5"
     okhttp_version = "4.5.0"
     dagger_version = "2.27"
     lifecycle_observer_version = '1.1.1'
+    multidex_version="2.0.1"
 
     androidTestRunner_version = '1.2.0'
     fragmentTestingLauncher_version = '1.2.4'
@@ -38,7 +39,8 @@ ext {
             crashlytics              : "com.crashlytics.sdk.android:crashlytics:$crashlytics_version",
             testRunner               : "androidx.test:runner:$androidTestRunner_version",
             testRules                : "androidx.test:rules:$androidTestRunner_version",
-            fragmentTesting          : "androidx.fragment:fragment-testing:$fragmentTestingLauncher_version"
+            fragmentTesting          : "androidx.fragment:fragment-testing:$fragmentTestingLauncher_version",
+            multidex                 : "androidx.multidex:multidex:$multidex_version"
     ]
 
     appDependency = [

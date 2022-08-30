@@ -12,6 +12,7 @@ android {
         targetSdkVersion project.targetSdkVersion
         versionCode project.versionCode
         versionName project.versionName
+        multiDexEnabled = true
 
         testInstrumentationRunner project.testInstrumentationRunner
         consumerProguardFiles 'consumer-rules.pro'
@@ -41,6 +42,7 @@ dependencies {
     implementation generalDependency.kotlin
     implementation generalDependency.appcompat
     implementation generalDependency.core
+    implementation generalDependency.multidex
     testImplementation generalDependency.junit
     androidTestImplementation generalDependency.androidxJunit
     androidTestImplementation generalDependency.androidxEspresso
