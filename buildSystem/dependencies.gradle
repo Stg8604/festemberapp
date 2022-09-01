@@ -6,8 +6,8 @@ ext {
     androidxjunit_version = '1.1.1'
     androidxespresso_version = '3.2.0'
     lifecycle_version = "2.2.0"
-    firebase_analytics_version = '17.2.2'
-    crashlytics_version = '2.10.1'
+    firebase_analytics_version = '21.1.0'
+    crashlytics_version = '18.2.12'
     orchestrator_version = '1.2.0'
     mockito_version = '2.21.0'
     constraint_version = '1.1.3'
@@ -35,8 +35,8 @@ ext {
             lifecycleCompiler        : "androidx.lifecycle:lifecycle-compiler:$lifecycle_version",
             lifecycleObserver        : "android.arch.lifecycle:common-java8:$lifecycle_observer_version",
             viewmodel                : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version",
-            firebaseAnalytics        : "com.google.firebase:firebase-analytics:$firebase_analytics_version",
-            crashlytics              : "com.crashlytics.sdk.android:crashlytics:$crashlytics_version",
+            firebaseAnalytics        : "com.google.firebase:firebase-analytics-ktx:$firebase_analytics_version",
+            crashlytics              : "com.google.firebase:firebase-crashlytics-ktx:$crashlytics_version",
             testRunner               : "androidx.test:runner:$androidTestRunner_version",
             testRules                : "androidx.test:rules:$androidTestRunner_version",
             fragmentTesting          : "androidx.fragment:fragment-testing:$fragmentTestingLauncher_version",

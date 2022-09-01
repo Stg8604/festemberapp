@@ -1,6 +1,6 @@
 package edu.nitt.delta.core
 
-import com.crashlytics.android.Crashlytics
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -10,8 +10,8 @@ class FirebaseModule {
 
     @Provides
     @Singleton
-    fun provideCrashlyticsInstance(): Crashlytics {
-        val crashlytics: Crashlytics = Crashlytics.getInstance()
+    fun provideCrashlyticsInstance(): FirebaseCrashlytics {
+        val crashlytics: FirebaseCrashlytics = FirebaseCrashlytics.getInstance()
         /*
         * Set Custom Keys here
         * */
