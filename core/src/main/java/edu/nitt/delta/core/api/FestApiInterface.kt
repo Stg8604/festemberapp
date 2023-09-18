@@ -1,11 +1,18 @@
 package edu.nitt.delta.core.api
 
+import edu.nitt.delta.core.model.payload.AboutUs.AboutUsDataResponse
 import edu.nitt.delta.core.model.FCM.FCMRegisterResponse
 import edu.nitt.delta.core.model.chat.ChatData
 import edu.nitt.delta.core.model.chat.ChatMessageSentResponse
 import edu.nitt.delta.core.model.event.EventDataResponse
 import edu.nitt.delta.core.model.event.EventRegisterResponse
+import edu.nitt.delta.core.model.payload.GuestLectures.GuestDataResponse
+import edu.nitt.delta.core.model.payload.Hospitality.HospitalityDataResponse
+import edu.nitt.delta.core.model.payload.Informals.InformalsDataResponse
 import edu.nitt.delta.core.model.event.RegisteredEventsResponse
+import edu.nitt.delta.core.model.payload.Clusters.ClustersDataResponse
+import edu.nitt.delta.core.model.payload.Sponsors.SponsorsDataResponse
+import edu.nitt.delta.core.model.payload.Workshops.WorkshopDataResponse
 import edu.nitt.delta.core.model.user.LoginResponse
 import edu.nitt.delta.core.model.user.QrResponse
 import edu.nitt.delta.core.model.user.RegisterResponse
@@ -127,4 +134,32 @@ interface FestApiInterface {
     @Field("user_token") token: String,
     @FieldMap parameters: Map<String, String>
   ): UpdateDetailsResponse
+
+  /** Get Guest Lecture details */
+  @GET
+  suspend fun getGuestLectureData(@Url url: String): GuestDataResponse
+
+  /** Get Hospitality details */
+  @GET
+  suspend fun getHospitalityData(@Url url: String): HospitalityDataResponse
+
+  /** Get Informals details */
+  @GET
+  suspend fun getInformalsData(@Url url: String): InformalsDataResponse
+
+  /** Get Sponsors details */
+  @GET
+  suspend fun getSponsorsData(@Url url: String): SponsorsDataResponse
+
+  /** Get About Us details */
+  @GET
+  suspend fun getAboutUsData(@Url url: String): AboutUsDataResponse
+
+  /** Get Workshop details */
+  @GET
+  suspend fun getWorkshopData(@Url url: String): WorkshopDataResponse
+
+  /** Get Event details of each Cluster */
+  @GET
+  suspend fun getClustersData(@Url url: String): ClustersDataResponse
 }

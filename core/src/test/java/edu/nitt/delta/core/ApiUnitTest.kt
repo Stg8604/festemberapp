@@ -99,7 +99,7 @@ class ApiUnitTest : CoroutineScope {
     mockWebServer.start(InetAddress.getLocalHost(), 4632)
 
     val appComponent = DaggerApplicationComponent.factory()
-      .create(Mockito.mock(Application::class.java), mockWebServer.url("").toUrl().toString())
+      .create(Mockito.mock(Application::class.java))
 
     festApiInterface = appComponent.getFestApi()
     gson = appComponent.getGson()

@@ -5,27 +5,30 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
+import edu.nitt.delta.core.FESTAPI_BASE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
-import javax.inject.Named
 import javax.inject.Singleton
 
 /** FestApi Module */
 @Module
 object FestApiModule {
-  const val TAG = "FestAPI"
-
+  const val TAG = "Event"
   @Provides
   @Singleton
-  fun provideInterceptor(): HttpLoggingInterceptor =
+  fun provideInterceptorFestApi(): HttpLoggingInterceptor =
     HttpLoggingInterceptor(object : HttpLoggingInterceptor.Logger {
       override fun log(message: String) {
         Log.i(TAG, message)
       }
     })
+  // Uncomment this to view the response body
+//      .apply {
+//      level = HttpLoggingInterceptor.Level.BODY
+//    }
 
   @Provides
   @Singleton
@@ -39,7 +42,7 @@ object FestApiModule {
 
   @Provides
   @Singleton
-  fun provideGson(): Gson = GsonBuilder()
+  fun provideGson(): Gson = GsonBuilder().setLenient()
     .enableComplexMapKeySerialization()
     .create()
 
@@ -47,11 +50,10 @@ object FestApiModule {
   @Singleton
   fun provideRetrofit(
     okhttpClient: OkHttpClient,
-    gson: Gson,
-    @Named("url") url: String
+    gson: Gson
   ): Retrofit = Retrofit.Builder()
     .client(okhttpClient)
-    .baseUrl(url)
+    .baseUrl(FESTAPI_BASE_URL)
     .addConverterFactory(GsonConverterFactory.create(gson))
     .build()
 

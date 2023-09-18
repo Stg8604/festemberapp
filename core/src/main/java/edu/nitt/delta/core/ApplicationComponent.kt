@@ -14,7 +14,6 @@ import edu.nitt.delta.core.storage.SharedPrefHelper
 import edu.nitt.delta.core.storage.StorageModule
 import edu.nitt.delta.core.viewmodel.ViewModelProviderFactory
 import edu.nitt.delta.core.viewmodel.ViewModelProviderModule
-import javax.inject.Named
 import javax.inject.Singleton
 
 @Component(
@@ -30,7 +29,6 @@ import javax.inject.Singleton
 )
 @Singleton
 interface ApplicationComponent : AndroidInjector<BaseApplication> {
-
   fun getFestApi(): FestApiInterface
   fun getGson(): Gson
 
@@ -43,11 +41,7 @@ interface ApplicationComponent : AndroidInjector<BaseApplication> {
 
     fun create(
       @BindsInstance
-      application: Application,
-
-      @BindsInstance
-      @Named("url")
-      url: String = BASE_URL
+      application: Application
     ): ApplicationComponent
   }
 }
