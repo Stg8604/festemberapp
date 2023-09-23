@@ -11,11 +11,13 @@ import edu.nitt.delta.core.model.payload.Hospitality.HospitalityDataResponse
 import edu.nitt.delta.core.model.payload.Informals.InformalsDataResponse
 import edu.nitt.delta.core.model.event.RegisteredEventsResponse
 import edu.nitt.delta.core.model.payload.Clusters.ClustersDataResponse
+import edu.nitt.delta.core.model.payload.Gallery.GalleryDataResponse
 import edu.nitt.delta.core.model.payload.Sponsors.SponsorsDataResponse
 import edu.nitt.delta.core.model.payload.Workshops.WorkshopDataResponse
 import edu.nitt.delta.core.model.user.LoginResponse
 import edu.nitt.delta.core.model.user.QrResponse
 import edu.nitt.delta.core.model.user.RegisterResponse
+import edu.nitt.delta.core.model.user.ScoreboardResponse
 import edu.nitt.delta.core.model.user.UpdateDetailsResponse
 import edu.nitt.delta.core.model.user.UserDetailsResponse
 import retrofit2.http.Field
@@ -59,7 +61,7 @@ interface FestApiInterface {
   /** Register User (For non NITT Students) */
   @FormUrlEncoded
   @POST(Routes.REGISTER)
-  suspend fun register(@FieldMap parameters: Map<String, String>): RegisterResponse
+  suspend fun register(@FieldMap parameters: Map<String, String?>): RegisterResponse
 
   /** Register for Particular event */
   @FormUrlEncoded
@@ -135,6 +137,10 @@ interface FestApiInterface {
     @FieldMap parameters: Map<String, String>
   ): UpdateDetailsResponse
 
+  /** Get Leaderboard positions */
+  @GET(Routes.SCOREBOARD) // Change this route
+  suspend fun getScoreboard(): ScoreboardResponse
+
   /** Get Guest Lecture details */
   @GET
   suspend fun getGuestLectureData(@Url url: String): GuestDataResponse
@@ -162,4 +168,8 @@ interface FestApiInterface {
   /** Get Event details of each Cluster */
   @GET
   suspend fun getClustersData(@Url url: String): ClustersDataResponse
+
+  /** Get Gallery details */
+  @GET
+  suspend fun getGalleryData(@Url url: String): GalleryDataResponse
 }

@@ -14,4 +14,5 @@ sealed class EventAction {
   object GetAboutUs : EventAction()
   object GetWorkshops : EventAction()
   object GetClusters : EventAction()
+  object GetGallery : EventAction()
 }

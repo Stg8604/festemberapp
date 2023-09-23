@@ -5,6 +5,7 @@ import edu.nitt.delta.core.PAYLOAD_BASE_URL
 import edu.nitt.delta.core.api.FestApiInterface
 import edu.nitt.delta.core.api.Routes.ABOUTUS
 import edu.nitt.delta.core.api.Routes.CLUSTERS
+import edu.nitt.delta.core.api.Routes.GALLERY
 import edu.nitt.delta.core.api.Routes.GUEST_LECTURES
 import edu.nitt.delta.core.api.Routes.HOSPITALITY
 import edu.nitt.delta.core.api.Routes.INFORMALS
@@ -14,6 +15,7 @@ import edu.nitt.delta.core.model.Result
 import edu.nitt.delta.core.model.event.EventData
 import edu.nitt.delta.core.model.payload.AboutUs.AboutUsData
 import edu.nitt.delta.core.model.payload.Clusters.ClustersData
+import edu.nitt.delta.core.model.payload.Gallery.GalleryData
 import edu.nitt.delta.core.model.payload.GuestLectures.GuestData
 import edu.nitt.delta.core.model.payload.Hospitality.HospitalityData
 import edu.nitt.delta.core.model.payload.Informals.InformalsData
@@ -173,6 +175,17 @@ class EventRepository @Inject constructor(private val festApi: FestApiInterface,
     }
   } catch (e: Exception) {
     Result.build<List<ClustersData>> { throw e }
+  }
+
+  suspend fun getGallery(): Result<List<GalleryData>> = try {
+    val response = festApi.getGalleryData(PAYLOAD_BASE_URL + GALLERY)
+    if (response.entry != null) {
+      Result.build { response.entry }
+    } else {
+      Result.build<List<GalleryData>> { throw Exception("Error getting the Gallery Details") }
+    }
+  } catch (e: Exception) {
+    Result.build<List<GalleryData>> { throw e }
   }
 
   private fun jsonify(text: String): String {

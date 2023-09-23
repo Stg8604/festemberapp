@@ -8,6 +8,7 @@ import edu.nitt.delta.core.FEST_DIR
 import edu.nitt.delta.core.FEST_QR_SUFFIX
 import edu.nitt.delta.core.api.FestApiInterface
 import edu.nitt.delta.core.model.Result
+import edu.nitt.delta.core.model.user.ScoreboardData
 import edu.nitt.delta.core.model.user.UserData
 import edu.nitt.delta.core.storage.SharedPrefHelper
 import java.io.File
@@ -57,7 +58,7 @@ class ProfileRepository @Inject constructor(
 
     // Gets QR code from local
     fun getQrBitmap(application: Application): Result<Bitmap> = try {
-        var bitmap: Bitmap
+        val bitmap: Bitmap
         val bmOptions = BitmapFactory.Options()
         bitmap = BitmapFactory.decodeFile(getQRImageFile(application).absolutePath, bmOptions)
         Result.build { bitmap }
@@ -77,4 +78,58 @@ class ProfileRepository @Inject constructor(
         file = File(fileName)
         return file
     }
+
+  // Register function fo Non NITT students
+  suspend fun registerUsers(userData: Map<String, String?>): Result<String> = try {
+    val response = festApi.register(userData)
+    if (response.statusCode == 200 && response.message != null) {
+      Result.build { response.message!! }
+    } else {
+      Log.e(
+        TAG,
+        "request returned with status ${response.statusCode} and message : ${response.message}"
+      )
+      Result.build<String> { throw Exception("Error Registering User") }
+    }
+  } catch (e: Exception) {
+    Result.build<String> { throw e }
+  }
+
+  // Login User
+  suspend fun loginUser(email: String, password: String): Result<String> = try {
+    val response = festApi.authenticate(email, password)
+    if (response.statusCode == 200 && response.message != null) {
+      sharedPrefHelper.token = response.message!!
+      sharedPrefHelper.userId = response.userId.toLong()
+      Result.build { response.message!! }
+    } else {
+      Log.e(
+        TAG,
+        "request returned with status ${response.statusCode} and message : ${response.message}"
+      )
+      Result.build<String> { throw Exception("Error Login User") }
+    }
+  } catch (e: Exception) {
+    Log.v(TAG, "InCatch")
+    Result.build<String> { throw e }
+  }
+
+  // Get the scoreboard
+  suspend fun getScoreboard(): Result<List<ScoreboardData>> = try {
+    val response = festApi.getScoreboard()
+    Log.e("RESPONSE_IN", "Reached the call")
+    if (response.statusCode == 200 && response.message != null) {
+      Log.e("RESPONSE_API", response.statusCode.toString())
+      Log.e("RESPONSE_API", response.message.toString())
+      Result.build { response.message!! }
+    } else {
+      Log.e(
+        TAG,
+        "request returned with status ${response.statusCode} and message : ${response.message}"
+      )
+      Result.build<List<ScoreboardData>> { throw Exception("Error Fetching User Details") }
+    }
+  } catch (e: Exception) {
+    Result.build<List<ScoreboardData>> { throw e }
+  }
 }

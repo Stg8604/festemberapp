@@ -15,6 +15,7 @@ object Routes {
   const val USER_UPDATE_DETAILS = "/user/app/update"
   const val NITT_QR = "/tshirt/qr"
   const val NON_NITT_QR = "/pr/qr"
+  const val SCOREBOARD = "/scoreboard"
 
   // Routes for Payload
   const val GUEST_LECTURES = "/payload/api/guestLectures"
@@ -24,4 +25,5 @@ object Routes {
   const val ABOUTUS = "/payload/api/aboutus"
   const val WORKSHOPS = "/payload/api/workshops"
   const val CLUSTERS = "/payload/api/events"
+  const val GALLERY = "/payload/api/gallery"
 }
