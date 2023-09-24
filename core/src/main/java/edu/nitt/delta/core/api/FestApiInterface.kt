@@ -14,6 +14,7 @@ import edu.nitt.delta.core.model.payload.Clusters.ClustersDataResponse
 import edu.nitt.delta.core.model.payload.Gallery.GalleryDataResponse
 import edu.nitt.delta.core.model.payload.Sponsors.SponsorsDataResponse
 import edu.nitt.delta.core.model.payload.Workshops.WorkshopDataResponse
+import edu.nitt.delta.core.model.user.CollegeResponse
 import edu.nitt.delta.core.model.user.LoginResponse
 import edu.nitt.delta.core.model.user.QrResponse
 import edu.nitt.delta.core.model.user.RegisterResponse
@@ -114,11 +115,10 @@ interface FestApiInterface {
 
   /** Get QR code of user encoded in Base64 */
   @FormUrlEncoded
-  @POST
+  @POST(Routes.NON_NITT_QR)
   suspend fun getQr(
     @Field("user_id") userId: Int,
-    @Field("user_token") token: String,
-    @Url url: String
+    @Field("user_token") token: String
   ): QrResponse
 
   /** Get User details */
@@ -138,8 +138,12 @@ interface FestApiInterface {
   ): UpdateDetailsResponse
 
   /** Get Leaderboard positions */
-  @GET(Routes.SCOREBOARD) // Change this route
+  @GET(Routes.SCOREBOARD)
   suspend fun getScoreboard(): ScoreboardResponse
+
+  /** Get Colleges */
+  @GET(Routes.COLLEGES)
+  suspend fun getCollegeDetails(): CollegeResponse
 
   /** Get Guest Lecture details */
   @GET

@@ -57,6 +57,9 @@ data class RegisterUserData(
   @SerializedName("recaptcha_code")
   var recaptchaCode: String? = null,
 
+  @SerializedName("is_app")
+  var is_app: Int = 1,
+
   @SerializedName("avatar")
   var avatar: String? = null
 ) {
@@ -80,6 +83,7 @@ data class RegisterUserData(
       "user_sponsor" to sponsor,
       "user_referral_code" to referralCode,
       "recaptcha_code" to recaptchaCode,
-      "avatar" to avatar
+      "avatar" to avatar,
+      "is_app" to is_app.toString()
     )
 }

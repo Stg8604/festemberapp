@@ -8,6 +8,8 @@ import edu.nitt.delta.core.FEST_DIR
 import edu.nitt.delta.core.FEST_QR_SUFFIX
 import edu.nitt.delta.core.api.FestApiInterface
 import edu.nitt.delta.core.model.Result
+import edu.nitt.delta.core.model.user.CollegeData
+import edu.nitt.delta.core.model.user.CollegeResponse
 import edu.nitt.delta.core.model.user.ScoreboardData
 import edu.nitt.delta.core.model.user.UserData
 import edu.nitt.delta.core.storage.SharedPrefHelper
@@ -26,6 +28,7 @@ class ProfileRepository @Inject constructor(
     // Gets all user details as in UserData.kt
     suspend fun getUserDetails(id: Long, token: String): Result<UserData> = try {
         val response = festApi.getUserDetails(id, token)
+        Log.v(TAG, "user ${response.message!!}")
         if (response.statusCode == 200 && response.message != null) {
             Result.build { response.message!! }
         } else {
@@ -38,6 +41,22 @@ class ProfileRepository @Inject constructor(
     } catch (e: Exception) {
         Result.build<UserData> { throw e }
     }
+  // Get QR code
+  suspend fun getQr(userId: Int, token: String): Result<String> = try {
+    val response = festApi.getQr(userId, token)
+    Log.v(TAG, "checkQr " + response.message!!)
+    if (response.statusCode == 200 && response.message != null) {
+      Result.build { response.message!! }
+    } else {
+      Log.e(
+        TAG,
+        "request returned with status ${response.statusCode} and message : ${response.message}"
+      )
+      Result.build<String> { throw Exception("Error Fetching Qr code") }
+    }
+  } catch (e: Exception) {
+    Result.build<String> { throw e }
+  }
 
     // Updates user's details
     suspend fun updateDetails(id: Long, token: String, userData: UserData): Result<String> = try {
@@ -101,6 +120,8 @@ class ProfileRepository @Inject constructor(
     if (response.statusCode == 200 && response.message != null) {
       sharedPrefHelper.token = response.message!!
       sharedPrefHelper.userId = response.userId.toLong()
+      sharedPrefHelper.email = email
+      sharedPrefHelper.isLoggedIn = true
       Result.build { response.message!! }
     } else {
       Log.e(
@@ -131,5 +152,18 @@ class ProfileRepository @Inject constructor(
     }
   } catch (e: Exception) {
     Result.build<List<ScoreboardData>> { throw e }
+  }
+
+  // get college details
+  suspend fun getCollegeDetails(): Result<List<CollegeData>> = try {
+    val response: CollegeResponse = festApi.getCollegeDetails()
+    Log.i(TAG, "getCollegeDetails: " + response.message)
+    if (response.statusCode == 200 && response.message != null) {
+      Result.build { response.message!! }
+    } else {
+      Result.build<List<CollegeData>> { throw Exception("Error occurred while Fetching College ") }
+    }
+  } catch (e: Exception) {
+    Result.build<List<CollegeData>> { throw Exception("Error occurred while fetching colleges") }
   }
 }

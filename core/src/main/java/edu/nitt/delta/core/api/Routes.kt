@@ -16,6 +16,7 @@ object Routes {
   const val NITT_QR = "/tshirt/qr"
   const val NON_NITT_QR = "/pr/qr"
   const val SCOREBOARD = "/scoreboard"
+  const val COLLEGES = "/colleges"
 
   // Routes for Payload
   const val GUEST_LECTURES = "/payload/api/guestLectures"

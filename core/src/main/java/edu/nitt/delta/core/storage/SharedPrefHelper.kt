@@ -17,6 +17,7 @@ class SharedPrefHelper @Inject constructor(context: Context) {
     val USERNAME = "username"
     val USERID = "user_id"
     val QR_STATUS = "qr_status"
+    val QR_IMAGE = "qr_image"
     val SCHEDULE_INSTRUCTION_SHOW = "schedule_instruction_shown"
   }
 
@@ -27,6 +28,7 @@ class SharedPrefHelper @Inject constructor(context: Context) {
     val USERNAME = ""
     val USERID = 0.toLong()
     val QR_STATUS = false
+    val QR_IMAGE = "QR_IMAGE"
     val SCHEDULE_INSTRUCTION_SHOW = false
   }
 
@@ -86,6 +88,9 @@ class SharedPrefHelper @Inject constructor(context: Context) {
     )
     set(value) = sharedPreferences.edit().putBoolean(Key.SCHEDULE_INSTRUCTION_SHOW, value).apply()
 
+  var qrImage: String
+    get() = sharedPreferences.getString(Key.QR_IMAGE, Default.QR_IMAGE)!!
+    set(value) = sharedPreferences.edit().putString(Key.QR_IMAGE, value).apply()
   // Clear all the preferences
 
   fun clear() {
