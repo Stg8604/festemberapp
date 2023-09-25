@@ -3,6 +3,7 @@ package edu.nitt.delta.core.api
 object Routes {
   const val LOGIN = "/auth/app"
   const val REGISTER = "/user/register"
+  const val DAUTH = "/auth/dauth/web"
   const val CHAT_MSG = "/chat/getmessage"
   const val CHAT_UNREAD_MSG = "/getmessage"
   const val CHAT_NEW_MSG = "/chat/newmessage"

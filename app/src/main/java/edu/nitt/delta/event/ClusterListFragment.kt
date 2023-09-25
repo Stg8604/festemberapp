@@ -44,6 +44,10 @@ class ClusterListFragment : Fragment() {
 
     initClusterObserver()
     initClusterListView()
+
+    binding.navBarButtonBinding.navBarButton.setOnClickListener {
+      findNavController().navigate(ClusterListFragmentDirections.actionEventsFragmentToNavBarFragment())
+    }
   }
 
   private fun initClusterListView() {

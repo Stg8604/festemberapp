@@ -16,7 +16,7 @@ import javax.inject.Singleton
 /** FestApi Module */
 @Module
 object FestApiModule {
-  const val TAG = "Event"
+  const val TAG = "Login"
   @Provides
   @Singleton
   fun provideInterceptorFestApi(): HttpLoggingInterceptor =

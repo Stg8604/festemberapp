@@ -10,6 +10,7 @@ import edu.nitt.delta.core.api.FestApiInterface
 import edu.nitt.delta.core.model.Result
 import edu.nitt.delta.core.model.user.CollegeData
 import edu.nitt.delta.core.model.user.CollegeResponse
+import edu.nitt.delta.core.model.user.DAuthUserData
 import edu.nitt.delta.core.model.user.ScoreboardData
 import edu.nitt.delta.core.model.user.UserData
 import edu.nitt.delta.core.storage.SharedPrefHelper
@@ -133,6 +134,27 @@ class ProfileRepository @Inject constructor(
   } catch (e: Exception) {
     Log.v(TAG, "InCatch")
     Result.build<String> { throw e }
+  }
+
+  // DAuth Login
+  suspend fun dAuthLogin(authCode: String): Result<DAuthUserData> = try {
+    val response = festApi.sendAuthCode(authCode)
+    if (response.statusCode == 200 && response.message != null) {
+//      sharedPrefHelper.token = response.message!!
+      sharedPrefHelper.userId = response.message!!.userID.toLong()
+      Result.build { response.message!! }
+    } else {
+      Log.e(
+        "Login",
+        "request returned with status ${response.statusCode} and message : ${response.message}"
+      )
+      Result.build<DAuthUserData> {
+        throw Exception("Error during DAuth Login")
+      }
+    }
+  } catch (e: Exception) {
+    Log.v("Login", "InCatch")
+    Result.build<DAuthUserData> { throw e }
   }
 
   // Get the scoreboard

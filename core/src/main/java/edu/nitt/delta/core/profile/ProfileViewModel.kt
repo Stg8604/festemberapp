@@ -46,6 +46,7 @@ class ProfileViewModel @Inject constructor(private val application: Application)
       is ProfileAction.LoginUser -> loginUser(action.email, action.password)
       is ProfileAction.RegisterUser -> registerUser(action.userData)
       is ProfileAction.GetCollegeDetails -> getCollegeDetails()
+      is ProfileAction.DAuthLoginUser -> dAuthLogin(action.authCode)
   }
 
     // Gets QR from local
@@ -100,6 +101,14 @@ class ProfileViewModel @Inject constructor(private val application: Application)
     when (val res = profileRepository.loginUser(email, password)) {
       is Result.Value -> mutableSuccess.postValue("Successfully Logged in User")
       is Result.Error -> mutableError.postValue("Unable to Login")
+    }
+  }
+
+  // DAuth Login
+  private fun dAuthLogin(authCode: String) = launch {
+    when (val res = profileRepository.dAuthLogin(authCode)) {
+      is Result.Value -> mutableSuccess.postValue("Successfully Logged in User using DAuth")
+      is Result.Error -> mutableError.postValue("Unable to Login using DAuth")
     }
   }
 

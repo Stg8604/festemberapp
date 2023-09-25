@@ -13,4 +13,5 @@ sealed class ProfileAction {
     data class LoginUser(val email: String, val password: String) : ProfileAction()
     data class RegisterUser(val userData: Map<String, String?>) : ProfileAction()
     data class UpdateUserDetails(val userData: UserData) : ProfileAction()
+    data class DAuthLoginUser(val authCode: String) : ProfileAction()
 }

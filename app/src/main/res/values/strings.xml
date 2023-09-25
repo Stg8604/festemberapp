@@ -8,4 +8,11 @@
     <string name="chat">Chat</string>
 
     <string name="login">Login</string>
+    <string name="log_in">Log In</string>
+    <string name="please_use_your_festember_credentials_to_login">Please use your Festember Credentials to login</string>
+    <string name="email_id">Email Id</string>
+    <string name="password">Password</string>
+    <string name="log_in_2">Log In</string>
+    <string name="dauth_log_in">DAuth Log In</string>
+    <string name="sign_up">Sign Up</string>
 </resources>

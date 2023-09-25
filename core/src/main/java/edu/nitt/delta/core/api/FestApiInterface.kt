@@ -14,6 +14,7 @@ import edu.nitt.delta.core.model.payload.Clusters.ClustersDataResponse
 import edu.nitt.delta.core.model.payload.Gallery.GalleryDataResponse
 import edu.nitt.delta.core.model.payload.Sponsors.SponsorsDataResponse
 import edu.nitt.delta.core.model.payload.Workshops.WorkshopDataResponse
+import edu.nitt.delta.core.model.user.DAuthResponse
 import edu.nitt.delta.core.model.user.CollegeResponse
 import edu.nitt.delta.core.model.user.LoginResponse
 import edu.nitt.delta.core.model.user.QrResponse
@@ -54,6 +55,13 @@ interface FestApiInterface {
     @Field("user_id") userId: Int,
     @Field("user_token") token: String
   ): ChatData
+
+  /** Send Auth Code to the server for DAuth Login */
+  @FormUrlEncoded
+  @POST(Routes.DAUTH)
+  suspend fun sendAuthCode(
+    @Field("code") authCode: String
+  ): DAuthResponse
 
   /** Get all events */
   @GET(Routes.GET_EVENTS)

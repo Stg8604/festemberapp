@@ -37,5 +37,9 @@ class HomeFragment : Fragment() {
     binding.btnSchedule.setOnClickListener {
       findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToScheduleFragment())
     }
+
+    binding.navBarButtonBinding.navBarButton.setOnClickListener {
+      findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToNavBarFragment())
+    }
   }
 }
