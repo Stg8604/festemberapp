@@ -50,6 +50,12 @@
             app:launchSingleTop="true"
             app:popUpTo="@id/homeFragment"
             app:popUpToInclusive="true" />
+
+<!--remove below action to remove navigation to sponsors page from home page-->
+        <action
+            android:id="@+id/action_homeFragment_to_sponsorsFragment"
+            app:destination="@+id/sponsorsFragment"/>
+
         <action
             android:id="@+id/action_homeFragment_to_eventsFragment"
             app:destination="@id/eventsFragment" />
@@ -113,6 +119,9 @@
         <action
             android:id="@+id/action_scheduleFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_scheduleFragment_to_navBarFragment"
+            app:destination="@+id/navBarFragment"/>
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -148,7 +157,12 @@
         <action
             android:id="@+id/action_sponsorsFragment_to_navBarFragment"
             app:destination="@id/navBarFragment" />
+        <action
+            android:id="@+id/action_sponsorsFragment_to_LoginFragment"
+            app:destination="@id/loginFragment" />
+
     </fragment>
+
 
     <fragment
         android:id="@+id/navBarFragment"

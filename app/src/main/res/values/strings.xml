@@ -6,6 +6,8 @@
     <string name="map">Map</string>
     <string name="events">Events</string>
     <string name="chat">Chat</string>
+    <string name="sponsors">SPONSORS</string>
+
 
     <string name="login">Login</string>
     <string name="log_in">Log In</string>
@@ -141,7 +143,19 @@
     <string name="day_1">Day 1</string>
     <string name="day_2">Day 2</string>
     <string name="day_3">Day 3</string>
-    <string name="sponsors">Sponsors</string>
     <string name="t_shirt_fragment">T_shirt fragment</string>
     <string name="splash">SPLASH</string>
+    <string name="d_na_ny_n3">D\na\ny\n3</string>
+    <string name="d_na_ny_n2">D\na\ny\n2</string>
+    <string name="d_na_ny_n1">D\na\ny\n1</string>
+    <string name="d_na_ny_n0">D\na\ny\n0</string>
+    <string name="day3">D\na\ny\n3</string>
+    <string name="day2">D\na\ny\n2</string>
+    <string name="day1">D\na\ny\n1</string>
+    <string name="day0">D\na\ny\n0</string>
+    <string name="day_3_events">day 3 events!</string>
+    <string name="day_2_events">day 2 events!</string>
+    <string name="day_1_events">day 1 events!</string>
+    <string name="day_events">day events show bar!</string>
+    <string name="time_line">Time Line</string>
 </resources>

@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import edu.nitt.delta.core.BaseApplication
@@ -26,7 +25,7 @@ class EventListFragment : Fragment() {
 
   private var binding by viewLifecycle<FragmentEventListBinding>()
   private lateinit var viewmodel: EventViewModel
-  private val adapter = EventListRecyclerViewAdapter()
+  private val adapter = ScheduleListRecyclerViewAdapter()
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     binding = FragmentEventListBinding.inflate(inflater, container, false)
@@ -51,7 +50,7 @@ class EventListFragment : Fragment() {
       Observer {
         if (it != null) {
           Log.i(TAG, "event selected ${it.name}")
-          findNavController().navigate(EventListFragmentDirections.actionEventListFragmentToEventDetailsFragment(it))
+//          findNavController().navigate(EventListFragmentDirections.actionEventListFragmentToEventDetailsFragment(it))
           adapter.selectedItem.value = null
         }
       })
@@ -64,7 +63,7 @@ class EventListFragment : Fragment() {
     val eventsLiveData = viewmodel.doAction(EventAction.GetEventsFiltered(filter)) as LiveData<List<EventData>>
     eventsLiveData.observe(viewLifecycleOwner,
       Observer {
-        adapter.submitList(it)
+//        adapter.submitList(it)
       })
   }
 }

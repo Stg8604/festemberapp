@@ -7,5 +7,29 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-
+    <style name="venue">
+        <item name="android:textSize">13.38sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="pm">
+        <item name="android:textSize">13.38sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="event_name">
+        <item name="android:textSize">20.06sp</item>
+        <item name="android:textColor">@color/cherryRed</item>
+    </style>
+    <style name="profile">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="sponsors">
+        <item name="android:textSize">30.33sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="timeline">
+        <item name="android:textSize">30.33sp</item>
+        <item name="fontFamily">@font/osake</item>
+        <item name="android:textColor">@color/cherryRed</item>
+    </style>
 </resources>

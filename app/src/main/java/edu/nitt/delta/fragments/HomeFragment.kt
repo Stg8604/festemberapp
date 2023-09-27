@@ -118,9 +118,13 @@ class HomeFragment : Fragment() {
       }
       for (j in 0 until iconNum) {
         iconArray[j].setOnClickListener {
-          val link = Uri.parse(socialLinks[j])
-          val intent = Intent(Intent.ACTION_VIEW, link)
-          startActivity(intent)
+          if (j == 1) {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToScheduleFragment())
+          } else {
+            val link = Uri.parse(socialLinks[j])
+            val intent = Intent(Intent.ACTION_VIEW, link)
+            startActivity(intent)
+          }
         }
       }
       redPanda.setOnClickListener {
