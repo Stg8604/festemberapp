@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.google.firebase.messaging.FirebaseMessaging
 import edu.nitt.delta.core.BaseApplication
 import edu.nitt.delta.core.event.EventViewModel
 import edu.nitt.delta.databinding.ActivityMainBinding
@@ -24,7 +25,7 @@ class MainActivity : AppCompatActivity() {
     val factory = (application as BaseApplication).applicationComponent.getViewModelProviderFactory()
 
     val eventViewModel = ViewModelProvider(this, factory).get(EventViewModel::class.java)
-
+    FirebaseMessaging.getInstance().subscribeToTopic(channelName)
     observeEventViewModel(eventViewModel)
   }
 
