@@ -9,14 +9,13 @@
         android:id="@+id/loginFragment"
         android:name="edu.nitt.delta.fragments.LoginFragment"
         android:label="login_fragment"
-        tools:layout="@layout/login_fragment" >
+        tools:layout="@layout/login_fragment">
         <action
             android:id="@+id/action_loginFragment_to_homeFragment"
             app:destination="@id/homeFragment"
-            app:popUpTo="@id/loginFragment"
-            app:popUpToInclusive="true"
             app:launchSingleTop="true"
-            />
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_loginFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
@@ -32,28 +31,25 @@
         android:id="@+id/dAuthFragment"
         android:name="edu.nitt.delta.fragments.DAuthFragment"
         android:label="dAuth_fragment"
-        tools:layout="@layout/dauth_fragment" >
+        tools:layout="@layout/dauth_fragment">
         <action
             android:id="@+id/action_dAuthFragment_to_homeFragment"
             app:destination="@id/homeFragment"
-            app:popUpTo="@id/dAuthFragment"
-            app:popUpToInclusive="true"
             app:launchSingleTop="true"
-            />
+            app:popUpTo="@id/dAuthFragment"
+            app:popUpToInclusive="true" />
     </fragment>
-
     <fragment
         android:id="@+id/homeFragment"
         android:name="edu.nitt.delta.fragments.HomeFragment"
         android:label="home_fragment"
-        tools:layout="@layout/home_fragment" >
+        tools:layout="@layout/home_fragment">
         <action
             android:id="@+id/action_homeFragment_to_loginFragment"
             app:destination="@id/loginFragment"
-            app:popUpTo="@id/homeFragment"
-            app:popUpToInclusive="true"
             app:launchSingleTop="true"
-            />
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_homeFragment_to_eventsFragment"
             app:destination="@id/eventsFragment" />
@@ -69,12 +65,15 @@
         <action
             android:id="@+id/action_homeFragment_to_navBarFragment"
             app:destination="@id/navBarFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_signUpFragment2"
+            app:destination="@id/signUpFragment" />
     </fragment>
     <fragment
         android:id="@+id/eventsFragment"
         android:name="edu.nitt.delta.event.ClusterListFragment"
         android:label="fragment_events"
-        tools:layout="@layout/fragment_cluster_list" >
+        tools:layout="@layout/fragment_cluster_list">
         <action
             android:id="@+id/action_eventsFragment_to_eventListFragment"
             app:destination="@id/eventListFragment" />
@@ -87,7 +86,8 @@
         android:name="edu.nitt.delta.event.EventListFragment"
         android:label="EventListFragment"
         tools:layout="@layout/fragment_event_list">
-        <argument android:name="clusterName"
+        <argument
+            android:name="clusterName"
             app:argType="string" />
         <action
             android:id="@+id/action_eventListFragment_to_eventDetailsFragment"
@@ -110,12 +110,15 @@
         <action
             android:id="@+id/action_scheduleFragment_to_eventDetailsFragment"
             app:destination="@id/eventDetailsFragment" />
+        <action
+            android:id="@+id/action_scheduleFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
         android:name="edu.nitt.delta.fragments.SignUpFragment"
         android:label="fragment_sign_up"
-        tools:layout="@layout/fragment_sign_up" >
+        tools:layout="@layout/fragment_sign_up">
         <action
             android:id="@+id/action_signUpFragment_to_homeFragment"
             app:destination="@id/homeFragment" />

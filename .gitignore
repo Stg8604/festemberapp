@@ -111,3 +111,5 @@ obj/
 
 # JIRA plugin
 atlassian-ide-plugin.xml
+.DS_Store
+.DS_Store

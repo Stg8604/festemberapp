@@ -5,50 +5,249 @@
     android:name="androidx.navigation.fragment.NavHostFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/home2"
     app:defaultNavHost="true"
     app:navGraph="@navigation/home_nav_graph"
     tools:context=".fragments.HomeFragment">
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/btnLogout"
-        android:text="Logout"
-        android:layout_marginEnd="12dp"
-        android:layout_marginTop="12dp"
-        />
-
-    <TextView
         android:id="@+id/tvHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Home"
+        android:layout_marginStart="110dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="110dp"
+        android:layout_marginBottom="320dp"
+        android:background="@drawable/home_login_button"
+        android:clickable="false"
+        android:fontFamily="@font/kawashiro_gothic_font"
+        android:text="@string/home"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#F9E1CC"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:backgroundTint="#BA465A"
+        app:cornerRadius="10dp"
+        app:iconPadding="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/theme_landing"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="117dp"
+        android:background="@drawable/home_login_button"
+        android:clickable="false"
+        android:fontFamily="@font/kawashiro_gothic_font"
+        android:text="@string/logout"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#FFF5E3"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:backgroundTint="#BA465A"
+        app:cornerRadius="10dp"
+        app:iconPadding="0dp"
+
+        app:layout_constraintBottom_toTopOf="@+id/NitTrichy_landing"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.531"
+        app:layout_constraintStart_toStartOf="@+id/NitTrichy_landing"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:strokeColor="#BA465A"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <Button
+        android:id="@+id/register_landing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="110dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="110dp"
+        android:layout_marginBottom="320dp"
+        android:background="@drawable/home_login_button"
+        android:fontFamily="@font/kawashiro_gothic_font"
+        android:text="@string/register"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#F9E1CC"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:backgroundTint="#BA465A"
+        app:cornerRadius="10dp"
+        app:iconPadding="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/theme_landing"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/theme_landing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/kawashiro_gothic_font"
+        android:text="@string/kyoto_chronicles"
+        android:textColor="#5B4A42"
+        android:textSize="23sp"
+        android:textStyle="normal"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/festember_text_landing" />
+
+
+    <TextView
+        android:id="@+id/festember_text_landing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:fontFamily="@font/osake_file"
+        android:text="@string/festember"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="53sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/NitTrichy_landing" />
+
+    <TextView
+        android:id="@+id/NitTrichy_landing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="208dp"
+        android:fontFamily="@font/kawashiro_gothic_font"
+        android:text="@string/nit_trichy_s"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="normal"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btnEvents"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:text="@string/events"
-        app:layout_constraintBottom_toTopOf="@id/tvHome"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnLogout" />
 
-    <Button
-        android:id="@+id/btnSchedule"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:text="Schedule"
-        app:layout_constraintBottom_toBottomOf="@id/btnEvents"
+
+    <ImageView
+        android:id="@+id/instagram_icon"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"
+        android:src="@drawable/instagram"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/btnEvents" />
+        android:importantForAccessibility="no" />
+
+    <ImageView
+        android:id="@+id/linkedin_icon"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"
+        android:src="@drawable/linkedin"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:importantForAccessibility="no" />
+
+    <ImageView
+        android:id="@+id/twitter_icon"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"
+        android:src="@drawable/twitter"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:importantForAccessibility="no" />
+
+    <ImageView
+        android:id="@+id/youtube_icon"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"
+        android:src="@drawable/youtube"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:importantForAccessibility="no" />
+
+    <ImageView
+        android:id="@+id/facebook_icon"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"
+        android:src="@drawable/facebook"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:importantForAccessibility="no" />
+
+    <ImageView
+        android:id="@+id/calender_icon"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"
+        android:src="@drawable/calender"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:importantForAccessibility="no" />
+
+    <ImageView
+        android:id="@+id/message_icon"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"
+        android:src="@drawable/message"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:importantForAccessibility="no" />
+
+    <ImageView
+        android:id="@+id/medium_icon"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"
+        android:src="@drawable/medium"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:importantForAccessibility="no" />
+
+    <ImageView
+        android:id="@+id/landing_socials_opener"
+        android:layout_width="104dp"
+        android:layout_height="121dp"
+        android:src="@drawable/red_panda_helper"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:importantForAccessibility="no" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -69,4 +268,26 @@
             app:layout_constraintTop_toTopOf="parent" />
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/TopBar"
+        android:layout_width="0dp"
+        android:layout_height="99dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <include
+            android:id="@+id/topBarBinding"
+            layout="@layout/top_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+

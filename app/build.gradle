@@ -5,7 +5,6 @@ apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs.kotlin"
-
 android {
     compileSdkVersion project.compileSdkVersion
     buildToolsVersion project.buildToolsVersion
@@ -45,6 +44,7 @@ android {
 }
 
 dependencies {
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation generalDependency.kotlin
     implementation generalDependency.appcompat
@@ -55,6 +55,10 @@ dependencies {
     androidTestImplementation generalDependency.androidxEspresso
     androidTestImplementation generalDependency.testRunner
     androidTestImplementation generalDependency.testRules
+
+
+
+
 
     // core module
     implementation project(':core')
@@ -82,5 +86,8 @@ dependencies {
     implementation coreDependency.dagger
     implementation coreDependency.daggerAndroid
     implementation coreDependency.daggerSupport
+
+    //For Confetti Animation - landing_page
+    implementation appDependency.confettiLibrary
 
 }

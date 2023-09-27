@@ -48,6 +48,9 @@ class ClusterListFragment : Fragment() {
     binding.navBarButtonBinding.navBarButton.setOnClickListener {
       findNavController().navigate(ClusterListFragmentDirections.actionEventsFragmentToNavBarFragment())
     }
+//    binding.topBarBinding.Login.setOnClickListener {
+//      findNavController().navigate(ClusterListFragmentDirections.actionClusterListFragmentToLoginFragment())
+//    }
   }
 
   private fun initClusterListView() {

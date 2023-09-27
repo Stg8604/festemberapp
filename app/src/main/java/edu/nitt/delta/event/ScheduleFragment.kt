@@ -32,7 +32,11 @@ class ScheduleFragment : Fragment() {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
-    val factory = (requireActivity().application as BaseApplication).applicationComponent.getViewModelProviderFactory()
+    binder.topBarBinding.Login.setOnClickListener {
+      findNavController().navigate(ScheduleFragmentDirections.actionScheduleFragmentToLoginFragment())
+    }
+    val factory =
+      (requireActivity().application as BaseApplication).applicationComponent.getViewModelProviderFactory()
     viewmodel = ViewModelProvider(requireActivity(), factory).get(EventViewModel::class.java)
 
     initOnClickListeners()
