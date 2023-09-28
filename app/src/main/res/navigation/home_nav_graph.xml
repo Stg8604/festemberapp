@@ -51,7 +51,7 @@
             app:popUpTo="@id/homeFragment"
             app:popUpToInclusive="true" />
 
-<!--remove below action to remove navigation to sponsors page from home page-->
+        <!--remove below action to remove navigation to sponsors page from home page-->
         <action
             android:id="@+id/action_homeFragment_to_sponsorsFragment"
             app:destination="@+id/sponsorsFragment"/>
@@ -77,7 +77,7 @@
     </fragment>
     <fragment
         android:id="@+id/eventsFragment"
-        android:name="edu.nitt.delta.event.ClusterListFragment"
+        android:name="edu.nitt.delta.event.ClusterFragment"
         android:label="fragment_events"
         tools:layout="@layout/fragment_cluster_list">
         <action
@@ -87,6 +87,16 @@
             android:id="@+id/action_eventsFragment_to_navBarFragment"
             app:destination="@id/navBarFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/leaderboardFragment"
+        android:name="edu.nitt.delta.fragments.LeaderBoardFragment"
+        android:label="fragment_leaderboard"
+        tools:layout="@layout/fragment_leaderboard">
+        <action
+            android:id="@+id/action_Leaderboardfragment_to_navBarfragment"
+            app:destination="@id/navBarFragment"/>
+    </fragment>
+
     <fragment
         android:id="@+id/eventListFragment"
         android:name="edu.nitt.delta.event.EventListFragment"
@@ -200,6 +210,18 @@
             app:popExitAnim="@anim/push_left_out"
             app:popUpTo="@id/homeFragment" />
         <action
+            android:id="@+id/action_navBarFragment_to_ClusterFragment"
+            app:destination="@+id/clusterFragment"
+            app:enterAnim="@anim/push_left_in"
+            app:popExitAnim="@anim/push_left_out"
+            app:popUpTo="@id/homeFragment"/>
+        <action
+            android:id="@+id/action_navBarFragment_to_LeaderboardFragment"
+            app:destination="@id/leaderboardFragment"
+            app:enterAnim="@anim/push_left_in"
+            app:popExitAnim="@anim/push_left_out"
+            app:popUpTo="@id/homeFragment" />
+        <action
             android:id="@+id/action_navBarFragment_to_loginFragment"
             app:destination="@id/loginFragment"
             app:popUpTo="@id/homeFragment" />
@@ -207,6 +229,8 @@
             android:id="@+id/action_navBarFragment_to_homeFragment"
             app:destination="@id/homeFragment"
             app:popUpTo="@id/homeFragment" />
+
+
 
     </fragment>
 </navigation>
