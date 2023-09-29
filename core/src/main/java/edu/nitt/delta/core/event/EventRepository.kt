@@ -9,6 +9,7 @@ import edu.nitt.delta.core.api.Routes.GALLERY
 import edu.nitt.delta.core.api.Routes.GUEST_LECTURES
 import edu.nitt.delta.core.api.Routes.HOSPITALITY
 import edu.nitt.delta.core.api.Routes.INFORMALS
+import edu.nitt.delta.core.api.Routes.SCHEDULE
 import edu.nitt.delta.core.api.Routes.SPONSORS
 import edu.nitt.delta.core.api.Routes.WORKSHOPS
 import edu.nitt.delta.core.model.Result
@@ -19,6 +20,7 @@ import edu.nitt.delta.core.model.payload.Gallery.GalleryData
 import edu.nitt.delta.core.model.payload.GuestLectures.GuestData
 import edu.nitt.delta.core.model.payload.Hospitality.HospitalityData
 import edu.nitt.delta.core.model.payload.Informals.InformalsData
+import edu.nitt.delta.core.model.payload.Schedule.ScheduleData
 import edu.nitt.delta.core.model.payload.Sponsors.SponsorsData
 import edu.nitt.delta.core.model.payload.Workshops.WorkshopData
 import edu.nitt.delta.core.storage.PayloadDao
@@ -36,6 +38,7 @@ class EventRepository @Inject constructor(private val festApi: FestApiInterface,
   val gallery = payloadDao.getGallery()
   val clusterNames = payloadDao.getClusterNames()
   val clusterEvents = payloadDao.getClusterEvents()
+  val schedule = payloadDao.getSchedule()
   val TAG = "EventRepository"
 
   suspend fun getEvents(): Result<List<EventData>> = try {
@@ -218,6 +221,20 @@ class EventRepository @Inject constructor(private val festApi: FestApiInterface,
     }
   } catch (e: Exception) {
     Result.build<List<GalleryData>> { throw e }
+  }
+
+  suspend fun getSchedule(): Result<List<ScheduleData>> = try {
+    val response = festApi.getScheduleData(PAYLOAD_BASE_URL + SCHEDULE)
+    if (response.entry != null) {
+      payloadDao.addScheduleList(response.entry)
+      Result.build { response.entry }
+    } else {
+      Log.e(TAG, "Failed to get Schedule Details")
+      Result.build<List<ScheduleData>> { throw Exception("Error getting the Schedule Details") }
+    }
+  } catch (e: Exception) {
+    Log.e(TAG, e.toString())
+    Result.build<List<ScheduleData>> { throw e }
   }
 
   private fun jsonify(rawText: String): String {

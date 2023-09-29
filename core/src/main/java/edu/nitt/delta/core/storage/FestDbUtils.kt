@@ -13,6 +13,7 @@ object FestDbUtils {
   const val TABLE_INFORMALS = "Informals"
   const val TABLE_SPONSORS = "Sponsors"
   const val TABLE_WORKSHOPS = "Workshops"
+  const val TABLE_SCHEDULE = "Schedule"
 
   const val KEY_ID = "id"
   const val KEY_NAME = "name"
@@ -46,4 +47,5 @@ object FestDbUtils {
   const val KEY_SIZES = "sizes"
   const val KEY_URL = "url"
   const val KEY_CLUSTER_ID = "clusterID"
+  const val KEY_TYPE = "type"
 }

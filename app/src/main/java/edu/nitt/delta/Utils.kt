@@ -1,44 +1,62 @@
 package edu.nitt.delta
 
+import android.graphics.Color
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
-
-fun Fragment.showSnackbar(
+import com.google.android.material.snackbar.Snackbar.SnackbarLayout
+import kotlinx.android.synthetic.main.snackbar_red.view.snack_message
+fun Fragment.showSnackbar_green(
   msg: String,
   duration: Int = Snackbar.LENGTH_SHORT
 ) {
-  Snackbar.make(requireActivity().findViewById(android.R.id.content), msg, duration)
-    .show()
+  val snackBar: Snackbar = Snackbar.make(requireActivity().findViewById(android.R.id.content), "", duration)
+  val customSnackView: View = layoutInflater.inflate(R.layout.snackbar_green, null)
+  snackBar.view.setBackgroundColor(Color.TRANSPARENT)
+  val snackBarLayout = snackBar.view as SnackbarLayout
+  snackBarLayout.setPadding(0, 0, 0, 0)
+  snackBarLayout.addView(customSnackView, 0)
+  snackBarLayout.snack_message.text = msg
+  snackBar.show()
 }
 
-fun Fragment.showSnackbar(
+fun Fragment.showSnackbar_red(
   msg: String,
-  actionTitle: String,
-  onClick: (View) -> Unit,
   duration: Int = Snackbar.LENGTH_SHORT
 ) {
-  Snackbar.make(requireActivity().findViewById(android.R.id.content), msg, duration)
-    .setAction(actionTitle, onClick)
-    .show()
+  val snackBar: Snackbar = Snackbar.make(requireActivity().findViewById(android.R.id.content), "", duration)
+  val customSnackView: View = layoutInflater.inflate(R.layout.snackbar_red, null)
+  snackBar.view.setBackgroundColor(Color.TRANSPARENT)
+  val snackBarLayout = snackBar.view as SnackbarLayout
+  snackBarLayout.setPadding(0, 0, 0, 0)
+  snackBarLayout.addView(customSnackView, 0)
+  snackBarLayout.snack_message.text = msg
+  snackBar.show()
 }
-
-fun AppCompatActivity.showSnackbar(
+fun AppCompatActivity.showSnackbar_green(
   msg: String,
   duration: Int = Snackbar.LENGTH_SHORT
 ) {
-  Snackbar.make(this.findViewById(android.R.id.content), msg, duration)
-    .show()
+  val snackBar: Snackbar = Snackbar.make(this.findViewById(android.R.id.content), "", duration)
+  val customSnackView: View = layoutInflater.inflate(R.layout.snackbar_green, null)
+  snackBar.view.setBackgroundColor(Color.TRANSPARENT)
+  val snackBarLayout = snackBar.view as SnackbarLayout
+  snackBarLayout.setPadding(0, 0, 0, 0)
+  snackBarLayout.addView(customSnackView, 0)
+  snackBarLayout.snack_message.text = msg
+  snackBar.show()
 }
-
-fun AppCompatActivity.showSnackbar(
+fun AppCompatActivity.showSnackbar_red(
   msg: String,
-  actionTitle: String,
-  onClick: (View) -> Unit,
   duration: Int = Snackbar.LENGTH_SHORT
 ) {
-  Snackbar.make(this.findViewById(android.R.id.content), msg, duration)
-    .setAction(actionTitle, onClick)
-    .show()
+  val snackBar: Snackbar = Snackbar.make(this.findViewById(android.R.id.content), "", duration)
+  val customSnackView: View = layoutInflater.inflate(R.layout.snackbar_red, null)
+  snackBar.view.setBackgroundColor(Color.TRANSPARENT)
+  val snackBarLayout = snackBar.view as SnackbarLayout
+  snackBarLayout.setPadding(0, 0, 0, 0)
+  snackBarLayout.addView(customSnackView, 0)
+  snackBarLayout.snack_message.text = msg
+  snackBar.show()
 }

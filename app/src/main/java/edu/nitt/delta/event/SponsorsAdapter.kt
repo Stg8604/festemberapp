@@ -1,7 +1,6 @@
 package edu.nitt.delta.event
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +10,6 @@ import android.widget.TextView
 import com.squareup.picasso.Picasso
 import edu.nitt.delta.R
 import edu.nitt.delta.core.PAYLOAD_BASE_URL
-import edu.nitt.delta.core.api.FestApiModule.TAG
 import edu.nitt.delta.core.model.payload.Sponsors.SponsorsData
 class SponsorsAdapter(context: Context, sponsors: List<SponsorsData>) : BaseAdapter() {
   private var sponsorList: List<SponsorsData> = sponsors
@@ -38,7 +36,6 @@ class SponsorsAdapter(context: Context, sponsors: List<SponsorsData>) : BaseAdap
     val sponsorImage = view?.findViewById<ImageView>(R.id.imageSponsor)
     val portfolio = view?.findViewById<TextView>(R.id.portfolio)
     Picasso.get().load(PAYLOAD_BASE_URL + sponsorList[position].image.url).into(sponsorImage)
-    Log.d(TAG, "getView: " + sponsorList[position].image.url)
     portfolio!!.text = sponsorList[position].sponsorname
     return view
   }

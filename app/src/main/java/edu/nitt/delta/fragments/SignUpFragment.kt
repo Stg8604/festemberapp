@@ -3,21 +3,23 @@ package edu.nitt.delta.fragments
 import android.animation.AnimatorInflater
 import android.animation.AnimatorSet
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import edu.nitt.delta.R
 import edu.nitt.delta.core.model.user.RegisterUserData
+import edu.nitt.delta.core.storage.SharedPrefHelper
 import edu.nitt.delta.databinding.FragmentSignUpBinding
 import edu.nitt.delta.helpers.viewLifecycle
-import edu.nitt.delta.showSnackbar
+import edu.nitt.delta.showSnackbar_red
 
 class SignUpFragment : Fragment() {
   private var binding by viewLifecycle<FragmentSignUpBinding>()
   lateinit var front_anim: AnimatorSet
   lateinit var back_anim: AnimatorSet
+  private lateinit var sharedprefHelper: SharedPrefHelper
   companion object {
     var registerData: RegisterUserData = RegisterUserData()
   }
@@ -34,6 +36,8 @@ class SignUpFragment : Fragment() {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     updateDetails()
+    binding.topBarBinding.Logout.visibility = View.INVISIBLE
+    binding.topBarBinding.Login.visibility = View.INVISIBLE
     val front = binding.signupfront as androidx.constraintlayout.widget.ConstraintLayout
     val back = binding.signupback as androidx.constraintlayout.widget.ConstraintLayout
     var scale = this.resources.displayMetrics.density
@@ -84,16 +88,16 @@ class SignUpFragment : Fragment() {
   }
   private fun validatedetails(): Boolean {
     if (binding.username.text.isEmpty()) {
-      showSnackbar("Enter Valid Username")
+      showSnackbar_red("Enter Valid Username")
       return false
     } else if (binding.name.text.isEmpty() || !containsNoNumbers(binding.name.text.toString())) {
-      showSnackbar("Enter Valid Full Name")
+      showSnackbar_red("Enter Valid Full Name")
       return false
     } else if (binding.ephno.text.isEmpty() || binding.ephno.text.toString().length> 12) {
-      showSnackbar("Enter Valid Phone Number")
+      showSnackbar_red("Enter Valid Phone Number")
       return false
     } else if (binding.email.text.isEmpty()) {
-      showSnackbar("Enter Valid Email")
+      showSnackbar_red("Enter Valid Email")
       return false
     }
     registerData.userName = binding.username.text.toString()

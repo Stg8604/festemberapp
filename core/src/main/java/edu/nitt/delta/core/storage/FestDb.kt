@@ -10,6 +10,7 @@ import edu.nitt.delta.core.model.payload.Gallery.GalleryData
 import edu.nitt.delta.core.model.payload.GuestLectures.GuestData
 import edu.nitt.delta.core.model.payload.Hospitality.HospitalityData
 import edu.nitt.delta.core.model.payload.Informals.InformalsData
+import edu.nitt.delta.core.model.payload.Schedule.ScheduleData
 import edu.nitt.delta.core.model.payload.Sponsors.SponsorsData
 import edu.nitt.delta.core.model.payload.Workshops.WorkshopData
 
@@ -22,7 +23,8 @@ import edu.nitt.delta.core.model.payload.Workshops.WorkshopData
     HospitalityData::class,
     GuestData::class,
     GalleryData::class,
-    ClustersData::class
+    ClustersData::class,
+    ScheduleData::class
   ],
   version = DATABASE_VERSION,
   exportSchema = false

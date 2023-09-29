@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import edu.nitt.delta.R
 import edu.nitt.delta.core.model.payload.Clusters.EventDetail
+import edu.nitt.delta.core.model.payload.Schedule.ScheduleData
 import kotlinx.android.synthetic.main.schedule_list_item.view.colorChanging_BG
 import kotlinx.android.synthetic.main.schedule_list_item.view.schedule_list_holder
 import java.text.SimpleDateFormat
@@ -22,9 +23,10 @@ import java.util.Locale
 import java.util.TimeZone
 
 class ScheduleListRecyclerViewAdapter :
-  ListAdapter<EventDetail, ScheduleListRecyclerViewAdapter.EventHolder>(object : DiffUtil.ItemCallback<EventDetail>() {
-    override fun areItemsTheSame(oldItem: EventDetail, newItem: EventDetail): Boolean = oldItem == newItem
-    override fun areContentsTheSame(oldItem: EventDetail, newItem: EventDetail): Boolean = (oldItem.name == newItem.name && oldItem.day == newItem.day && oldItem.time == newItem.time)
+  ListAdapter<ScheduleData, ScheduleListRecyclerViewAdapter.EventHolder>(object : DiffUtil.ItemCallback<ScheduleData>() {
+    override fun areItemsTheSame(oldItem: ScheduleData, newItem: ScheduleData): Boolean = oldItem == newItem
+    override fun areContentsTheSame(oldItem: ScheduleData, newItem: ScheduleData):
+      Boolean = (oldItem.name == newItem.name && oldItem.day == newItem.day && oldItem.time == newItem.time && oldItem.id == newItem.id)
   }) {
   val selectedItem = MutableLiveData<EventDetail?>()
   private var prevPosition = -1
@@ -59,11 +61,15 @@ class ScheduleListRecyclerViewAdapter :
     val eventNumber: TextView = view.findViewById(R.id.event_number_id)
   }
   private fun convertISOTo12HourTime(isoDateString: String): String { // function for converting the given time format into 12 hours time
-    val isoFormatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US)
-    isoFormatter.timeZone = TimeZone.getTimeZone("UTC")
-    val date = isoFormatter.parse(isoDateString)
-    val twelveHourFormatter = SimpleDateFormat("hh:mm a", Locale.US)
-    twelveHourFormatter.timeZone = TimeZone.getDefault()
-    return twelveHourFormatter.format(date as Date)
+    if (!isoDateString.isNullOrEmpty()) {
+      val isoFormatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US)
+      isoFormatter.timeZone = TimeZone.getTimeZone("UTC")
+      val date = isoFormatter.parse(isoDateString)
+      val twelveHourFormatter = SimpleDateFormat("hh:mm a", Locale.US)
+      twelveHourFormatter.timeZone = TimeZone.getDefault()
+      return twelveHourFormatter.format(date as Date)
+    } else {
+      return ""
+    }
   }
 }

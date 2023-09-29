@@ -18,10 +18,10 @@ import edu.nitt.delta.R
 import edu.nitt.delta.core.BaseApplication
 import edu.nitt.delta.core.profile.ProfileAction
 import edu.nitt.delta.core.profile.ProfileViewModel
-import androidx.navigation.fragment.findNavController
 import edu.nitt.delta.databinding.FragmentSignUp4Binding
 import edu.nitt.delta.helpers.viewLifecycle
-import edu.nitt.delta.showSnackbar
+import edu.nitt.delta.showSnackbar_green
+import edu.nitt.delta.showSnackbar_red
 class SignUp4Fragment : Fragment() {
   private var binding by viewLifecycle<FragmentSignUp4Binding>()
   private val TAG = "Signup4"
@@ -44,6 +44,11 @@ class SignUp4Fragment : Fragment() {
   }
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+    binding.topBarBinding.Logout.visibility = View.INVISIBLE
+    binding.topBarBinding.Login.visibility = View.VISIBLE
+    binding.topBarBinding.Login.setOnClickListener {
+      findNavController().navigate(SignUp3FragmentDirections.actionSignup3fragmentToLoginFragment())
+    }
     binding.submit.setOnClickListener {
       if (validatedetails()) {
         recaptcha()
@@ -64,7 +69,7 @@ class SignUp4Fragment : Fragment() {
     profileViewModel.success.observe(viewLifecycleOwner,
       Observer {
         Log.v(TAG, "RegisterSuccess")
-        showSnackbar("Registered Successfully")
+        showSnackbar_green("Registered Successfully")
         findNavController().navigate(R.id.action_signUp4Fragment_to_loginFragment)
       })
     profileViewModel.error.observe(viewLifecycleOwner,
@@ -72,7 +77,7 @@ class SignUp4Fragment : Fragment() {
         Log.v(TAG, "RegisterFailure")
         Log.v(TAG, it)
 
-        showSnackbar("OOPS!! $it")
+        showSnackbar_red("OOPS!! $it")
       })
   }
   private fun recaptcha() {
@@ -98,16 +103,16 @@ class SignUp4Fragment : Fragment() {
   }
   private fun validatedetails(): Boolean {
     if (binding.password.text.toString().length <8) {
-      showSnackbar("Password Should Contain at least 8 characters")
+      showSnackbar_red("Password Should Contain at least 8 characters")
       return false
     } else if ((containsNoNumbers(binding.password.text.toString())) || !(containsUpperAndLowerCase(binding.password.text.toString())) || !(containsSpecialCharacters(binding.password.text.toString()))) {
-      showSnackbar("Follow password convention")
+      showSnackbar_red("Follow password convention")
       return false
     } else if (binding.password.text.isEmpty()) {
-      showSnackbar("Enter Valid Password")
+      showSnackbar_red("Enter Valid Password")
       return false
     } else if (!(binding.password.text.toString().equals(binding.confpassword.text.toString()))) {
-      showSnackbar("Password and confirm doesn't match")
+      showSnackbar_red("Password and confirm doesn't match")
       return false
     }
     SignUpFragment.registerData.password = binding.password.text.toString()

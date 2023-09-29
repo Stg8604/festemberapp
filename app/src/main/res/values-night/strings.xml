@@ -158,15 +158,4 @@
     <string name="day_1_events">day 1 events!</string>
     <string name="day_events">day events show bar!</string>
     <string name="time_line">Time Line</string>
-    <string name="year">Year</string>
-    <string name="degree">Degree</string>
-    <string name="college">College</string>
-    <string name="name">Name</string>
-    <string name="user_information">User Information</string>
-    <string name="registered_events">Registered Events</string>
-    <string name="dashboard">DASHBOARD</string>
-    <string name="bg">bg</string>
-    <string name="line">line</string>
-    <string name="qr_code">Qr code</string>
-    <string name="roll_no">Roll no</string>
 </resources>

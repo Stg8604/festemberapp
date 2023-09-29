@@ -1,20 +1,20 @@
 package edu.nitt.delta.fragments
 import android.content.Intent
+import android.content.res.Resources
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import edu.nitt.delta.helpers.viewLifecycle
-import edu.nitt.delta.databinding.FragmentAutoBinding
-import android.content.res.Resources
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import edu.nitt.delta.R
 import edu.nitt.delta.adapters.AutoAdapter
+import edu.nitt.delta.databinding.FragmentAutoBinding
+import edu.nitt.delta.helpers.viewLifecycle
 import edu.nitt.delta.models.AutoItem
-import edu.nitt.delta.showSnackbar
+import edu.nitt.delta.showSnackbar_green
 
 class AutoFragment : Fragment() {
   private var binding by viewLifecycle<FragmentAutoBinding>()
@@ -88,7 +88,7 @@ class AutoFragment : Fragment() {
           dialIntent.data = Uri.parse("tel:$phoneNumber")
         }
         startActivity(dialIntent)
-        showSnackbar("dialing  , ${autoDrivers[position]}")
+        showSnackbar_green("dialing  , ${autoDrivers[position]}")
       }
     })
   }

@@ -11,10 +11,16 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import edu.nitt.delta.core.BaseApplication
+import edu.nitt.delta.core.storage.SharedPrefHelper
 import edu.nitt.delta.databinding.HomeFragmentBinding
 import edu.nitt.delta.helpers.viewLifecycle
+import edu.nitt.delta.showSnackbar_green
+
 class HomeFragment : Fragment() {
   private var binding by viewLifecycle<HomeFragmentBinding>()
+  lateinit var sharedprefHelper: SharedPrefHelper
+
   override fun onCreateView(
     inflater: LayoutInflater,
     container: ViewGroup?,
@@ -53,6 +59,14 @@ class HomeFragment : Fragment() {
   }
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+    sharedprefHelper = (activity?.application as BaseApplication).applicationComponent.getSharedPrefManager()
+    if (sharedprefHelper.isLoggedIn) {
+      binding.topBarBinding.Logout.visibility = View.VISIBLE
+      binding.topBarBinding.Login.visibility = View.INVISIBLE
+    } else {
+      binding.topBarBinding.Logout.visibility = View.INVISIBLE
+      binding.topBarBinding.Login.visibility = View.VISIBLE
+    }
     val eleList = arrayOf(
       binding.NitTrichyLanding,
       binding.festemberTextLanding,
@@ -63,7 +77,15 @@ class HomeFragment : Fragment() {
       val postSec = 1300
       Looper.myLooper()?.let {
         Handler(it).postDelayed({
-          eleList[i].isVisible = true
+          if (i == 3) {
+            if (sharedprefHelper.isLoggedIn) {
+              eleList[i].visibility = View.GONE
+            } else {
+              eleList[i].visibility = View.VISIBLE
+            }
+          } else {
+            eleList[i].isVisible = true
+          }
         }, (postSec * i).toLong())
       }
     }
@@ -138,8 +160,20 @@ class HomeFragment : Fragment() {
       }
     }
     click()
+    binding.topBarBinding.Logout.setOnClickListener {
+      if (it.isVisible) {
+        it.visibility = View.INVISIBLE
+        binding.topBarBinding.Login.visibility = View.VISIBLE
+        binding.registerLanding.visibility = View.VISIBLE
+        sharedprefHelper.clear()
+        findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToLoginFragment())
+        showSnackbar_green("Logged out Successfully")
+      }
+    }
     binding.topBarBinding.Login.setOnClickListener {
-      findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToLoginFragment())
+      if (it.isVisible) {
+        findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToLoginFragment())
+      }
     }
     binding.registerLanding.setOnClickListener {
       findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSignupfragment())

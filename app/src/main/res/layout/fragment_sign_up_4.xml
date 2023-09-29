@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.SignUp4Fragment"
-    android:background="@drawable/home2">
+    android:background="@drawable/home"
+    tools:context=".fragments.SignUp4Fragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
@@ -50,11 +50,11 @@
             android:layout_marginStart="50dp"
             android:layout_marginTop="72dp"
             android:layout_marginEnd="50dp"
-            android:inputType="textWebPassword"
             android:background="@drawable/rectangle_2"
             android:fontFamily="@font/kawashiro_gothic"
             android:gravity="center_vertical"
             android:hint="Password"
+            android:inputType="textWebPassword"
             android:paddingLeft="42dp"
             android:textColor="@color/cardview_dark_background"
             android:textColorHint="@color/black"
@@ -152,6 +152,7 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <LinearLayout
         android:id="@+id/TopBar"
         android:layout_width="0dp"
@@ -172,6 +173,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"

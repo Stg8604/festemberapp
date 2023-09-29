@@ -12,6 +12,7 @@ import edu.nitt.delta.core.model.payload.Gallery.GalleryData
 import edu.nitt.delta.core.model.payload.GuestLectures.GuestData
 import edu.nitt.delta.core.model.payload.Hospitality.HospitalityData
 import edu.nitt.delta.core.model.payload.Informals.InformalsData
+import edu.nitt.delta.core.model.payload.Schedule.ScheduleData
 import edu.nitt.delta.core.model.payload.Sponsors.SponsorsData
 import edu.nitt.delta.core.model.payload.Workshops.WorkshopData
 import edu.nitt.delta.core.storage.FestDbUtils.KEY_CLUSTER_ID
@@ -22,6 +23,7 @@ import edu.nitt.delta.core.storage.FestDbUtils.TABLE_GALLERY
 import edu.nitt.delta.core.storage.FestDbUtils.TABLE_GUEST_LECTURES
 import edu.nitt.delta.core.storage.FestDbUtils.TABLE_HOSPITALITY
 import edu.nitt.delta.core.storage.FestDbUtils.TABLE_INFORMALS
+import edu.nitt.delta.core.storage.FestDbUtils.TABLE_SCHEDULE
 import edu.nitt.delta.core.storage.FestDbUtils.TABLE_SPONSORS
 import edu.nitt.delta.core.storage.FestDbUtils.TABLE_WORKSHOPS
 
@@ -101,4 +103,13 @@ interface PayloadDao {
 
   @Query("SELECT DISTINCT $KEY_NAME, $KEY_CLUSTER_ID FROM $TABLE_CLUSTERS")
   fun getClusterNames(): LiveData<List<ClusterName>>
+
+  @Insert(onConflict = OnConflictStrategy.REPLACE)
+  suspend fun addSchedule(scheduleData: ScheduleData)
+
+  @Insert(onConflict = OnConflictStrategy.REPLACE)
+  suspend fun addScheduleList(scheduleData: List<ScheduleData>)
+
+  @Query("SELECT * FROM $TABLE_SCHEDULE")
+  fun getSchedule(): LiveData<List<ScheduleData>>
 }

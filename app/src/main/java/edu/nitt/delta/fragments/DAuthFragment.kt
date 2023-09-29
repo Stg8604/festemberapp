@@ -20,14 +20,17 @@ import edu.nitt.delta.core.BaseApplication
 import edu.nitt.delta.core.profile.DauthConfig
 import edu.nitt.delta.core.profile.ProfileAction
 import edu.nitt.delta.core.profile.ProfileViewModel
+import edu.nitt.delta.core.storage.SharedPrefHelper
 import edu.nitt.delta.databinding.DauthFragmentBinding
 import edu.nitt.delta.helpers.viewLifecycle
-import edu.nitt.delta.showSnackbar
+import edu.nitt.delta.showSnackbar_green
+import edu.nitt.delta.showSnackbar_red
 
 class DAuthFragment : Fragment() {
 
   private var binding by viewLifecycle<DauthFragmentBinding>()
   lateinit var profileViewModel: ProfileViewModel
+  lateinit var sharedprefHelper: SharedPrefHelper
   val TAG = "DAuthFragment"
 
   override fun onCreateView(
@@ -84,6 +87,7 @@ class DAuthFragment : Fragment() {
 
     val factory = (activity?.application as BaseApplication).applicationComponent.getViewModelProviderFactory()
     profileViewModel = ViewModelProvider(this, factory).get(ProfileViewModel::class.java)
+    sharedprefHelper = (activity?.application as BaseApplication).applicationComponent.getSharedPrefManager()
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -94,7 +98,8 @@ class DAuthFragment : Fragment() {
     profileViewModel.success.observe(viewLifecycleOwner,
       Observer {
         Log.v(TAG, "LoginSuccess")
-        showSnackbar(it)
+        showSnackbar_green(it)
+        sharedprefHelper.isLoggedIn = true
 //        profileViewModel.doAction(ProfileAction.RegisterFCM)
         findNavController().navigate(DAuthFragmentDirections.actionDAuthFragmentToHomeFragment())
       })
@@ -102,7 +107,7 @@ class DAuthFragment : Fragment() {
     profileViewModel.error.observe(viewLifecycleOwner,
       Observer {
         Log.v(TAG, "LoginFailure")
-        showSnackbar(it)
+        showSnackbar_red(it)
       })
   }
 }

@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import edu.nitt.delta.R
 import edu.nitt.delta.databinding.FragmentSignUp3Binding
 import edu.nitt.delta.helpers.viewLifecycle
-import edu.nitt.delta.showSnackbar
+import edu.nitt.delta.showSnackbar_red
 
 class SignUp3Fragment : Fragment() {
   private var binding by viewLifecycle<FragmentSignUp3Binding>()
@@ -34,6 +34,11 @@ class SignUp3Fragment : Fragment() {
   }
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+    binding.topBarBinding.Logout.visibility = View.INVISIBLE
+    binding.topBarBinding.Login.visibility = View.VISIBLE
+    binding.topBarBinding.Login.setOnClickListener {
+      findNavController().navigate(SignUp3FragmentDirections.actionSignup3fragmentToLoginFragment())
+    }
     binding.fire.setOnClickListener {
       if (!validatedetails()) {
         binding.fire.setImageResource(R.drawable.fire_scaled2)
@@ -102,7 +107,7 @@ class SignUp3Fragment : Fragment() {
         SignUpFragment.registerData.avatar = imgint
         findNavController().navigate(R.id.action_signUp3Fragment_to_signup4Fragment)
       } else {
-        showSnackbar("Select Avatar")
+        showSnackbar_red("Select Avatar")
       }
     }
     binding.back3.setOnClickListener {

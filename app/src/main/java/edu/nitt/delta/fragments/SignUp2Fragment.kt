@@ -18,7 +18,7 @@ import edu.nitt.delta.core.profile.ProfileAction
 import edu.nitt.delta.core.profile.ProfileViewModel
 import edu.nitt.delta.databinding.FragmentSignUp2Binding
 import edu.nitt.delta.helpers.viewLifecycle
-import edu.nitt.delta.showSnackbar
+import edu.nitt.delta.showSnackbar_red
 
 class SignUp2Fragment : Fragment() {
   private var binding by viewLifecycle<FragmentSignUp2Binding>()
@@ -56,6 +56,11 @@ class SignUp2Fragment : Fragment() {
   }
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+    binding.topBarBinding.Logout.visibility = View.INVISIBLE
+    binding.topBarBinding.Login.visibility = View.VISIBLE
+    binding.topBarBinding.Login.setOnClickListener {
+      findNavController().navigate(SignUp2FragmentDirections.actionSignup2FragmentToLoginFragment())
+    }
     binding.next2.setOnClickListener {
       if (validatedetails()) {
         findNavController().navigate(R.id.action_signUp2Fragment_to_signup3Fragment)
@@ -89,30 +94,30 @@ class SignUp2Fragment : Fragment() {
         String
         clg = listOf()
         Log.v(TAG, "College Fetch error")
-        showSnackbar(it)
+        showSnackbar_red(it)
       })
   }
   private fun validatedetails(): Boolean {
     if (binding.degree.text.isEmpty()) {
-      showSnackbar("Enter Degree")
+      showSnackbar_red("Enter Degree")
       return false
     } else if (binding.year.text.isEmpty()) {
-      showSnackbar("Enter Year")
+      showSnackbar_red("Enter Year")
       return false
     } else if (binding.address.text.isEmpty()) {
-      showSnackbar("Enter Address")
+      showSnackbar_red("Enter Address")
       return false
     } else if (binding.college.text.isEmpty()) {
-      showSnackbar("Enter College")
+      showSnackbar_red("Enter College")
       return false
     } else if (!(colleges.contains(binding.college.text.toString()))) {
-      showSnackbar("Select colleges from options")
+      showSnackbar_red("Select colleges from options")
       return false
     } else if (!(degrees.contains(binding.degree.text.toString()))) {
-      showSnackbar("Select degrees from the list")
+      showSnackbar_red("Select degrees from the list")
       return false
     } else if (!(years.contains(binding.year.text.toString()))) {
-      showSnackbar("Select years from list")
+      showSnackbar_red("Select years from list")
       return false
     }
     SignUpFragment.registerData.degree = binding.degree.text.toString()

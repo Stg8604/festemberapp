@@ -93,6 +93,9 @@
         <action
             android:id="@+id/action_eventsFragment_to_navBarFragment"
             app:destination="@id/navBarFragment" />
+        <action
+            android:id="@+id/action_eventsFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/leaderboardFragment"
@@ -102,6 +105,10 @@
         <action
             android:id="@+id/action_Leaderboardfragment_to_navBarfragment"
             app:destination="@id/navBarFragment"/>
+        <action
+            android:id="@+id/action_Leaderboardfragment_to_loginFragment"
+            app:destination="@id/loginFragment"/>
+
     </fragment>
 
     <fragment
@@ -269,7 +276,8 @@
             app:destination="@id/navBarFragment" />
         <action
             android:id="@+id/action_dashboardFragment_to_LoginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/homeFragment"/>
 
     </fragment>
     <fragment

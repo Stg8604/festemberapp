@@ -12,6 +12,7 @@ import edu.nitt.delta.core.model.payload.Informals.InformalsDataResponse
 import edu.nitt.delta.core.model.event.RegisteredEventsResponse
 import edu.nitt.delta.core.model.payload.Clusters.ClustersDataResponse
 import edu.nitt.delta.core.model.payload.Gallery.GalleryDataResponse
+import edu.nitt.delta.core.model.payload.Schedule.ScheduleDataResponse
 import edu.nitt.delta.core.model.payload.Sponsors.SponsorsDataResponse
 import edu.nitt.delta.core.model.payload.Workshops.WorkshopDataResponse
 import edu.nitt.delta.core.model.user.DAuthResponse
@@ -184,4 +185,6 @@ interface FestApiInterface {
   /** Get Gallery details */
   @GET
   suspend fun getGalleryData(@Url url: String): GalleryDataResponse
+  @GET
+  suspend fun getScheduleData(@Url url: String): ScheduleDataResponse
 }

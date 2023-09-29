@@ -18,7 +18,8 @@ import edu.nitt.delta.core.profile.ProfileViewModel
 import edu.nitt.delta.core.storage.SharedPrefHelper
 import edu.nitt.delta.databinding.LoginFragmentBinding
 import edu.nitt.delta.helpers.viewLifecycle
-import edu.nitt.delta.showSnackbar
+import edu.nitt.delta.showSnackbar_green
+import edu.nitt.delta.showSnackbar_red
 
 class LoginFragment : Fragment() {
 
@@ -55,6 +56,8 @@ class LoginFragment : Fragment() {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+    binding.topBarBinding.Login.visibility = View.INVISIBLE
+    binding.topBarBinding.Logout.visibility = View.INVISIBLE
     binding.btnLogin.setOnClickListener {
       login()
     }
@@ -95,7 +98,9 @@ class LoginFragment : Fragment() {
       Observer {
         Log.v(TAG, "LoginSuccess")
 //        profileViewModel.doAction(ProfileAction.RegisterFCM)
-        showSnackbar(it)
+        showSnackbar_green(it)
+        sharedprefHelper.isLoggedIn = true
+        println("asdfasdfasdfasfd" + sharedprefHelper.USER_DETAILS)
         findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
       })
 
@@ -103,7 +108,7 @@ class LoginFragment : Fragment() {
       Observer {
         binding.btnLogin.isEnabled = true
         Log.v(TAG, "LoginFailure")
-        showSnackbar(it)
+        showSnackbar_red(it)
       })
   }
 
@@ -115,7 +120,7 @@ class LoginFragment : Fragment() {
       binding.btnLogin.isEnabled = false
       profileViewModel.doAction(ProfileAction.LoginUser(email, password))
     } else {
-      showSnackbar("Invalid User Credentials")
+      showSnackbar_red("Invalid User Credentials")
     }
   }
 

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.SignUpFragment"
-    android:background="@drawable/home2">
+    android:background="@drawable/home"
+    tools:context=".fragments.SignUpFragment">
     <!-- Auto layout, variables, and unit scale are not yet supported -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/signupfront"
@@ -14,11 +14,11 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="250dp"
         android:layout_marginEnd="30dp"
         android:background="@drawable/rectangle_1"
         android:paddingBottom="20dp"
         android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -73,8 +73,8 @@
             android:background="@drawable/rectangle_2"
             android:fontFamily="@font/kawashiro_gothic"
             android:hint="Name"
-            android:paddingLeft="42.27dp"
             android:inputType="textPersonName"
+            android:paddingLeft="42.27dp"
             android:textAppearance="@style/username"
             android:textColor="@color/cardview_dark_background"
             android:textColorHint="@color/black"
@@ -126,7 +126,7 @@
             android:textSize="11.93sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/backred3"
@@ -175,17 +175,20 @@
         <TextView
             android:id="@+id/did_you_kno"
             android:layout_width="99dp"
-            android:layout_height="15dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="25dp"
             android:fontFamily="@font/kawashiro_gothic"
             android:gravity="center_horizontal|top"
             android:text="Did you know?"
             android:textAppearance="@style/did_you_kno"
             android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/next" />
+            app:layout_constraintTop_toBottomOf="@+id/next"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="2dp"
+            app:layout_constraintVertical_bias="1" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

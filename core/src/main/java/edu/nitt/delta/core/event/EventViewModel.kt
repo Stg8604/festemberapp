@@ -12,6 +12,7 @@ import edu.nitt.delta.core.model.payload.Gallery.GalleryData
 import edu.nitt.delta.core.model.payload.GuestLectures.GuestData
 import edu.nitt.delta.core.model.payload.Hospitality.HospitalityData
 import edu.nitt.delta.core.model.payload.Informals.InformalsData
+import edu.nitt.delta.core.model.payload.Schedule.ScheduleData
 import edu.nitt.delta.core.model.payload.Sponsors.SponsorsData
 import edu.nitt.delta.core.model.payload.Workshops.WorkshopData
 import edu.nitt.delta.core.storage.SharedPrefHelper
@@ -34,6 +35,7 @@ class EventViewModel @Inject constructor(private val eventRepository: EventRepos
   val clusterEvents: LiveData<List<ClustersData>> = eventRepository.clusterEvents
   val eventsLiveData = MutableLiveData<List<EventDetail>>()
   val currentClusterName = MutableLiveData<ClusterName>()
+  val schedule: LiveData<List<ScheduleData>> = eventRepository.schedule
 
   private val mutableRegisteredEvents = MutableLiveData<List<String>>()
   val registeredEvents: LiveData<List<String>>
@@ -53,6 +55,7 @@ class EventViewModel @Inject constructor(private val eventRepository: EventRepos
     is EventAction.GetWorkshops -> getWorkshop()
     is EventAction.GetClusters -> getClusters()
     is EventAction.GetGallery -> getGallery()
+    is EventAction.GetSchedule -> getSchedule()
   }
 
   private fun getSubscribedEvents() = launch {
@@ -170,6 +173,15 @@ class EventViewModel @Inject constructor(private val eventRepository: EventRepos
         mutableSuccess.postValue("Successfully fetched Gallery Details")
       }
 
+      is Result.Error -> mutableError.postValue(res.exception.message)
+    }
+  }
+
+  private fun getSchedule() = launch {
+    when (val res = eventRepository.getSchedule()) {
+      is Result.Value -> {
+        mutableSuccess.postValue("Successfully fetched Schedule Details")
+      }
       is Result.Error -> mutableError.postValue(res.exception.message)
     }
   }

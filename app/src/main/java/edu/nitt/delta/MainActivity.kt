@@ -32,12 +32,12 @@ class MainActivity : AppCompatActivity() {
   private fun observeEventViewModel(eventViewModel: EventViewModel) {
     eventViewModel.success.observe(this,
       Observer {
-        showSnackbar("YAY!! $it")
+//        showSnackbar_green("YAY!! $it")
       })
 
     eventViewModel.error.observe(this,
       Observer {
-        showSnackbar("OOPS!! $it")
+        showSnackbar_red("OOPS!! $it")
       })
   }
 }

@@ -1,12 +1,14 @@
 package edu.nitt.delta.fragments
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Base64
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import edu.nitt.delta.R
@@ -18,7 +20,7 @@ import edu.nitt.delta.core.profile.ProfileViewModel
 import edu.nitt.delta.core.storage.SharedPrefHelper
 import edu.nitt.delta.databinding.DashboardFragmentBinding
 import edu.nitt.delta.helpers.viewLifecycle
-import edu.nitt.delta.showSnackbar
+import edu.nitt.delta.showSnackbar_green
 
 class DashboardFragment : Fragment() {
   private lateinit var profileViewModel: ProfileViewModel
@@ -31,16 +33,16 @@ class DashboardFragment : Fragment() {
     container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View? {
+    sharedPrefHelper = (activity?.application as BaseApplication).applicationComponent.getSharedPrefManager()
     binding = DashboardFragmentBinding.inflate(inflater, container, false)
-    if (sharedPrefHelper.username == "") {
-      println(profileViewModel.doAction(ProfileAction.GetUserDetails))
-      var userdat = profileViewModel.userData
-      println(userdat)
-    } else {
-      binding.personname.text = "${sharedPrefHelper.username}"
-      profileViewModel.doAction(ProfileAction.GetQrBitmap)
+    binding.topBarBinding.Logout.visibility = View.VISIBLE
+    binding.topBarBinding.Logout.setOnClickListener {
+      sharedPrefHelper.isLoggedIn = false
+      sharedPrefHelper.clear()
+      it.visibility = View.INVISIBLE
+      findNavController().navigate(DashboardFragmentDirections.actionDashboardFragmentToLoginFragment())
+      showSnackbar_green("Logged out Successfully")
     }
-    observeProfileViewModel()
     return binding.root
   }
 
@@ -49,9 +51,35 @@ class DashboardFragment : Fragment() {
     binding.navBarButtonBinding.navBarButton.setOnClickListener {
       findNavController().navigate(R.id.action_dashboardfragment_to_navBarFragment)
     }
-    binding.topBarBinding.Login.setOnClickListener {
-      findNavController().navigate(R.id.action_dashboardFragment_to_LoginFragment)
+    profileViewModel.doAction(ProfileAction.GetUserDetails)
+    Log.d(TAG, "onViewCreated: ")
+    val userdat = profileViewModel.userData
+    userdat.observe(viewLifecycleOwner) {
+
+      binding.personname.text = it.fullName
+      Log.d(TAG, "fullname: ${it.fullName}")
+      binding.clgname.text = it.college
+      Log.d(TAG, "college: ${it.college}")
+      binding.degreename.text = it.degree
+      Log.d(TAG, "degree: ${it.degree}")
+      binding.yearnumber.text = it.year
+      Log.d(TAG, "year: ${it.year}")
+      binding.rollno.text = it.userName
+      Log.d(TAG, "username: ${it.userName}")
+      if (it.loginMethod == "db") {
+        binding.roll.text = "User Name"
+      }
     }
+    profileViewModel.doAction(ProfileAction.GetQr)
+    profileViewModel.qr.observe(viewLifecycleOwner
+    ) {
+      qr_hash = profileViewModel.qr.value ?: ""
+      sharedPrefHelper.qrImage = qr_hash
+      val qr = returnBitmap(qr_hash)
+      binding.qr.setImageBitmap(qr)
+      Log.v(TAG, "QR Hash in profile fragment $qr_hash")
+    }
+    Log.d(TAG, "onCreateView: $userdat")
   }
   override fun onAttach(context: Context) {
     super.onAttach(context)
@@ -59,24 +87,9 @@ class DashboardFragment : Fragment() {
     val factory = (activity?.application as BaseApplication).applicationComponent.getViewModelProviderFactory()
     profileViewModel = ViewModelProvider(this, factory).get(ProfileViewModel::class.java)
   }
-  private fun observeProfileViewModel() {
-    profileViewModel.userData.observe(viewLifecycleOwner,
-      Observer {
-        // needs to be edited to incorporate the latest changes
-        user = profileViewModel.userData.value ?: UserData("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", R.drawable.avatar1, "", "", "")
-        profileViewModel.doAction(ProfileAction.GetQr)
-        profileViewModel.doAction(ProfileAction.GetQrBitmap)
-        sharedPrefHelper.username = user.userName
-        binding.personname.text = "${sharedPrefHelper.username}"
-        binding.clgname.text = user.college
-        binding.degreename.text = user.degree
-        binding.yearnumber.text = user.year
-      })
-    binding.qr.setImageBitmap(profileViewModel.qrBitmap)
-    profileViewModel.error.observe(viewLifecycleOwner,
-      Observer {
-        Log.v(TAG, "Error Occurred")
-        showSnackbar("OOPS!! Some Error occurred")
-      })
+  private fun returnBitmap(qr_hash: String): Bitmap? {
+    val decodedString: ByteArray = Base64.decode(qr_hash, Base64.DEFAULT)
+    val bitmap_qr = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
+    return bitmap_qr
   }
 }

@@ -9,17 +9,16 @@
     <View
         android:id="@+id/frame_10123"
         android:layout_width="300dp"
-        android:layout_height="600dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/schedule_frame"
         android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="50dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.85"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.85" />
+        app:layout_constraintStart_toEndOf="@id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@id/timeline_tv" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/eventList"
@@ -63,10 +62,10 @@
         android:layout_height="0dp"
         android:gravity="center"
         android:orientation="vertical"
-        app:layout_constraintHorizontal_bias="90.0"
+        app:layout_constraintHorizontal_bias="100.0"
+        app:layout_constraintStart_toEndOf="@id/linearLayout"
         app:layout_constraintBottom_toBottomOf="@id/frame_10123"
-        app:layout_constraintRight_toLeftOf="@id/frame_10123"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/frame_10123"
         app:layout_constraintTop_toTopOf="@id/frame_10123">
 
 
@@ -84,7 +83,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/day_2"
-            android:layout_width="48dp"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/transparent"
@@ -142,19 +141,22 @@
 
     <ImageView
         android:id="@+id/day_0_indicator_bar"
-        android:layout_width="11dp"
+        android:layout_width="wrap_content"
         android:layout_height="100dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="36dp"
+        android:layout_marginEnd="40dp"
         android:contentDescription="@string/day_events"
         android:src="@drawable/days_bar"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/frame_10123"
-        app:layout_constraintTop_toTopOf="@+id/days_linearLayout" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="@id/days_linearLayout" />
 
     <TextView
         android:id="@+id/timeline_tv"
         android:layout_width="wrap_content"
-        android:visibility="invisible"
+        android:visibility="visible"
         android:layout_height="wrap_content"
         android:fontFamily="@font/osake"
         android:text="@string/time_line"
@@ -163,8 +165,7 @@
         app:layout_constraintBottom_toTopOf="@+id/frame_10123"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.85" />
+        app:layout_constraintTop_toBottomOf="@id/TopBar" />
 
     <View
         android:id="@+id/progress_view"

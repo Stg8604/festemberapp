@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.SignUp3Fragment"
-    android:background="@drawable/home2">
+    android:background="@drawable/home"
+    tools:context=".fragments.SignUp3Fragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
@@ -160,6 +160,7 @@
             android:textAppearance="@style/register"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/firetxt"
             android:layout_width="wrap_content"
@@ -216,6 +217,7 @@
             app:layout_constraintStart_toStartOf="@+id/space"
             app:layout_constraintTop_toBottomOf="@+id/space" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <LinearLayout
         android:id="@+id/TopBar"
         android:layout_width="0dp"
@@ -227,6 +229,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
+
         <include
             android:id="@+id/topBarBinding"
             layout="@layout/top_bar"
@@ -234,6 +237,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"

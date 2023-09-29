@@ -28,4 +28,5 @@ object Routes {
   const val WORKSHOPS = "/payload/api/workshops"
   const val CLUSTERS = "/payload/api/events?limit=12"
   const val GALLERY = "/payload/api/gallery"
+  const val SCHEDULE = "/payload/api/schedule"
 }

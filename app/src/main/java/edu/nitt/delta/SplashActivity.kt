@@ -44,7 +44,7 @@ class SplashActivity : AppCompatActivity() {
 
     eventViewModel.error.observe(this,
       Observer {
-        showSnackbar("Something went wrong... $it")
+        showSnackbar_red("Something went wrong... $it")
       })
   }
 }
