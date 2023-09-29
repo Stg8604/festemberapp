@@ -21,21 +21,27 @@ import edu.nitt.delta.core.model.payload.Hospitality.HospitalityData
 import edu.nitt.delta.core.model.payload.Informals.InformalsData
 import edu.nitt.delta.core.model.payload.Sponsors.SponsorsData
 import edu.nitt.delta.core.model.payload.Workshops.WorkshopData
-import edu.nitt.delta.core.storage.EventsDao
+import edu.nitt.delta.core.storage.PayloadDao
 import org.json.JSONArray
 import javax.inject.Inject
 
-class EventRepository @Inject constructor(private val festApi: FestApiInterface, private val eventsDao: EventsDao) {
+class EventRepository @Inject constructor(private val festApi: FestApiInterface, private val payloadDao: PayloadDao) {
 
-  val events = eventsDao.getAllEvents()
-  val clusters = eventsDao.getClusterNames()
+  val aboutUs = payloadDao.getAboutUs()
+  val workshops = payloadDao.getWorkshops()
+  val sponsors = payloadDao.getSponsors()
+  val informals = payloadDao.getInformals()
+  val hospitality = payloadDao.getHospitality()
+  val guestLectures = payloadDao.getGuestLectures()
+  val gallery = payloadDao.getGallery()
+  val clusterNames = payloadDao.getClusterNames()
+  val clusterEvents = payloadDao.getClusterEvents()
   val TAG = "EventRepository"
 
   suspend fun getEvents(): Result<List<EventData>> = try {
     val response = festApi.getEventsData()
 
     if (response.statusCode == 200 && response.message != null) {
-      eventsDao.addEvents(response.message!!)
       Result.build { response.message!! }
     } else {
       Log.e(TAG, "request returned with status : ${response.statusCode} and message : ${response.message}")
@@ -60,7 +66,6 @@ class EventRepository @Inject constructor(private val festApi: FestApiInterface,
   suspend fun subscribeEvent(userID: Long, eventID: Long, token: String): Result<String> = try {
     val response = festApi.subscribeEvent(userID, eventID, token)
     if (response.statusCode == 200 && response.message != null) {
-      eventsDao.subscribeForEvent(eventID)
       Result.build { response.message!! }
     } else {
       Log.e(TAG, "request returned with status ${response.statusCode} and message : ${response.message}")
@@ -73,7 +78,6 @@ class EventRepository @Inject constructor(private val festApi: FestApiInterface,
   suspend fun unsubscribeEvent(userID: Long, eventID: Long, token: String): Result<String> = try {
     val response = festApi.unSubscribeEvent(userID, eventID, token)
     if (response.statusCode == 200 && response.message != null) {
-      eventsDao.unsubscribeForEvent(eventID)
       Result.build { response.message!! }
     } else {
       Log.e(TAG, "request returned with status ${response.statusCode} and message : ${response.message}")
@@ -85,8 +89,8 @@ class EventRepository @Inject constructor(private val festApi: FestApiInterface,
 
   suspend fun getGuestLectures(): Result<List<GuestData>> = try {
     val response = festApi.getGuestLectureData(PAYLOAD_BASE_URL + GUEST_LECTURES)
-
     if (response.guests != null) {
+      payloadDao.addGuestLecturesList(response.guests)
       Result.build { response.guests }
     } else {
       Log.e(TAG, "Failed to get guest lectures")
@@ -98,11 +102,30 @@ class EventRepository @Inject constructor(private val festApi: FestApiInterface,
 
   suspend fun getHospitality(): Result<List<HospitalityData>> = try {
     val response = festApi.getHospitalityData(PAYLOAD_BASE_URL + HOSPITALITY)
-    Log.e(TAG, response.Hospi[0].toString())
-    if (response.Hospi != null) {
+    if ((response.Hospi != null) and (response.Hospi.isNotEmpty())) {
+      if (response.Hospi[0].rawInstruction != null) {
+        val jsonInstruction = jsonify(response.Hospi[0].rawInstruction.toString())
+        response.Hospi[0].htmlInstruction = jsonArrayToHTML(JSONArray(jsonInstruction))
+      }
+      if (response.Hospi[0].rawHowToReach != null) {
+        val jsonHowToReach = jsonify(response.Hospi[0].rawHowToReach.toString())
+        response.Hospi[0].htmlHowToReach = jsonArrayToHTML(JSONArray(jsonHowToReach))
+      }
+      if (response.Hospi[0].rawAccommodation != null) {
+        val jsonAccommodation = jsonify(response.Hospi[0].rawAccommodation.toString())
+        response.Hospi[0].htmlAccommodation = jsonArrayToHTML(JSONArray(jsonAccommodation))
+      }
+      if (response.Hospi[0].rawContacts != null) {
+        val jsonContacts = jsonify(response.Hospi[0].rawContacts.toString())
+        response.Hospi[0].htmlContacts = jsonArrayToHTML(JSONArray(jsonContacts))
+      }
+      if (response.Hospi[0].rawFAQs != null) {
+        val jsonFAQs = jsonify(response.Hospi[0].rawFAQs.toString())
+        response.Hospi[0].htmlFAQs = jsonArrayToHTML(JSONArray(jsonFAQs))
+      }
+      payloadDao.addHospitalityList(response.Hospi)
       Result.build { response.Hospi }
     } else {
-      Log.e(TAG, "Failed to get Hospitality Details")
       Result.build<List<HospitalityData>> { throw Exception("Error getting the Hospitality Details") }
     }
   } catch (e: Exception) {
@@ -112,6 +135,7 @@ class EventRepository @Inject constructor(private val festApi: FestApiInterface,
   suspend fun getInformals(): Result<List<InformalsData>> = try {
     val response = festApi.getInformalsData(PAYLOAD_BASE_URL + INFORMALS)
     if (response.entry != null) {
+      payloadDao.addInformalsList(response.entry)
       Result.build { response.entry }
     } else {
       Log.e(TAG, "Failed to get Informals Details")
@@ -124,6 +148,7 @@ class EventRepository @Inject constructor(private val festApi: FestApiInterface,
   suspend fun getSponsors(): Result<List<SponsorsData>> = try {
     val response = festApi.getSponsorsData(PAYLOAD_BASE_URL + SPONSORS)
     if (response.entry != null) {
+      payloadDao.addSponsorsList(response.entry)
       Result.build { response.entry }
     } else {
       Log.e(TAG, "Failed to get Sponsors Details")
@@ -136,6 +161,7 @@ class EventRepository @Inject constructor(private val festApi: FestApiInterface,
   suspend fun getAboutUs(): Result<List<AboutUsData>> = try {
     val response = festApi.getAboutUsData(PAYLOAD_BASE_URL + ABOUTUS)
     if (response.entry != null) {
+      payloadDao.addAboutUsList(response.entry)
       Result.build { response.entry }
     } else {
       Log.e(TAG, "Failed to get About Us Details")
@@ -148,6 +174,7 @@ class EventRepository @Inject constructor(private val festApi: FestApiInterface,
   suspend fun getWorkshops(): Result<List<WorkshopData>> = try {
     val response = festApi.getWorkshopData(PAYLOAD_BASE_URL + WORKSHOPS)
     if (response.entry != null) {
+      payloadDao.addWorkshopList(response.entry)
       Result.build { response.entry }
     } else {
       Result.build<List<WorkshopData>> { throw Exception("Error getting the Workshop Details") }
@@ -161,14 +188,18 @@ class EventRepository @Inject constructor(private val festApi: FestApiInterface,
     if (response.clusters != null) {
       for (cluster in response.clusters) {
         for (event in cluster.eventDetails) {
-          val jsonFormat = jsonify(event.rawFormat.toString())
-          val jsonJudgingCriteria = jsonify(event.rawJudgingCriteria.toString())
-
-          event.htmlFormat = jsonArrayToHTML(JSONArray(jsonFormat))
-          event.htmlJudgingCriteria = jsonArrayToHTML(JSONArray(jsonJudgingCriteria))
+          if (event.rawFormat != null) {
+            val jsonFormat = jsonify(event.rawFormat.toString())
+            event.htmlFormat = jsonArrayToHTML(JSONArray(jsonFormat))
+          }
+          if (event.rawJudgingCriteria != null) {
+            val jsonJudgingCriteria = jsonify(event.rawJudgingCriteria.toString())
+            event.htmlJudgingCriteria = jsonArrayToHTML(JSONArray(jsonJudgingCriteria))
+          }
         }
       }
 
+      payloadDao.addClustersList(response.clusters)
       Result.build { response.clusters }
     } else {
       Result.build<List<ClustersData>> { throw Exception("Error getting the Cluster & Event Details") }
@@ -180,6 +211,7 @@ class EventRepository @Inject constructor(private val festApi: FestApiInterface,
   suspend fun getGallery(): Result<List<GalleryData>> = try {
     val response = festApi.getGalleryData(PAYLOAD_BASE_URL + GALLERY)
     if (response.entry != null) {
+      payloadDao.addGalleryList(response.entry)
       Result.build { response.entry }
     } else {
       Result.build<List<GalleryData>> { throw Exception("Error getting the Gallery Details") }
@@ -188,9 +220,8 @@ class EventRepository @Inject constructor(private val festApi: FestApiInterface,
     Result.build<List<GalleryData>> { throw e }
   }
 
-  private fun jsonify(text: String): String {
-
-    return text.replace("{", "{'")
+  private fun jsonify(rawText: String): String {
+    val text = rawText.replace("{", "{'")
       .replace("}", "'}")
       .replace("=", "': '")
       .replace(", ", "', '")
@@ -198,6 +229,39 @@ class EventRepository @Inject constructor(private val festApi: FestApiInterface,
       .replace("}'", "}")
       .replace("'[", "[")
       .replace("]'", "]")
+
+    val pattern = "{'text': "
+    var temp = ""
+    var jsonText = ""
+    var i = 0
+    var j = 0
+    var flag = false
+
+    while (i < text.length) {
+      if (j == pattern.length) {
+        j = 0
+        flag = true
+      }
+      if (flag && text[i] != '}') {
+        temp += text[i]
+      } else if (flag && text[i] == '}') {
+        temp = temp.replace("'", "")
+        temp = "'$temp'"
+        jsonText += "$temp${text[i]}"
+        flag = false
+        temp = ""
+      } else {
+        if (text[i] == pattern[j]) {
+          jsonText += text[i]
+          j++
+        } else {
+          j = 0
+          jsonText += text[i]
+        }
+      }
+      i++
+    }
+    return jsonText
   }
   private fun jsonArrayToHTML(jsonArray: JSONArray): String {
 
@@ -235,7 +299,7 @@ class EventRepository @Inject constructor(private val festApi: FestApiInterface,
 
       if (obj.has("type") and obj.has("children")) {
         val type = if (obj.has("type")) obj.getString("type") else ""
-        val tag = if (type == "") "div" else type
+        val tag = if ((type == "") or (type == "indent")) "div" else type
         val url = if (obj.has("url")) obj.getString("url") else ""
         val children = jsonArrayToHTML(obj.getJSONArray("children"))
 

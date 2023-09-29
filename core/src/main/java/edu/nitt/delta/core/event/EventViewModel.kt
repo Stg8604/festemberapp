@@ -2,10 +2,12 @@ package edu.nitt.delta.core.event
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import edu.nitt.delta.core.model.Result
-import edu.nitt.delta.core.model.event.EventData
 import edu.nitt.delta.core.model.payload.AboutUs.AboutUsData
+import edu.nitt.delta.core.model.payload.Clusters.ClusterName
 import edu.nitt.delta.core.model.payload.Clusters.ClustersData
+import edu.nitt.delta.core.model.payload.Clusters.EventDetail
 import edu.nitt.delta.core.model.payload.Gallery.GalleryData
 import edu.nitt.delta.core.model.payload.GuestLectures.GuestData
 import edu.nitt.delta.core.model.payload.Hospitality.HospitalityData
@@ -24,18 +26,15 @@ class EventViewModel @Inject constructor(
 
   val TAG = "EventViewModel"
 
-  val events: LiveData<List<EventData>> = eventRepository.events
-
-  val clusters: LiveData<List<String>> = eventRepository.clusters
-
-  val guestLectures = MutableLiveData<List<GuestData>>()
-  val hospitality = MutableLiveData<List<HospitalityData>>()
-  val informals = MutableLiveData<List<InformalsData>>()
-  val sponsors = MutableLiveData<List<SponsorsData>>()
-  val aboutUs = MutableLiveData<List<AboutUsData>>()
-  val workshops = MutableLiveData<List<WorkshopData>>()
-  val clusterEvents = MutableLiveData<List<ClustersData>>()
-  val gallery = MutableLiveData<List<GalleryData>>()
+  val aboutUs: LiveData<List<AboutUsData>> = eventRepository.aboutUs
+  val workshops: LiveData<List<WorkshopData>> = eventRepository.workshops
+  val sponsors: LiveData<List<SponsorsData>> = eventRepository.sponsors
+  val informals: LiveData<List<InformalsData>> = eventRepository.informals
+  val hospitality: LiveData<List<HospitalityData>> = eventRepository.hospitality
+  val guestLectures: LiveData<List<GuestData>> = eventRepository.guestLectures
+  val gallery: LiveData<List<GalleryData>> = eventRepository.gallery
+  val clustersNames: LiveData<List<ClusterName>> = eventRepository.clusterNames
+  val clusterEvents: LiveData<List<ClustersData>> = eventRepository.clusterEvents
 
   private val mutableRegisteredEvents = MutableLiveData<List<String>>()
   val registeredEvents: LiveData<List<String>>
@@ -43,7 +42,7 @@ class EventViewModel @Inject constructor(
 
   override fun doAction(action: EventAction): Any = when (action) {
     EventAction.UpdateEvents -> updateEvents()
-    is EventAction.GetEventsFiltered -> getEventsFiltered(action.filter)
+    is EventAction.GetEventsFiltered -> getEventsFiltered(action.clusterID)
     is EventAction.Subscribe -> subscribeEvent(action.eventId)
     is EventAction.Unsubscribe -> unsubscribeEvent(action.eventId)
     EventAction.getSubscribedEvents -> getSubscribedEvents()
@@ -78,7 +77,10 @@ class EventViewModel @Inject constructor(
     }
   }
 
-  private fun getEventsFiltered(eventFilter: EventFilter): LiveData<List<EventData>> = eventFilter.filter(events)
+  private fun getEventsFiltered(clusterID: Int): LiveData<List<EventDetail>> =
+    Transformations.map(clusterEvents) { eventsList ->
+      eventsList.filter { it.clusterID == clusterID }.flatMap { it.eventDetails }
+    }
 
   private fun updateEvents() = launch {
     when (val res = eventRepository.getEvents()) {
@@ -90,7 +92,6 @@ class EventViewModel @Inject constructor(
   private fun getGuestLectures() = launch {
     when (val res = eventRepository.getGuestLectures()) {
       is Result.Value -> {
-        guestLectures.postValue(res.value)
         mutableSuccess.postValue("Successfully fetched guest lectures")
       }
       is Result.Error -> mutableError.postValue(res.exception.message)
@@ -100,7 +101,6 @@ class EventViewModel @Inject constructor(
   private fun getHospitality() = launch {
     when (val res = eventRepository.getHospitality()) {
       is Result.Value -> {
-        hospitality.postValue(res.value)
         mutableSuccess.postValue("Successfully fetched Hospitality Details")
       }
       is Result.Error -> mutableError.postValue(res.exception.message)
@@ -110,7 +110,6 @@ class EventViewModel @Inject constructor(
   private fun getInformals() = launch {
     when (val res = eventRepository.getInformals()) {
       is Result.Value -> {
-        informals.postValue(res.value)
         mutableSuccess.postValue("Successfully fetched Informals Details")
       }
       is Result.Error -> mutableError.postValue(res.exception.message)
@@ -120,7 +119,6 @@ class EventViewModel @Inject constructor(
   private fun getSponsors() = launch {
     when (val res = eventRepository.getSponsors()) {
       is Result.Value -> {
-        sponsors.postValue(res.value)
         mutableSuccess.postValue("Successfully fetched Sponsors Details")
       }
       is Result.Error -> mutableError.postValue(res.exception.message)
@@ -130,7 +128,6 @@ class EventViewModel @Inject constructor(
   private fun getAboutUs() = launch {
     when (val res = eventRepository.getAboutUs()) {
       is Result.Value -> {
-        aboutUs.postValue(res.value)
         mutableSuccess.postValue("Successfully fetched AboutUs Details")
       }
       is Result.Error -> mutableError.postValue(res.exception.message)
@@ -140,7 +137,6 @@ class EventViewModel @Inject constructor(
   private fun getWorkshop() = launch {
     when (val res = eventRepository.getWorkshops()) {
       is Result.Value -> {
-        workshops.postValue(res.value)
         mutableSuccess.postValue("Successfully fetched Workshop Details")
       }
       is Result.Error -> mutableError.postValue(res.exception.message)
@@ -150,7 +146,6 @@ class EventViewModel @Inject constructor(
   private fun getClusters() = launch {
     when (val res = eventRepository.getClusters()) {
       is Result.Value -> {
-        clusterEvents.postValue(res.value)
         mutableSuccess.postValue("Successfully fetched Cluster & Event Details")
       }
       is Result.Error -> mutableError.postValue(res.exception.message)
@@ -160,7 +155,6 @@ class EventViewModel @Inject constructor(
   private fun getGallery() = launch {
     when (val res = eventRepository.getGallery()) {
       is Result.Value -> {
-        gallery.postValue(res.value)
         mutableSuccess.postValue("Successfully fetched Gallery Details")
       }
       is Result.Error -> mutableError.postValue(res.exception.message)

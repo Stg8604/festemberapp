@@ -99,16 +99,16 @@ class ProfileViewModel @Inject constructor(private val application: Application)
   // Login user
   private fun loginUser(email: String, password: String) = launch {
     when (val res = profileRepository.loginUser(email, password)) {
-      is Result.Value -> mutableSuccess.postValue("Successfully Logged in User")
-      is Result.Error -> mutableError.postValue("Unable to Login")
+      is Result.Value -> mutableSuccess.postValue(res.value)
+      is Result.Error -> mutableError.postValue(res.exception.message)
     }
   }
 
   // DAuth Login
   private fun dAuthLogin(authCode: String) = launch {
     when (val res = profileRepository.dAuthLogin(authCode)) {
-      is Result.Value -> mutableSuccess.postValue("Successfully Logged in User using DAuth")
-      is Result.Error -> mutableError.postValue("Unable to Login using DAuth")
+      is Result.Value -> mutableSuccess.postValue(res.value)
+      is Result.Error -> mutableError.postValue(res.exception.message)
     }
   }
 

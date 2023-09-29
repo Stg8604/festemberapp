@@ -3,14 +3,6 @@ package edu.nitt.delta.core.model.user
 import com.google.gson.annotations.SerializedName
 
 data class DAuthUserData(
-  @SerializedName("user_id")
-  val userID: Int,
-
-  @SerializedName("user_details")
-  val userDetails: UserDetails
-)
-
-data class UserDetails(
   @SerializedName("email")
   val email: String,
 

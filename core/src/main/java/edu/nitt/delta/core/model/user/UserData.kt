@@ -6,6 +6,9 @@ data class UserData(
   @SerializedName("user_name")
   val userName: String,
 
+  @SerializedName("user_email")
+  val email: String,
+
   @SerializedName("sex")
   val sex: String,
 
@@ -19,7 +22,7 @@ data class UserData(
   val degree: String,
 
   @SerializedName("yearOfStudy")
-  val year: String,
+  val yearOfStudy: String,
 
   @SerializedName("branch")
   val branch: String,
@@ -49,7 +52,22 @@ data class UserData(
   val sponsor: String,
 
   @SerializedName("referral_code")
-  val referralCode: String
+  val referralCode: String,
+
+  @SerializedName("acco")
+  val accommodation: String,
+
+  @SerializedName("avatar")
+  val avatar: Int,
+
+  @SerializedName("user_loginmethod")
+  val loginMethod: String,
+
+  @SerializedName("user_fullname")
+  val fullName: String,
+
+  @SerializedName("year")
+  val year: String
 ) {
   override fun equals(user: Any?): Boolean {
     require(user is UserData)

@@ -2,7 +2,6 @@ package edu.nitt.delta.core.model.event
 
 import android.os.Parcelable
 import androidx.room.ColumnInfo
-import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import edu.nitt.delta.core.storage.FestDbUtils.KEY_CLUSTER
@@ -20,11 +19,9 @@ import edu.nitt.delta.core.storage.FestDbUtils.KEY_NAME
 import edu.nitt.delta.core.storage.FestDbUtils.KEY_REGISTERED
 import edu.nitt.delta.core.storage.FestDbUtils.KEY_START_TIME
 import edu.nitt.delta.core.storage.FestDbUtils.KEY_VENUE
-import edu.nitt.delta.core.storage.FestDbUtils.TABLE_EVENTS
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-@Entity(tableName = TABLE_EVENTS)
 class EventData(
   @SerializedName("event_id")
   @PrimaryKey(autoGenerate = true)

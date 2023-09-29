@@ -10,7 +10,6 @@ import edu.nitt.delta.core.api.FestApiInterface
 import edu.nitt.delta.core.model.Result
 import edu.nitt.delta.core.model.user.CollegeData
 import edu.nitt.delta.core.model.user.CollegeResponse
-import edu.nitt.delta.core.model.user.DAuthUserData
 import edu.nitt.delta.core.model.user.ScoreboardData
 import edu.nitt.delta.core.model.user.UserData
 import edu.nitt.delta.core.storage.SharedPrefHelper
@@ -123,7 +122,7 @@ class ProfileRepository @Inject constructor(
       sharedPrefHelper.userId = response.userId.toLong()
       sharedPrefHelper.email = email
       sharedPrefHelper.isLoggedIn = true
-      Result.build { response.message!! }
+      Result.build { "Logged in successfully." }
     } else {
       Log.e(
         TAG,
@@ -137,24 +136,25 @@ class ProfileRepository @Inject constructor(
   }
 
   // DAuth Login
-  suspend fun dAuthLogin(authCode: String): Result<DAuthUserData> = try {
+  suspend fun dAuthLogin(authCode: String): Result<String> = try {
     val response = festApi.sendAuthCode(authCode)
     if (response.statusCode == 200 && response.message != null) {
-//      sharedPrefHelper.token = response.message!!
-      sharedPrefHelper.userId = response.message!!.userID.toLong()
-      Result.build { response.message!! }
+      sharedPrefHelper.token = response.message!!
+      sharedPrefHelper.userId = response.userID.toLong()
+      sharedPrefHelper.email = response.userDetails.email
+      sharedPrefHelper.isLoggedIn = true
+      Result.build { "Logged in successfully using DAuth." }
     } else {
       Log.e(
         "Login",
         "request returned with status ${response.statusCode} and message : ${response.message}"
       )
-      Result.build<DAuthUserData> {
+      Result.build<String> {
         throw Exception("Error during DAuth Login")
       }
     }
   } catch (e: Exception) {
-    Log.v("Login", "InCatch")
-    Result.build<DAuthUserData> { throw e }
+    Result.build<String> { throw e }
   }
 
   // Get the scoreboard

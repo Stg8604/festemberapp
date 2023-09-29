@@ -3,7 +3,7 @@ package edu.nitt.delta.core.api
 object Routes {
   const val LOGIN = "/auth/app"
   const val REGISTER = "/user/register"
-  const val DAUTH = "/auth/dauth/web"
+  const val DAUTH = "/auth/dauth/app"
   const val CHAT_MSG = "/chat/getmessage"
   const val CHAT_UNREAD_MSG = "/getmessage"
   const val CHAT_NEW_MSG = "/chat/newmessage"
@@ -12,7 +12,7 @@ object Routes {
   const val EVENTS_UNSUBSCRIBE = "/events/unregister"
   const val GET_SUBSCRIBED_EVENTS = "/user/events/details"
   const val FCM_REGISTER = "/user/fcm/add"
-  const val USER_DETAILS = "/user/details"
+  const val USER_DETAILS = "/user/details/app"
   const val USER_UPDATE_DETAILS = "/user/app/update"
   const val NITT_QR = "/tshirt/qr"
   const val NON_NITT_QR = "/pr/qr"

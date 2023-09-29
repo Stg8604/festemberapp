@@ -1,22 +1,37 @@
 package edu.nitt.delta.core.model.payload.Clusters
 
 import android.os.Parcelable
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import edu.nitt.delta.core.model.payload.Informals.Contact
 import edu.nitt.delta.core.model.payload.Informals.Image
+import edu.nitt.delta.core.storage.FestDbUtils.KEY_CLUSTER_ID
+import edu.nitt.delta.core.storage.FestDbUtils.KEY_EVENT_INFO
+import edu.nitt.delta.core.storage.FestDbUtils.KEY_ID
+import edu.nitt.delta.core.storage.FestDbUtils.KEY_NAME
+import edu.nitt.delta.core.storage.FestDbUtils.TABLE_CLUSTERS
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.parcel.RawValue
 
 @Parcelize
+@Entity(tableName = TABLE_CLUSTERS)
 class ClustersData(
+  @SerializedName("id")
+  @PrimaryKey(autoGenerate = false)
+  @ColumnInfo(name = KEY_ID)
   val id: String,
 
-  @SerializedName("docs")
-  val clusterID: Long,
+  @ColumnInfo(name = KEY_CLUSTER_ID)
+  @SerializedName("ClusterId")
+  val clusterID: Int,
 
+  @ColumnInfo(name = KEY_NAME)
   @SerializedName("ClusterName")
   val clusterName: String,
 
+  @ColumnInfo(name = KEY_EVENT_INFO)
   @SerializedName("EventDetails")
   val eventDetails: List<EventDetail>,
 
@@ -68,9 +83,9 @@ class EventDetail(
   @SerializedName("id")
   val id: String,
 
-  var htmlFormat: String = "",
+  var htmlFormat: String = "<div></div>",
 
-  var htmlJudgingCriteria: String = ""
+  var htmlJudgingCriteria: String = "<div></div>"
 ) : Parcelable
 
 @Parcelize
@@ -84,3 +99,11 @@ class Prize(
   @SerializedName("id")
   val id: String
 ) : Parcelable
+
+data class ClusterName(
+  @ColumnInfo(name = KEY_NAME)
+  val name: String,
+
+  @ColumnInfo(name = KEY_CLUSTER_ID)
+  val clusterID: Int
+)

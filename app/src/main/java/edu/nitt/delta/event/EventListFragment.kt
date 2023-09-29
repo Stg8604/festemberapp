@@ -6,16 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import edu.nitt.delta.core.BaseApplication
-import edu.nitt.delta.core.event.EventAction
 import edu.nitt.delta.core.event.EventFilter
 import edu.nitt.delta.core.event.EventViewModel
-import edu.nitt.delta.core.model.event.EventData
 import edu.nitt.delta.databinding.FragmentEventListBinding
 import edu.nitt.delta.helpers.viewLifecycle
 
@@ -60,10 +57,10 @@ class EventListFragment : Fragment() {
     val filter = EventFilter.Builder()
       .setClusters(cluster)
       .build()
-    val eventsLiveData = viewmodel.doAction(EventAction.GetEventsFiltered(filter)) as LiveData<List<EventData>>
-    eventsLiveData.observe(viewLifecycleOwner,
-      Observer {
-//        adapter.submitList(it)
-      })
+//    val eventsLiveData = viewmodel.doAction(EventAction.GetEventsFiltered(filter)) as LiveData<List<EventData>>
+//    eventsLiveData.observe(viewLifecycleOwner,
+//      Observer {
+// //        adapter.submitList(it)
+//      })
   }
 }

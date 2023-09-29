@@ -16,7 +16,7 @@ class StorageModule() {
 
   @Provides
   @Singleton
-  fun provideDao(db: FestDb): EventsDao = db.festDatabaseDao()
+  fun provideDao(db: FestDb): PayloadDao = db.festDatabaseDao()
 
   @Provides
   @Singleton
