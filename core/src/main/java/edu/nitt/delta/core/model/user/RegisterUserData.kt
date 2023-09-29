@@ -61,7 +61,7 @@ data class RegisterUserData(
   var is_app: Int = 1,
 
   @SerializedName("avatar")
-  var avatar: String? = null
+  var avatar: Int = 1
 ) {
   fun toMap(): Map<String, String?> =
     mapOf(
@@ -83,7 +83,7 @@ data class RegisterUserData(
       "user_sponsor" to sponsor,
       "user_referral_code" to referralCode,
       "recaptcha_code" to recaptchaCode,
-      "avatar" to avatar,
+      "user_avatar" to avatar.toString(),
       "is_app" to is_app.toString()
     )
 }

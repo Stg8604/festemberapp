@@ -7,10 +7,14 @@
     android:viewportWidth="375"
     android:viewportHeight="812"
     >
+
     <group>
+
         <path
             android:pathData="M0 0V812H375V0"
             android:fillColor="#FFF5E3"
             />
+
     </group>
+
 </vector>

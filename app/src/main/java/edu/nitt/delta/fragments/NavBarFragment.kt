@@ -41,5 +41,8 @@ class NavBarFragment : Fragment() {
     binding.sponsorsButton.setOnClickListener {
       findNavController().navigate(NavBarFragmentDirections.actionNavBarFragmentToSponsorsFragment())
     }
+    binding.profileButton.setOnClickListener {
+      findNavController().navigate(NavBarFragmentDirections.actionNavBarFragmentToDashboardFragment())
+    }
   }
 }

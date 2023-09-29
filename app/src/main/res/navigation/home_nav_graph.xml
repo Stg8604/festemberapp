@@ -72,8 +72,15 @@
             android:id="@+id/action_homeFragment_to_navBarFragment"
             app:destination="@id/navBarFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_signUpFragment2"
-            app:destination="@id/signUpFragment" />
+            android:id="@+id/action_homeFragment_to_signupfragment"
+            app:destination="@id/signUpFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_homeFragment_to_dashboardFragment4"
+            app:destination="@id/dashboardFragment4"/>
     </fragment>
     <fragment
         android:id="@+id/eventsFragment"
@@ -144,12 +151,109 @@
         <action
             android:id="@+id/action_signUpFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_signUpFragment_to_signup2Fragment"
+            app:destination="@id/signUp2Fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_signupfragment_to_LoginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_signupfragment_to_navBarFragment"
+            app:destination="@id/navBarFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/aboutUsFragment"
         android:name="edu.nitt.delta.fragments.AboutUsFragment"
         android:label="fragment_about_us"
-        tools:layout="@layout/fragment_about_us" />
+        tools:layout="@layout/fragment_about_us" >
+
+    </fragment>
+    <fragment
+        android:id="@+id/signUp2Fragment"
+        android:name="edu.nitt.delta.fragments.SignUp2Fragment"
+        android:label="fragment_sign_up_2"
+        tools:layout="@layout/fragment_sign_up_2" >
+        <action
+            android:id="@+id/action_signUp2Fragment_to_signup3Fragment"
+            app:destination="@id/SIgnUp3Fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_signUp2Fragment_to_signupFragment"
+            app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/action_signup2Fragment_to_LoginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_signUp2Fragment_to_navBarFragment"
+            app:destination="@id/navBarFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/SIgnUp3Fragment"
+        android:name="edu.nitt.delta.fragments.SignUp3Fragment"
+        android:label="fragment_sign_up_3"
+        tools:layout="@layout/fragment_sign_up_3" >
+        <action
+            android:id="@+id/action_signUp3Fragment_to_signup4Fragment"
+            app:destination="@id/signUp4Fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_signUp3Fragment_to_signup2Fragment"
+            app:destination="@id/signUp2Fragment" />
+        <action
+            android:id="@+id/action_signup3fragment_to_LoginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_signup3fragment_to_navBarFragment"
+            app:destination="@id/navBarFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUp4Fragment"
+        android:name="edu.nitt.delta.fragments.SignUp4Fragment"
+        android:label="fragment_sign_up_4"
+        tools:layout="@layout/fragment_sign_up_4" >
+        <action
+            android:id="@+id/action_signUp4Fragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/homeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_signUp4Fragment_to_signup3Fragment"
+            app:destination="@id/SIgnUp3Fragment" />
+        <action
+            android:id="@+id/action_signup4fragment_to_LoginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_signup4fragment_to_navBarFragment"
+            app:destination="@id/navBarFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dashboardFragment4"
+        android:name="edu.nitt.delta.fragments.DashboardFragment"
+        android:label="dashboard_fragment"
+        tools:layout="@layout/dashboard_fragment">
+        <action
+            android:id="@+id/action_dashboardfragment_to_navBarFragment"
+            app:destination="@id/navBarFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_LoginFragment"
+            app:destination="@id/loginFragment" />
+
+    </fragment>
     <fragment
         android:id="@+id/contactUsFragment"
         android:name="edu.nitt.delta.fragments.ContactUsFragment"
@@ -229,8 +333,9 @@
             android:id="@+id/action_navBarFragment_to_homeFragment"
             app:destination="@id/homeFragment"
             app:popUpTo="@id/homeFragment" />
-
-
-
+        <action
+            android:id="@+id/action_navBarFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment4"
+            app:popUpTo="@id/homeFragment" />
     </fragment>
 </navigation>

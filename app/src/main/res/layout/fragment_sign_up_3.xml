@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.SignUp3Fragment"
+    android:background="@drawable/home2">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="369dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/rectangle3_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/sign3_up"
+            android:layout_width="0dp"
+            android:layout_height="32.89dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="45dp"
+            android:fontFamily="@font/kawashiro_gothic"
+            android:gravity="center_horizontal|center_vertical"
+            android:lineSpacingExtra="-22sp"
+            android:text="Sign Up"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="24.21sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <!-- Auto layout, variables, and unit scale are not yet supported -->
+        <TextView
+            android:id="@+id/choose_your"
+            android:layout_width="0dp"
+            android:layout_height="24.02dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="45dp"
+            android:fontFamily="@font/kawashiro_gothic"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="Choose Your AVATAR"
+            android:textAppearance="@id/sign3_up"
+            android:textSize="16.35sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sign3_up" />
+
+        <ImageView
+            android:id="@+id/backred3"
+            android:layout_width="98dp"
+            android:layout_height="31dp"
+            android:layout_marginStart="5dp"
+            android:src="@drawable/btnlogin"
+            app:layout_constraintEnd_toEndOf="@+id/back3"
+            app:layout_constraintStart_toStartOf="@+id/back3"
+            app:layout_constraintTop_toTopOf="@+id/back3" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/back3"
+            android:layout_width="wrap_content"
+            android:layout_height="27.35dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="310dp"
+            android:background="@drawable/rectangle_5"
+            android:fontFamily="@font/kawashiro_gothic"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="Back"
+            android:textAppearance="@style/log_in"
+            android:textSize="14.51sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/fire"
+            android:layout_width="66.67dp"
+            android:layout_height="66.67dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="105dp"
+            android:background="@drawable/fire_scaled"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/earth"
+            android:layout_width="66.67dp"
+            android:layout_height="66.67dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="105dp"
+            android:layout_marginEnd="45dp"
+            android:background="@drawable/earth"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/water"
+            android:layout_width="66.67dp"
+            android:layout_height="66.67dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="157dp"
+            android:background="@drawable/water"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/wind"
+            android:layout_width="66.67dp"
+            android:layout_height="66.67dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="216dp"
+            android:background="@drawable/wind"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/space"
+            android:layout_width="66.67dp"
+            android:layout_height="66.67dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="216dp"
+            android:layout_marginEnd="45dp"
+            android:background="@drawable/space"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/next_3"
+            android:layout_width="wrap_content"
+            android:layout_height="28.84dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="310dp"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/frame_11"
+            android:fontFamily="@font/kawashiro_gothic"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="Next"
+            android:textAppearance="@style/register"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/firetxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/kawashiro_gothic"
+            android:text="Fire"
+            android:textColor="@color/cardview_dark_background"
+            app:layout_constraintEnd_toEndOf="@+id/fire"
+            app:layout_constraintStart_toStartOf="@+id/fire"
+            app:layout_constraintTop_toBottomOf="@+id/fire" />
+
+        <TextView
+            android:id="@+id/earthtxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/kawashiro_gothic"
+            android:text="Earth"
+            android:textColor="@color/cardview_dark_background"
+            app:layout_constraintEnd_toEndOf="@+id/earth"
+            app:layout_constraintStart_toStartOf="@+id/earth"
+            app:layout_constraintTop_toBottomOf="@+id/earth" />
+
+        <TextView
+            android:id="@+id/watertxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/kawashiro_gothic"
+            android:text="Water"
+            android:textColor="@color/cardview_dark_background"
+            app:layout_constraintEnd_toEndOf="@+id/water"
+            app:layout_constraintStart_toStartOf="@+id/water"
+            app:layout_constraintTop_toBottomOf="@+id/water" />
+
+        <TextView
+            android:id="@+id/windtxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:fontFamily="@font/kawashiro_gothic"
+            android:text="Wind"
+            android:textColor="@color/cardview_dark_background"
+            app:layout_constraintEnd_toEndOf="@+id/wind"
+            app:layout_constraintStart_toStartOf="@+id/wind"
+            app:layout_constraintTop_toBottomOf="@+id/wind" />
+
+        <TextView
+            android:id="@+id/spacetxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/kawashiro_gothic"
+            android:text="Space"
+            android:textColor="@color/cardview_dark_background"
+            app:layout_constraintEnd_toEndOf="@+id/space"
+            app:layout_constraintStart_toStartOf="@+id/space"
+            app:layout_constraintTop_toBottomOf="@+id/space" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:id="@+id/TopBar"
+        android:layout_width="0dp"
+        android:layout_height="99dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+        <include
+            android:id="@+id/topBarBinding"
+            layout="@layout/top_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include
+            android:id="@+id/navBarButtonBinding"
+            layout="@layout/nav_bar_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,7 +10,7 @@
     app:navGraph="@navigation/home_nav_graph"
     tools:context=".fragments.HomeFragment">
 
-    <Button
+    <TextView
         android:id="@+id/tvHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -4,7 +4,9 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="cherryRed">#BA465A</color>
-    <color name="black">#000000</color>
     <color name="blur">#50FFFFFF</color>
     <color name="transparent">#00000000</color>
+    <color name="black">#85000000</color>
+    <color name="app">#FFF5E3</color>
+    <color name="cherryred">#BA465A</color>
 </resources>

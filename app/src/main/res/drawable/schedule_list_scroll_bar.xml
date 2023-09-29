@@ -3,9 +3,12 @@
 
     <corners
         android:radius="10dp"/>
+
     <solid
         android:color="@color/cherryRed"/>
+
     <size
         android:height="10dp"
         android:width="5dp"/>
+
 </shape>

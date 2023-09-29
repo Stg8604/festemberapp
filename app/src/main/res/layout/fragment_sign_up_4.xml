@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.SignUp4Fragment"
+    android:background="@drawable/home2">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="370dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/rectangle3_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/sign4_up"
+            android:layout_width="0dp"
+            android:layout_height="32.89dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="50dp"
+            android:fontFamily="@font/kawashiro_gothic"
+            android:gravity="center_horizontal|center_vertical"
+            android:lineSpacingExtra="-22sp"
+            android:text="Sign Up"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="24.21sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="0dp"
+            android:layout_height="33.31dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="72dp"
+            android:layout_marginEnd="50dp"
+            android:inputType="textWebPassword"
+            android:background="@drawable/rectangle_2"
+            android:fontFamily="@font/kawashiro_gothic"
+            android:gravity="center_vertical"
+            android:hint="Password"
+            android:paddingLeft="42dp"
+            android:textColor="@color/cardview_dark_background"
+            android:textColorHint="@color/black"
+            android:textSize="12.3sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/confpassword"
+            android:layout_width="0dp"
+            android:layout_height="33.31dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="126dp"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/rectangle_2"
+            android:fontFamily="@font/kawashiro_gothic"
+            android:gravity="center_vertical"
+            android:hint="Confirm Password"
+            android:inputType="textWebPassword"
+            android:paddingLeft="42dp"
+            android:textColor="@color/cardview_dark_background"
+            android:textColorHint="@color/black"
+            android:textSize="12.3sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/rules"
+            android:layout_width="0dp"
+            android:layout_height="88.14dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="185dp"
+            android:layout_marginEnd="35dp"
+            android:fontFamily="@font/kawashiro_gothic"
+            android:gravity="top"
+            android:text="Password Guildelines:\nLength should be atleast 8 characters\nMust contain both uppercase and lowercase letter\nMust include both letters and numbers\nMust include atleast one special character"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="12.3sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/backred3"
+            android:layout_width="98dp"
+            android:layout_height="31dp"
+            android:layout_marginStart="5dp"
+            android:src="@drawable/btnlogin"
+            app:layout_constraintEnd_toEndOf="@+id/back4"
+            app:layout_constraintStart_toStartOf="@+id/back4"
+            app:layout_constraintTop_toTopOf="@+id/back4" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/back4"
+            android:layout_width="98.95dp"
+            android:layout_height="27.35dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="297dp"
+            android:background="@drawable/text_field"
+            android:fontFamily="@font/kawashiro_gothic"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="Back"
+            android:textAppearance="@style/log_in"
+            android:textSize="14.51sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/submit"
+            android:layout_width="108.4dp"
+            android:layout_height="28.84dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="297dp"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/frame_11"
+            android:fontFamily="@font/kawashiro_gothic"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="Submit"
+            android:textAppearance="@style/register"
+            android:textSize="14.95sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:id="@+id/TopBar"
+        android:layout_width="0dp"
+        android:layout_height="99dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <include
+            android:id="@+id/topBarBinding"
+            layout="@layout/top_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include
+            android:id="@+id/navBarButtonBinding"
+            layout="@layout/nav_bar_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

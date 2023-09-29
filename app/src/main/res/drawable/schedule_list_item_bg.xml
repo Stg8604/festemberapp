@@ -7,15 +7,20 @@
     android:viewportWidth="230.17"
     android:viewportHeight="122.61"
     >
+
     <group>
+
         <path
             android:pathData="M0 0V122.611H230.174V0"
             android:fillColor="#FFFFFF"
             />
+
         <path
             android:pathData="M0 0H230.174V122.611H0V0Z"
             android:strokeWidth="2.23"
             android:strokeColor="#000000"
             />
+
     </group>
+
 </vector>
