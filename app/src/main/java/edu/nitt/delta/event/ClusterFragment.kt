@@ -4,16 +4,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.GridView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import edu.nitt.delta.R
 import edu.nitt.delta.adapters.ClusterAdapter
+import edu.nitt.delta.core.BaseApplication
+import edu.nitt.delta.core.event.EventAction
+import edu.nitt.delta.core.event.EventViewModel
 import edu.nitt.delta.databinding.FragmentClusterListBinding
 import edu.nitt.delta.helpers.viewLifecycle
+import edu.nitt.delta.models.CarouselItemTypeEnum
 import edu.nitt.delta.models.ClusterDetails
+import edu.nitt.delta.models.ClustersNameEnum
+import kotlinx.android.synthetic.main.fragment_cluster_list.gridView
 import kotlinx.android.synthetic.main.fragment_schedule.navBarButtonBinding
 
+private lateinit var viewmodel: EventViewModel
 class ClusterFragment : Fragment(), ClusterAdapter.OnItemClickListener {
   private var binding by viewLifecycle<FragmentClusterListBinding>()
   override fun onCreateView(
@@ -26,91 +33,42 @@ class ClusterFragment : Fragment(), ClusterAdapter.OnItemClickListener {
   }
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-    val clusterData = listOf(
-      ClusterDetails("ART", R.drawable.artn),
-      ClusterDetails("MUSIC", R.drawable.musict),
-      ClusterDetails("DANCE", R.drawable.dancen),
-      ClusterDetails("FASHION", R.drawable.fashionn),
-      ClusterDetails("DRAMATICS", R.drawable.dramaticsn),
-      ClusterDetails("GAMING", R.drawable.gamingn),
-      ClusterDetails("SHRUTILAYA", R.drawable.shrutin),
-      ClusterDetails("ENGLISH LITS", R.drawable.eln),
-      ClusterDetails("TAMIL LITS", R.drawable.tln),
-      ClusterDetails("TELUGU LITS", R.drawable.tlln),
-      ClusterDetails("HINDI LITS", R.drawable.hln),
-      ClusterDetails("PHOTOGRAPHY", R.drawable.phton)
-    )
-    val gridView = view.findViewById<GridView>(R.id.gridView)
-    val clusterAdapter = ClusterAdapter(requireContext(), clusterData) { clusterDetails ->
-      onItemClick(clusterDetails) // Call your onItemClick function with the clicked item
+
+    val factory = (requireActivity().application as BaseApplication).applicationComponent.getViewModelProviderFactory()
+    viewmodel = ViewModelProvider(requireActivity(), factory)[EventViewModel::class.java]
+
+    val clusterEnumList = listOf(ClustersNameEnum.WorkshopGLInformal, ClustersNameEnum.Dance, ClustersNameEnum.Music, ClustersNameEnum.Fashion, ClustersNameEnum.English, ClustersNameEnum.Gaming, ClustersNameEnum.Dramatics, ClustersNameEnum.Art, ClustersNameEnum.Photography, ClustersNameEnum.Shrutilaya, ClustersNameEnum.Tamil, ClustersNameEnum.Telugu, ClustersNameEnum.Hindi)
+
+    viewmodel.doAction(EventAction.GetClusters)
+    viewmodel.clustersNames.removeObservers(viewLifecycleOwner)
+    viewmodel.clustersNames.observe(viewLifecycleOwner) {
+      gridView.adapter = ClusterAdapter(requireContext(), it.map { clusterName -> ClusterDetails(clusterEnumList[clusterName.clusterID], clusterName.name, getClusterResource(clusterEnumList[clusterName.clusterID])) }) { clusterItem -> onItemClick(clusterItem) }
     }
-    gridView.adapter = clusterAdapter
+
     navBarButtonBinding.setOnClickListener {
       findNavController().navigate(ClusterFragmentDirections.actionEventsFragmentToNavBarFragment())
     }
   }
+
   override fun onItemClick(clusterDetails: ClusterDetails) {
-    when (clusterDetails.name) {
-      "ART" -> {
-        findNavController().navigate(
-          ClusterFragmentDirections.actionEventsFragmentToEventListFragment(
-            "art"))
-      }
-      "MUSIC" -> {
-        findNavController().navigate(
-          ClusterFragmentDirections.actionEventsFragmentToEventListFragment(
-            "music"))
-      }
-      "DANCE" -> {
-        findNavController().navigate(
-          ClusterFragmentDirections.actionEventsFragmentToEventListFragment(
-            "dance"))
-      }
-      "FASHION" -> {
-        findNavController().navigate(
-          ClusterFragmentDirections.actionEventsFragmentToEventListFragment(
-            "fashion"))
-      }
-      "DRAMATICS" -> {
-        findNavController().navigate(
-          ClusterFragmentDirections.actionEventsFragmentToEventListFragment(
-            "dramatics"))
-      }
-      "ENGLISH LITS" -> {
-        findNavController().navigate(
-          ClusterFragmentDirections.actionEventsFragmentToEventListFragment(
-            "english lits"))
-      }
-      "HINDI LITS" -> {
-        findNavController().navigate(
-          ClusterFragmentDirections.actionEventsFragmentToEventListFragment(
-            "hindi lits"))
-      }
-      "TAMIL LITS" -> {
-        findNavController().navigate(
-          ClusterFragmentDirections.actionEventsFragmentToEventListFragment(
-            "tamil lits"))
-      }
-      "TELUGU LITS" -> {
-        findNavController().navigate(
-          ClusterFragmentDirections.actionEventsFragmentToEventListFragment(
-            "telugu lits"))
-      }
-      "GAMING" -> {
-        findNavController().navigate(
-          ClusterFragmentDirections.actionEventsFragmentToEventListFragment(
-            "gaming"))
-      }
-      "SHRUTILAYA" -> {
-        findNavController().navigate(
-          ClusterFragmentDirections.actionEventsFragmentToEventListFragment(
-            "shrutilaya"))
-      }
-      "PHOTOGRAPHY" -> {
-        findNavController().navigate(
-          ClusterFragmentDirections.actionEventsFragmentToEventListFragment(
-            "photography"))
-      }
+    findNavController().navigate(ClusterFragmentDirections.actionEventsFragmentToEventListFragment(clusterDetails.enumID, CarouselItemTypeEnum.Event))
+  }
+
+  private fun getClusterResource(enumID: ClustersNameEnum): Int {
+    return when (enumID) {
+      ClustersNameEnum.WorkshopGLInformal -> R.drawable.dancen // this route is not possible
+      ClustersNameEnum.Dance -> R.drawable.dancen
+      ClustersNameEnum.Music -> R.drawable.musict
+      ClustersNameEnum.Fashion -> R.drawable.fashionn
+      ClustersNameEnum.English -> R.drawable.eln
+      ClustersNameEnum.Gaming -> R.drawable.gamingn
+      ClustersNameEnum.Dramatics -> R.drawable.dramaticsn
+      ClustersNameEnum.Art -> R.drawable.artn
+      ClustersNameEnum.Photography -> R.drawable.phton
+      ClustersNameEnum.Shrutilaya -> R.drawable.shrutin
+      ClustersNameEnum.Tamil -> R.drawable.tln
+      ClustersNameEnum.Telugu -> R.drawable.tlln
+      ClustersNameEnum.Hindi -> R.drawable.hln
     }
   }
 }

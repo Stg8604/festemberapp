@@ -8,7 +8,7 @@ class BaseApplication : DaggerApplication() {
   val applicationComponent: ApplicationComponent = DaggerApplicationComponent.factory()
     .create(this)
 
-  override fun applicationInjector(): AndroidInjector<out DaggerApplication>? {
+  override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
     return applicationComponent
   }
 }

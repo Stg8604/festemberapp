@@ -3,7 +3,7 @@ package edu.nitt.delta.core.event
 import android.location.Location
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
-import edu.nitt.delta.core.model.event.EventData
+import edu.nitt.delta.core.model.payload.Clusters.EventDetail
 import java.text.ParseException
 
 class EventFilter private constructor() {
@@ -21,11 +21,11 @@ class EventFilter private constructor() {
     else true
   }
 
-  private fun checkRegex(eventData: EventData): Boolean {
-    return regex.containsMatchIn(eventData.name) ||
-        regex.containsMatchIn(eventData.description) ||
-        regex.containsMatchIn(eventData.cluster) ||
-        regex.containsMatchIn(eventData.venue)
+  private fun checkRegex(eventDetail: EventDetail): Boolean {
+    return regex.containsMatchIn(eventDetail.name) ||
+        // regex.containsMatchIn(eventDetail.cluster) ||
+        regex.containsMatchIn(eventDetail.description) ||
+        regex.containsMatchIn(eventDetail.venue)
   }
 
   private fun checkEventDateTime(eventStartTime: String, eventStartDate: String): Boolean = try {
@@ -50,22 +50,20 @@ class EventFilter private constructor() {
     return distance[0] <= radius
   }
 
-  private fun checkEvent(eventData: EventData): Boolean {
-    return checkCluster(eventData.cluster) &&
-        checkRegex(eventData) &&
-        checkEventDateTime(eventData.startTime, eventData.date) &&
-        checkLocationAndRadius(Pair(eventData.locationX.toDouble(), eventData.locationY.toDouble()))
+  private fun checkEvent(eventDetail: EventDetail): Boolean {
+    return checkRegex(eventDetail) &&
+        checkEventDateTime(eventDetail.time, eventDetail.day.toString()) // &&
+        // checkLocationAndRadius(Pair(eventDetail.locationX.toDouble(), eventData.locationY.toDouble()))
   }
 
-  fun filter(eventsLiveData: LiveData<List<EventData>>): LiveData<List<EventData>> {
+  fun filter(eventsLiveData: LiveData<List<EventDetail>>): LiveData<List<EventDetail>> {
     val filteredEvents = Transformations.map(eventsLiveData) { events ->
       events.filter { event -> checkEvent(event) }
     }
-
     return Transformations.distinctUntilChanged(filteredEvents)
   }
 
-  class Builder() {
+  class Builder {
     private val eventFilter = EventFilter()
 
     fun setClusters(vararg cluster: String): Builder {

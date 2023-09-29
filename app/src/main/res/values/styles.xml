@@ -17,7 +17,7 @@
     </style>
     <style name="event_name">
         <item name="android:textSize">20.06sp</item>
-        <item name="android:textColor">@color/cherryRed</item>
+        <item name="android:textColor">@color/cherry_red</item>
     </style>
     <style name="profile">
         <item name="android:textSize">24sp</item>
@@ -30,7 +30,7 @@
     <style name="timeline">
         <item name="android:textSize">30.33sp</item>
         <item name="fontFamily">@font/osake</item>
-        <item name="android:textColor">@color/cherryRed</item>
+        <item name="android:textColor">@color/cherry_red</item>
     </style>
     <style name="sign_up">
         <item name="android:textSize">23.43sp</item>

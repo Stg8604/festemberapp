@@ -62,7 +62,8 @@ class DashboardFragment : Fragment() {
   private fun observeProfileViewModel() {
     profileViewModel.userData.observe(viewLifecycleOwner,
       Observer {
-        user = profileViewModel.userData.value ?: UserData("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "")
+        // needs to be edited to incorporate the latest changes
+        user = profileViewModel.userData.value ?: UserData("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", R.drawable.avatar1, "", "", "")
         profileViewModel.doAction(ProfileAction.GetQr)
         profileViewModel.doAction(ProfileAction.GetQrBitmap)
         sharedPrefHelper.username = user.userName

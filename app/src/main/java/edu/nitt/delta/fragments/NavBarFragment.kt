@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import edu.nitt.delta.databinding.FragmentNavBarBinding
 import edu.nitt.delta.helpers.viewLifecycle
+import edu.nitt.delta.models.CarouselItemTypeEnum
+import edu.nitt.delta.models.ClustersNameEnum
 
 class NavBarFragment : Fragment() {
 
@@ -35,14 +37,23 @@ class NavBarFragment : Fragment() {
     binding.contactUsButton.setOnClickListener {
       findNavController().navigate(NavBarFragmentDirections.actionNavBarFragmentToContactUsFragment())
     }
-    binding.eventsButton.setOnClickListener {
-      findNavController().navigate(NavBarFragmentDirections.actionNavBarFragmentToEventsFragment())
-    }
     binding.sponsorsButton.setOnClickListener {
       findNavController().navigate(NavBarFragmentDirections.actionNavBarFragmentToSponsorsFragment())
     }
     binding.profileButton.setOnClickListener {
       findNavController().navigate(NavBarFragmentDirections.actionNavBarFragmentToDashboardFragment())
+    }
+    binding.eventsButton.setOnClickListener {
+      findNavController().navigate(NavBarFragmentDirections.actionNavBarFragmentToClusterFragment())
+    }
+    binding.guestLecturesButton.setOnClickListener {
+      findNavController().navigate(NavBarFragmentDirections.actionNavBarFragmentToEventListFragment(ClustersNameEnum.WorkshopGLInformal, CarouselItemTypeEnum.GL))
+    }
+    binding.workshopsButton.setOnClickListener {
+      findNavController().navigate(NavBarFragmentDirections.actionNavBarFragmentToEventListFragment(ClustersNameEnum.WorkshopGLInformal, CarouselItemTypeEnum.Workshop))
+    }
+    binding.informalsButton.setOnClickListener {
+      findNavController().navigate(NavBarFragmentDirections.actionNavBarFragmentToEventListFragment(ClustersNameEnum.WorkshopGLInformal, CarouselItemTypeEnum.Informal))
     }
   }
 }

@@ -26,6 +26,6 @@ object Routes {
   const val SPONSORS = "/payload/api/sponsors"
   const val ABOUTUS = "/payload/api/aboutus"
   const val WORKSHOPS = "/payload/api/workshops"
-  const val CLUSTERS = "/payload/api/events"
+  const val CLUSTERS = "/payload/api/events?limit=12"
   const val GALLERY = "/payload/api/gallery"
 }

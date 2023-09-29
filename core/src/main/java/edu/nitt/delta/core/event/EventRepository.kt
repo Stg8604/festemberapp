@@ -286,7 +286,7 @@ class EventRepository @Inject constructor(private val festApi: FestApiInterface,
 
       if (obj.has("text")) {
         var text = "<span>${obj.getString("text")}</span>"
-        attributeToTag.keys.forEach() { attribute ->
+        attributeToTag.keys.forEach { attribute ->
           if (obj.has(attribute)) {
             val tag = attributeToTag[attribute]
             if (tag != null) {

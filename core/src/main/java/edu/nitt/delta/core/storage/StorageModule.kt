@@ -7,7 +7,7 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-class StorageModule() {
+class StorageModule {
   @Provides
   @Singleton
   fun provideDb(app: Application): FestDb {

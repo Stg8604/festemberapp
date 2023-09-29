@@ -55,12 +55,16 @@ class ScheduleFragment : Fragment() {
     binder = FragmentScheduleBinding.inflate(inflater, container, false)
     return binder.root
   }
+
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-
     binder.topBarBinding.Login.setOnClickListener {
       findNavController().navigate(ScheduleFragmentDirections.actionScheduleFragmentToLoginFragment())
     }
+
+    val factory =
+      (requireActivity().application as BaseApplication).applicationComponent.getViewModelProviderFactory()
+    viewmodel = ViewModelProvider(requireActivity(), factory)[EventViewModel::class.java]
 
     if (animationDone) {
       timeline_tv.visibility = View.VISIBLE
@@ -69,18 +73,15 @@ class ScheduleFragment : Fragment() {
       progress_view.visibility = View.VISIBLE
       progressBar_schedule.visibility = View.VISIBLE
     }
-      navBarButtonBinding.setOnClickListener {
-        if (dataFetched) {
-          try {
-            findNavController().navigate(ScheduleFragmentDirections.actionScheduleFragmentToNavBarFragment())
-          } catch (e: IllegalArgumentException) {
-            Log.d(TAG, "onViewCreated: Caught a IllegalArgumentException ${e.message}")
-          }
+    navBarButtonBinding.setOnClickListener {
+      if (dataFetched) {
+        try {
+          findNavController().navigate(ScheduleFragmentDirections.actionScheduleFragmentToNavBarFragment())
+        } catch (e: IllegalArgumentException) {
+          Log.d(TAG, "onViewCreated: Caught a IllegalArgumentException ${e.message}")
         }
       }
-    val factory =
-      (requireActivity().application as BaseApplication).applicationComponent.getViewModelProviderFactory()
-    viewmodel = ViewModelProvider(requireActivity(), factory)[EventViewModel::class.java]
+    }
     viewmodel.doAction(EventAction.GetClusters)
     viewmodel.clusterEvents.observe(
       viewLifecycleOwner
@@ -98,81 +99,92 @@ class ScheduleFragment : Fragment() {
     }
   }
 
-    private fun fetchEventOnDay(day: Int) {
-      require(day in 0..3)
-      when (day) {
-        1 -> { adapter.submitList(eventsOnDay1) }
-        2 -> { adapter.submitList(eventsOnDay2) }
-        3 -> { adapter.submitList(eventsOnDay3) }
-        0 -> { adapter.submitList(eventsOnDay0) }
+  private fun fetchEventOnDay(day: Int) {
+    require(day in 0..3)
+    when (day) {
+      1 -> {
+        adapter.submitList(eventsOnDay1)
+      }
+
+      2 -> {
+        adapter.submitList(eventsOnDay2)
+      }
+
+      3 -> {
+        adapter.submitList(eventsOnDay3)
+      }
+
+      0 -> {
+        adapter.submitList(eventsOnDay0)
       }
     }
-    private fun initEventListView() {
-      binder.eventList.layoutManager = LinearLayoutManager(context)
-      binder.eventList.adapter = adapter
-      adapter.selectedItem.observe(
-        viewLifecycleOwner
-      ) {
-        if (it != null) {
+  }
+
+  private fun initEventListView() {
+    binder.eventList.layoutManager = LinearLayoutManager(context)
+    binder.eventList.adapter = adapter
+    adapter.selectedItem.observe(viewLifecycleOwner) {
+      if (it != null) {
 //         uncomment for enabling event item click
 //          findNavController().navigate(ScheduleFragmentDirections.actionScheduleFragmentToEventDetailsFragment(it))
-          adapter.selectedItem.value = null
-        }
+        adapter.selectedItem.value = null
+      }
+    }
+  }
+
+  private fun initOnClickListeners() {
+    binder.day0.setOnClickListener {
+      if (dataFetched) {
+        binder.day0IndicatorBar.animate().interpolator = AccelerateDecelerateInterpolator()
+        binder.day0IndicatorBar.animate().duration = 300
+        binder.day0IndicatorBar.animate().translationY(it.y)
+        binder.day0.setTextColor(ContextCompat.getColor(requireContext(), R.color.cherry_red))
+        binder.day1.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+        binder.day2.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+        binder.day3.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+        fetchEventOnDay(0)
       }
     }
 
-    private fun initOnClickListeners() {
-      binder.day0.setOnClickListener {
-        if (dataFetched) {
-          binder.day0IndicatorBar.animate().interpolator = AccelerateDecelerateInterpolator()
-          binder.day0IndicatorBar.animate().duration = 300
-          binder.day0IndicatorBar.animate().translationY(it.y)
-          binder.day0.setTextColor(ContextCompat.getColor(requireContext(), R.color.cherryRed))
-          binder.day1.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
-          binder.day2.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
-          binder.day3.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
-          fetchEventOnDay(0)
-        }
-      }
-
-      binder.day1.setOnClickListener {
-        if (dataFetched) {
-          binder.day0IndicatorBar.animate().interpolator = AccelerateDecelerateInterpolator()
-          binder.day0IndicatorBar.animate().duration = 300
-          binder.day0IndicatorBar.animate().translationY(it.y)
-          binder.day0.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
-          binder.day1.setTextColor(ContextCompat.getColor(requireContext(), R.color.cherryRed))
-          binder.day2.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
-          binder.day3.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
-          fetchEventOnDay(1)
-        }
-      }
-
-      binder.day2.setOnClickListener {
-        if (dataFetched) {
-          binder.day0IndicatorBar.animate().interpolator = AccelerateDecelerateInterpolator()
-          binder.day0IndicatorBar.animate().duration = 300
-          binder.day0IndicatorBar.animate().translationY(it.y)
-          binder.day0.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
-          binder.day1.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
-          binder.day2.setTextColor(ContextCompat.getColor(requireContext(), R.color.cherryRed))
-          binder.day3.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
-          fetchEventOnDay(2)
-        }
-      }
-      binder.day3.setOnClickListener {
-        if (dataFetched) {
-          binder.day0IndicatorBar.animate().interpolator = AccelerateDecelerateInterpolator()
-          binder.day0IndicatorBar.animate().duration = 300
-          binder.day0IndicatorBar.animate().translationY(it.y)
-          binder.day0.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
-          binder.day1.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
-          binder.day2.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
-          binder.day3.setTextColor(ContextCompat.getColor(requireContext(), R.color.cherryRed))
-          fetchEventOnDay(3)
-        }
+    binder.day1.setOnClickListener {
+      if (dataFetched) {
+        binder.day0IndicatorBar.animate().interpolator = AccelerateDecelerateInterpolator()
+        binder.day0IndicatorBar.animate().duration = 300
+        binder.day0IndicatorBar.animate().translationY(it.y)
+        binder.day0.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+        binder.day1.setTextColor(ContextCompat.getColor(requireContext(), R.color.cherry_red))
+        binder.day2.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+        binder.day3.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+        fetchEventOnDay(1)
       }
     }
+
+    binder.day2.setOnClickListener {
+      if (dataFetched) {
+        binder.day0IndicatorBar.animate().interpolator = AccelerateDecelerateInterpolator()
+        binder.day0IndicatorBar.animate().duration = 300
+        binder.day0IndicatorBar.animate().translationY(it.y)
+        binder.day0.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+        binder.day1.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+        binder.day2.setTextColor(ContextCompat.getColor(requireContext(), R.color.cherry_red))
+        binder.day3.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+        fetchEventOnDay(2)
+      }
+    }
+    binder.day3.setOnClickListener {
+      if (dataFetched) {
+        binder.day0IndicatorBar.animate().interpolator = AccelerateDecelerateInterpolator()
+        binder.day0IndicatorBar.animate().duration = 300
+        binder.day0IndicatorBar.animate().translationY(it.y)
+        binder.day0.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+        binder.day1.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+        binder.day2.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+        binder.day3.setTextColor(ContextCompat.getColor(requireContext(), R.color.cherry_red))
+        fetchEventOnDay(3)
+      }
+    }
+  }
+
   object DataFetcher {
     // Function to calculate the nth Fibonacci number on a background thread
     suspend fun fetchData(
@@ -186,6 +198,7 @@ class ScheduleFragment : Fragment() {
         fetchingData(eventsOnDay0, eventsOnDay1, eventsOnDay2, eventsOnDay3, it)
       }
     }
+
     private fun fetchingData(
       eventsOnDay0: MutableList<EventDetail>,
       eventsOnDay1: MutableList<EventDetail>,
@@ -219,6 +232,7 @@ class ScheduleFragment : Fragment() {
       quickSort(eventsOnDay2, 0, eventsOnDay2.size - 1)
       quickSort(eventsOnDay3, 0, eventsOnDay3.size - 1)
     }
+
     private fun quickSort(arr: MutableList<EventDetail>, low: Int, high: Int) {
       if (low < high) {
         val pivotIndex = partition(arr, low, high)
@@ -226,6 +240,7 @@ class ScheduleFragment : Fragment() {
         quickSort(arr, pivotIndex + 1, high)
       }
     }
+
     private fun partition(arr: MutableList<EventDetail>, low: Int, high: Int): Int {
       val pivot = arr[high]
       var i = low - 1
@@ -239,11 +254,13 @@ class ScheduleFragment : Fragment() {
       swap(arr, i + 1, high)
       return i + 1
     }
+
     private fun swap(arr: MutableList<EventDetail>, i: Int, j: Int) {
       val temp = arr[i]
       arr[i] = arr[j]
       arr[j] = temp
     }
+
     private fun checkTimings(time: String, endtime: String): Boolean {
       val pattern = "yyy-MM-dd'T'HH:mm:ss.SSS'Z'"
       val sdf = SimpleDateFormat(pattern, Locale.US)
@@ -259,10 +276,12 @@ class ScheduleFragment : Fragment() {
       return false
     }
   }
+
   override fun onDestroy() {
     super.onDestroy()
     fetchDataScope.cancel()
   }
+
   private fun updateUI() {
     try {
       progress_view.visibility = View.INVISIBLE

@@ -79,7 +79,7 @@
             android:fontFamily="@font/kawashiro_gothic"
             android:gravity="center"
             android:text="@string/day3"
-            android:textColor="@color/cherryRed"
+            android:textColor="@color/cherry_red"
             android:textSize="24sp" />
 
         <androidx.appcompat.widget.AppCompatButton

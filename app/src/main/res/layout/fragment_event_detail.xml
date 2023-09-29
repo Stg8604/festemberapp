@@ -1,108 +1,271 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/eventName"
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/antiqueWhite"
+    android:paddingHorizontal="10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/topBarParent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@id/event_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="-10dp"
+                android:layout_marginBottom="-10dp"
+                android:layout_marginTop="-10dp"
+                android:layout_marginEnd="-10dp"
+                android:clipToPadding="false"
+                android:clipChildren="false">
+                <include
+                    android:id="@+id/topBarBinding"
+                    layout="@layout/top_bar"></include>>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/event_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:fontFamily="@font/osake"
+                android:text="EVENT"
+                android:textColor="@color/black"
+                android:textSize="40sp"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/topBarParent"></TextView>
+
+            <ImageView
+                android:id="@+id/divider_line"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:src="@drawable/divider_line"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/event_name"></ImageView>
+
+            <ImageView
+                android:id="@+id/event_poster_view"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_marginTop="24dp"
+                android:src="@drawable/event_poster"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.503"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider_line"></ImageView>
+
+            <TextView
+                android:id="@+id/event_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/kawashiro_gothic"
+                android:text="Date: xx-xx"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/event_poster_view"></TextView>
+
+            <TextView
+                android:id="@+id/event_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/kawashiro_gothic"
+                android:text="Time: xx:xx to xx:xx"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/event_date"></TextView>
+
+            <TextView
+                android:id="@+id/event_venue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/kawashiro_gothic"
+                android:text="Venue: Barn Hall"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/event_time"></TextView>
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/materialButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/cherry_red"
+                android:fontFamily="@font/kawashiro_gothic"
+                android:gravity="center"
+                android:text="Register"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                app:cornerRadius="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.494"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/event_venue"></com.google.android.material.button.MaterialButton>
+
+            <TextView
+                android:id="@+id/detail_heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/kawashiro_gothic"
+                android:text="Details"
+                android:textColor="@color/cherry_red"
+                android:textSize="24sp"
+                android:paddingHorizontal="40dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.116"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/materialButton"></TextView>
+
+            <TextView
+                android:id="@+id/event_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/kawashiro_gothic"
+                android:lineSpacingMultiplier="1.3"
+                android:paddingHorizontal="40dp"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/detail_heading"></TextView>
+
+            <TextView
+                android:id="@+id/judging_criteria_heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/kawashiro_gothic"
+                android:text="Judging Criteria "
+                android:textColor="@color/cherry_red"
+                android:textSize="24sp"
+                android:paddingHorizontal="40dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.173"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/event_description"></TextView>
+
+            <TextView
+                android:id="@+id/judging_criteria_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/kawashiro_gothic"
+                android:lineSpacingMultiplier="1.3"
+                android:paddingHorizontal="40dp"
+                android:text="judging criteria description"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/judging_criteria_heading"></TextView>
+
+            <TextView
+                android:id="@+id/prizes_heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/kawashiro_gothic"
+                android:text="Prizes"
+                android:textColor="@color/cherry_red"
+                android:textSize="24sp"
+                android:paddingHorizontal="40dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.114"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/judging_criteria_description"></TextView>
+
+            <TextView
+                android:id="@+id/prizes_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/kawashiro_gothic"
+                android:lineSpacingMultiplier="1.3"
+                android:paddingHorizontal="40dp"
+                android:text="Prize1 \nPrize2"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/prizes_heading"></TextView>
+
+            <TextView
+                android:id="@+id/poc_heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/kawashiro_gothic"
+                android:text="For queries, contact"
+                android:textColor="@color/cherry_red"
+                android:textSize="24sp"
+                android:paddingHorizontal="40dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.213"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/prizes_description"></TextView>
+
+            <TextView
+                android:id="@+id/poc_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/kawashiro_gothic"
+                android:text="test_description"
+                android:textColor="@color/black"
+                android:paddingHorizontal="40dp"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.141"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/poc_heading"></TextView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingVertical="12dp"
-        android:textAlignment="center"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@id/eventCluster"
-        app:layout_constraintEnd_toEndOf="@id/eventCluster"
-        app:layout_constraintStart_toStartOf="@id/eventCluster"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/eventCluster"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingVertical="12dp"
-        android:textAlignment="center"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@id/eventVenue"
-        app:layout_constraintEnd_toEndOf="@id/eventVenue"
-        app:layout_constraintStart_toStartOf="@id/eventVenue"
-        app:layout_constraintTop_toBottomOf="@id/eventName" />
-
-    <TextView
-        android:id="@+id/eventVenue"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingVertical="12dp"
-        android:textAlignment="center"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@id/eventDescription"
-        app:layout_constraintEnd_toEndOf="@id/eventDescription"
-        app:layout_constraintStart_toStartOf="@id/eventDescription"
-        app:layout_constraintTop_toBottomOf="@id/eventCluster" />
-
-    <TextView
-        android:id="@+id/eventDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingVertical="12dp"
-        android:textAlignment="center"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@id/eventDate"
-        app:layout_constraintEnd_toEndOf="@id/eventDate"
-        app:layout_constraintStart_toStartOf="@id/eventDate"
-        app:layout_constraintTop_toBottomOf="@id/eventVenue" />
-
-    <TextView
-        android:id="@+id/eventDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingVertical="12dp"
-        android:textAlignment="center"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@id/eventTime"
-        app:layout_constraintEnd_toEndOf="@id/eventTime"
-        app:layout_constraintStart_toStartOf="@id/eventTime"
-        app:layout_constraintTop_toBottomOf="@id/eventDescription" />
-
-    <TextView
-        android:id="@+id/eventTime"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingVertical="12dp"
-        android:textAlignment="center"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@id/location"
-        app:layout_constraintEnd_toEndOf="@id/location"
-        app:layout_constraintStart_toStartOf="@id/location"
-        app:layout_constraintTop_toBottomOf="@id/eventDate" />
-
-    <TextView
-        android:id="@+id/location"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingVertical="12dp"
-        android:textAlignment="center"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@id/btnSubscribe"
-        app:layout_constraintEnd_toEndOf="@id/btnSubscribe"
-        app:layout_constraintStart_toStartOf="@id/btnSubscribe"
-        app:layout_constraintTop_toBottomOf="@id/eventTime" />
-
-    <Button
-        android:id="@+id/btnSubscribe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/subscribe"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/location" />
+        app:layout_constraintBottom_toBottomOf="parent">
+        <include
+            android:id="@+id/navBarButtonBinding"
+            layout="@layout/nav_bar_button"></include>>
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

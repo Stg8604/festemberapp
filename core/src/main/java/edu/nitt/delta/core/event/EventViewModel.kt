@@ -19,10 +19,7 @@ import edu.nitt.delta.core.viewmodel.BaseViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class EventViewModel @Inject constructor(
-  private val eventRepository: EventRepository,
-  private val sharedPreferences: SharedPrefHelper
-) : BaseViewModel<EventAction>() {
+class EventViewModel @Inject constructor(private val eventRepository: EventRepository, private val sharedPreferences: SharedPrefHelper) : BaseViewModel<EventAction>() {
 
   val TAG = "EventViewModel"
 
@@ -35,6 +32,8 @@ class EventViewModel @Inject constructor(
   val gallery: LiveData<List<GalleryData>> = eventRepository.gallery
   val clustersNames: LiveData<List<ClusterName>> = eventRepository.clusterNames
   val clusterEvents: LiveData<List<ClustersData>> = eventRepository.clusterEvents
+  val eventsLiveData = MutableLiveData<List<EventDetail>>()
+  val currentClusterName = MutableLiveData<ClusterName>()
 
   private val mutableRegisteredEvents = MutableLiveData<List<String>>()
   val registeredEvents: LiveData<List<String>>
@@ -57,28 +56,32 @@ class EventViewModel @Inject constructor(
   }
 
   private fun getSubscribedEvents() = launch {
-    when (val res = eventRepository.getSubscribedEvents(sharedPreferences.userId, sharedPreferences.token)) {
+    when (val res =
+      eventRepository.getSubscribedEvents(sharedPreferences.userId, sharedPreferences.token)) {
       is Result.Value -> mutableRegisteredEvents.value = res.value
       is Result.Error -> mutableError.postValue(res.exception.message)
     }
   }
 
   private fun unsubscribeEvent(eventId: Long) = launch {
-    when (val res = eventRepository.unsubscribeEvent(sharedPreferences.userId, eventId, sharedPreferences.token)) {
+    when (val res = eventRepository.unsubscribeEvent(
+      sharedPreferences.userId, eventId, sharedPreferences.token
+    )) {
       is Result.Value -> mutableSuccess.postValue("Successfully subscribed to event")
       is Result.Error -> mutableError.postValue(res.exception.message)
     }
   }
 
   private fun subscribeEvent(eventId: Long) = launch {
-    when (val res = eventRepository.subscribeEvent(sharedPreferences.userId, eventId, sharedPreferences.token)) {
+    when (val res =
+      eventRepository.subscribeEvent(sharedPreferences.userId, eventId, sharedPreferences.token)) {
       is Result.Value -> mutableSuccess.postValue("Successfully unsubscribed to event")
       is Result.Error -> mutableError.postValue(res.exception.message)
     }
   }
 
   private fun getEventsFiltered(clusterID: Int): LiveData<List<EventDetail>> =
-    Transformations.map(clusterEvents) { eventsList ->
+      Transformations.map(clusterEvents) { eventsList ->
       eventsList.filter { it.clusterID == clusterID }.flatMap { it.eventDetails }
     }
 
@@ -94,6 +97,7 @@ class EventViewModel @Inject constructor(
       is Result.Value -> {
         mutableSuccess.postValue("Successfully fetched guest lectures")
       }
+
       is Result.Error -> mutableError.postValue(res.exception.message)
     }
   }
@@ -103,6 +107,7 @@ class EventViewModel @Inject constructor(
       is Result.Value -> {
         mutableSuccess.postValue("Successfully fetched Hospitality Details")
       }
+
       is Result.Error -> mutableError.postValue(res.exception.message)
     }
   }
@@ -112,6 +117,7 @@ class EventViewModel @Inject constructor(
       is Result.Value -> {
         mutableSuccess.postValue("Successfully fetched Informals Details")
       }
+
       is Result.Error -> mutableError.postValue(res.exception.message)
     }
   }
@@ -121,6 +127,7 @@ class EventViewModel @Inject constructor(
       is Result.Value -> {
         mutableSuccess.postValue("Successfully fetched Sponsors Details")
       }
+
       is Result.Error -> mutableError.postValue(res.exception.message)
     }
   }
@@ -130,6 +137,7 @@ class EventViewModel @Inject constructor(
       is Result.Value -> {
         mutableSuccess.postValue("Successfully fetched AboutUs Details")
       }
+
       is Result.Error -> mutableError.postValue(res.exception.message)
     }
   }
@@ -139,6 +147,7 @@ class EventViewModel @Inject constructor(
       is Result.Value -> {
         mutableSuccess.postValue("Successfully fetched Workshop Details")
       }
+
       is Result.Error -> mutableError.postValue(res.exception.message)
     }
   }
@@ -148,7 +157,10 @@ class EventViewModel @Inject constructor(
       is Result.Value -> {
         mutableSuccess.postValue("Successfully fetched Cluster & Event Details")
       }
-      is Result.Error -> mutableError.postValue(res.exception.message)
+
+      is Result.Error -> {
+        mutableError.postValue(res.exception.message)
+      }
     }
   }
 
@@ -157,6 +169,7 @@ class EventViewModel @Inject constructor(
       is Result.Value -> {
         mutableSuccess.postValue("Successfully fetched Gallery Details")
       }
+
       is Result.Error -> mutableError.postValue(res.exception.message)
     }
   }
