@@ -2,6 +2,8 @@ package edu.nitt.delta
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -22,12 +24,16 @@ class SplashActivity : AppCompatActivity() {
 
   override fun onStart() {
     super.onStart()
+    val delayMillis = 3500L
 
-    val factory = (application as BaseApplication).applicationComponent.getViewModelProviderFactory()
-    val eventViewModel = ViewModelProvider(this, factory).get(EventViewModel::class.java)
-    eventViewModel.doAction(EventAction.UpdateEvents)
+    // Delay for 2 seconds (adjust the delay time as needed)
+    Handler(Looper.getMainLooper()).postDelayed({
+      val factory = (application as BaseApplication).applicationComponent.getViewModelProviderFactory()
+      val eventViewModel = ViewModelProvider(this, factory).get(EventViewModel::class.java)
+      eventViewModel.doAction(EventAction.UpdateEvents)
 
-    observeAndStartNextActivity(eventViewModel)
+      observeAndStartNextActivity(eventViewModel)
+    }, delayMillis)
   }
 
   private fun observeAndStartNextActivity(eventViewModel: EventViewModel) {

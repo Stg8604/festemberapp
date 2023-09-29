@@ -92,6 +92,9 @@ dependencies {
     //For Confetti Animation - landing_page
     implementation appDependency.confettiLibrary
 
+    //lottie animation
+    implementation 'com.airbnb.android:lottie:6.0.0'
+
     //Picasso
     implementation appDependency.picasso
 }
