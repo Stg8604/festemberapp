@@ -47,7 +47,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="67.13dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="30dp"
             android:background="@drawable/rectangle_2"
             android:fontFamily="@font/kawashiro_gothic"
@@ -59,7 +59,7 @@
             android:textSize="11.93sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/sign_up" />
 
         <EditText
             android:id="@+id/name"
@@ -68,7 +68,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="119.33dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="30dp"
             android:background="@drawable/rectangle_2"
             android:fontFamily="@font/kawashiro_gothic"
@@ -81,7 +81,7 @@
             android:textSize="11.93sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/username" />
 
 
         <EditText
@@ -91,7 +91,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="171.54dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="30dp"
             android:background="@drawable/rectangle_2"
             android:fontFamily="@font/kawashiro_gothic"
@@ -104,7 +104,7 @@
             android:textSize="11.93sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/name" />
 
         <EditText
             android:id="@+id/email"
@@ -113,7 +113,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="223.75dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="30dp"
             android:background="@drawable/rectangle_2"
             android:fontFamily="@font/kawashiro_gothic"
@@ -126,7 +126,7 @@
             android:textSize="11.93sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/ephno" />
 
         <ImageView
             android:id="@+id/backred3"
@@ -144,8 +144,8 @@
             android:layout_height="27.35dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="277dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/text_field"
             android:fontFamily="@font/kawashiro_gothic"
             android:gravity="center_horizontal|center_vertical"
@@ -153,7 +153,7 @@
             android:textAppearance="@style/log_in"
             android:textSize="14.51sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/email" />
 
 
         <androidx.appcompat.widget.AppCompatButton
@@ -162,15 +162,15 @@
             android:layout_height="28.84dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="276dp"
-            android:layout_marginEnd="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="30dp"
             android:background="@drawable/frame_11"
             android:fontFamily="@font/kawashiro_gothic"
             android:gravity="center_horizontal|center_vertical"
             android:text="Next"
             android:textAppearance="@style/register"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/email" />
 
         <TextView
             android:id="@+id/did_you_kno"
@@ -196,11 +196,11 @@
         android:id="@+id/signupback"
         android:layout_width="0dp"
         android:layout_height="359dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="250dp"
+        android:layout_marginStart="40dp"
         android:layout_marginEnd="30dp"
         android:background="@drawable/rectangle_1"
         android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">

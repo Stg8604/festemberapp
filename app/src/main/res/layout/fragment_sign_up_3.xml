@@ -13,9 +13,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="250dp"
         android:layout_marginEnd="30dp"
         android:background="@drawable/rectangle3_1"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -73,8 +73,8 @@
             android:layout_height="27.35dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="310dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/rectangle_5"
             android:fontFamily="@font/kawashiro_gothic"
             android:gravity="center_horizontal|center_vertical"
@@ -82,7 +82,23 @@
             android:textAppearance="@style/log_in"
             android:textSize="14.51sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/windtxt" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/next_3"
+            android:layout_width="wrap_content"
+            android:layout_height="28.84dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/frame_11"
+            android:fontFamily="@font/kawashiro_gothic"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="Next"
+            android:textAppearance="@style/register"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spacetxt" />
 
         <ImageView
             android:id="@+id/fire"
@@ -91,10 +107,10 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="45dp"
-            android:layout_marginTop="105dp"
+            android:layout_marginTop="25dp"
             android:background="@drawable/fire_scaled"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/choose_your" />
 
         <ImageView
             android:id="@+id/earth"
@@ -102,11 +118,11 @@
             android:layout_height="66.67dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="105dp"
+            android:layout_marginTop="25dp"
             android:layout_marginEnd="45dp"
             android:background="@drawable/earth"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/choose_your" />
 
         <ImageView
             android:id="@+id/water"
@@ -114,11 +130,11 @@
             android:layout_height="66.67dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="157dp"
+            android:layout_marginTop="75dp"
             android:background="@drawable/water"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/choose_your" />
 
         <ImageView
             android:id="@+id/wind"
@@ -127,10 +143,10 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="45dp"
-            android:layout_marginTop="216dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/wind"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/firetxt" />
 
         <ImageView
             android:id="@+id/space"
@@ -138,28 +154,12 @@
             android:layout_height="66.67dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="216dp"
+            android:layout_marginTop="30dp"
             android:layout_marginEnd="45dp"
             android:background="@drawable/space"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/earthtxt" />
 
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/next_3"
-            android:layout_width="wrap_content"
-            android:layout_height="28.84dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="310dp"
-            android:layout_marginEnd="50dp"
-            android:background="@drawable/frame_11"
-            android:fontFamily="@font/kawashiro_gothic"
-            android:gravity="center_horizontal|center_vertical"
-            android:text="Next"
-            android:textAppearance="@style/register"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/firetxt"
@@ -198,7 +198,6 @@
             android:id="@+id/windtxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
             android:fontFamily="@font/kawashiro_gothic"
             android:text="Wind"
             android:textColor="@color/cardview_dark_background"
