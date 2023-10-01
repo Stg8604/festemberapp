@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="edu.nitt.delta.fragments.LoginFragment"
+        android:name="edu.nitt.deltaapp.fragments.LoginFragment"
         android:label="login_fragment"
         tools:layout="@layout/login_fragment">
         <action
@@ -29,7 +29,7 @@
 
     <fragment
         android:id="@+id/dAuthFragment"
-        android:name="edu.nitt.delta.fragments.DAuthFragment"
+        android:name="edu.nitt.deltaapp.fragments.DAuthFragment"
         android:label="dAuth_fragment"
         tools:layout="@layout/dauth_fragment">
         <action
@@ -41,7 +41,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="edu.nitt.delta.fragments.HomeFragment"
+        android:name="edu.nitt.deltaapp.fragments.HomeFragment"
         android:label="home_fragment"
         tools:layout="@layout/home_fragment">
         <action
@@ -84,7 +84,7 @@
     </fragment>
     <fragment
         android:id="@+id/clusterFragment"
-        android:name="edu.nitt.delta.event.ClusterFragment"
+        android:name="edu.nitt.deltaapp.event.ClusterFragment"
         android:label="fragment_events"
         tools:layout="@layout/fragment_cluster_list">
         <action
@@ -99,7 +99,7 @@
     </fragment>
     <fragment
         android:id="@+id/leaderboardFragment"
-        android:name="edu.nitt.delta.fragments.LeaderBoardFragment"
+        android:name="edu.nitt.deltaapp.fragments.LeaderBoardFragment"
         android:label="fragment_leaderboard"
         tools:layout="@layout/fragment_leaderboard">
         <action
@@ -113,12 +113,12 @@
 
     <fragment
         android:id="@+id/eventListFragment"
-        android:name="edu.nitt.delta.event.EventListFragment"
+        android:name="edu.nitt.deltaapp.event.EventListFragment"
         android:label="EventListFragment"
         tools:layout="@layout/fragment_event_list">
         <argument
             android:name="clusterEnumID"
-            app:argType="edu.nitt.delta.models.ClustersNameEnum" />
+            app:argType="edu.nitt.deltaapp.models.ClustersNameEnum" />
         <action
             android:id="@+id/action_eventListFragment_to_eventDetailsFragment"
             app:destination="@id/eventDetailsFragment" />
@@ -130,16 +130,16 @@
             app:destination="@id/loginFragment" />
         <argument
             android:name="item_type"
-            app:argType="edu.nitt.delta.models.CarouselItemTypeEnum" />
+            app:argType="edu.nitt.deltaapp.models.CarouselItemTypeEnum" />
     </fragment>
     <fragment
         android:id="@+id/eventDetailsFragment"
-        android:name="edu.nitt.delta.event.EventDetailsFragment"
+        android:name="edu.nitt.deltaapp.event.EventDetailsFragment"
         android:label="EventDetailsFragment"
         tools:layout="@layout/fragment_event_detail">
         <argument
             android:name="eventDetail"
-            app:argType="edu.nitt.delta.core.model.payload.Clusters.EventDetail" />
+            app:argType="edu.nitt.deltaapp.core.model.payload.Clusters.EventDetail" />
         <action
             android:id="@+id/action_eventDetailsFragment_to_navBarFragment"
             app:destination="@id/navBarFragment" />
@@ -148,11 +148,11 @@
             app:destination="@id/loginFragment" />
         <argument
             android:name="item_type"
-            app:argType="edu.nitt.delta.models.CarouselItemTypeEnum" />
+            app:argType="edu.nitt.deltaapp.models.CarouselItemTypeEnum" />
     </fragment>
     <fragment
         android:id="@+id/scheduleFragment"
-        android:name="edu.nitt.delta.event.ScheduleFragment"
+        android:name="edu.nitt.deltaapp.event.ScheduleFragment"
         android:label="ScheduleFragment"
         tools:layout="@layout/fragment_schedule">
         <action
@@ -167,7 +167,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="edu.nitt.delta.fragments.SignUpFragment"
+        android:name="edu.nitt.deltaapp.fragments.SignUpFragment"
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_sign_up">
         <action
@@ -193,14 +193,14 @@
     </fragment>
     <fragment
         android:id="@+id/aboutUsFragment"
-        android:name="edu.nitt.delta.fragments.AboutUsFragment"
+        android:name="edu.nitt.deltaapp.fragments.AboutUsFragment"
         android:label="fragment_about_us"
         tools:layout="@layout/fragment_about_us" >
 
     </fragment>
     <fragment
         android:id="@+id/signUp2Fragment"
-        android:name="edu.nitt.delta.fragments.SignUp2Fragment"
+        android:name="edu.nitt.deltaapp.fragments.SignUp2Fragment"
         android:label="fragment_sign_up_2"
         tools:layout="@layout/fragment_sign_up_2" >
         <action
@@ -223,7 +223,7 @@
 
     <fragment
         android:id="@+id/SIgnUp3Fragment"
-        android:name="edu.nitt.delta.fragments.SignUp3Fragment"
+        android:name="edu.nitt.deltaapp.fragments.SignUp3Fragment"
         android:label="fragment_sign_up_3"
         tools:layout="@layout/fragment_sign_up_3" >
         <action
@@ -245,7 +245,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUp4Fragment"
-        android:name="edu.nitt.delta.fragments.SignUp4Fragment"
+        android:name="edu.nitt.deltaapp.fragments.SignUp4Fragment"
         android:label="fragment_sign_up_4"
         tools:layout="@layout/fragment_sign_up_4" >
         <action
@@ -268,7 +268,7 @@
     </fragment>
     <fragment
         android:id="@+id/dashboardFragment4"
-        android:name="edu.nitt.delta.fragments.DashboardFragment"
+        android:name="edu.nitt.deltaapp.fragments.DashboardFragment"
         android:label="dashboard_fragment"
         tools:layout="@layout/dashboard_fragment">
         <action
@@ -282,7 +282,7 @@
     </fragment>
     <fragment
         android:id="@+id/contactUsFragment"
-        android:name="edu.nitt.delta.fragments.ContactUsFragment"
+        android:name="edu.nitt.deltaapp.fragments.ContactUsFragment"
         android:label="fragment_contact_us"
         tools:layout="@layout/fragment_contact_us">
         <action
@@ -291,7 +291,7 @@
     </fragment>
     <fragment
         android:id="@+id/sponsorsFragment"
-        android:name="edu.nitt.delta.fragments.SponsorsFragment"
+        android:name="edu.nitt.deltaapp.fragments.SponsorsFragment"
         android:label="fragment_sponsors"
         tools:layout="@layout/fragment_sponsors">
         <action
@@ -306,7 +306,7 @@
 
     <fragment
         android:id="@+id/navBarFragment"
-        android:name="edu.nitt.delta.fragments.NavBarFragment"
+        android:name="edu.nitt.deltaapp.fragments.NavBarFragment"
         android:label="fragment_nav_bar"
         tools:layout="@layout/fragment_nav_bar">
         <action

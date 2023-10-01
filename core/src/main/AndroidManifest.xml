@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="edu.nitt.delta.core">
+    package="edu.nitt.deltaapp.core">
 
     <application
-        android:name="BaseApplication"
+        android:name="edu.nitt.deltaapp.core.BaseApplication"
         android:allowBackup="true"
         android:supportsRtl="true" />
 

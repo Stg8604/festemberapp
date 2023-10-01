@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="edu.nitt.delta">
+    package="edu.nitt.deltaapp">
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission
         android:name="android.permission.POST_NOTIFICATIONS"
         tools:node="remove" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
     <application
-        android:name=".core.BaseApplication"
+        android:name="edu.nitt.deltaapp.core.BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/festicon"
         android:label="@string/app_name"
@@ -20,7 +22,7 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />
-        <activity android:name=".SplashActivity"
+        <activity android:name="edu.nitt.deltaapp.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -28,7 +30,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"
+        <activity android:name="edu.nitt.deltaapp.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait"/>
 
@@ -37,7 +39,7 @@
             android:resource="@array/preloaded_fonts" />
 
         <service
-            android:name=".MyFirebaseMessagingService"
+            android:name="edu.nitt.deltaapp.MyFirebaseMessagingService"
             android:exported="false"
             tools:ignore="Instantiatable">
             <intent-filter>
